@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="../css/registro.css">
+</head>
+<body>
+    <!--  بيت الأناقة (Bayt Al-Anaqa): Significa "la casa de la elegancia". Da un aire sofisticado.  -->
+    <h1 class="nombreMarca">بيت الأناقة </h1>
+
+    <div class="contenedor">
+        <h3>JOIN WAITLIST</h3>
+        <form action="/enviar-datos" method="post">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <video muted autoplay loop>
+        <source src="../video/stoneisland.mp4"
+        type="video/mp4">
+    </video>
+    <div class="cap"></div>
+
+    <h2>WEBSITE OPEN</h2>
+    <img src="../img/candado1.png" alt="candado" class="img-candado">
+
+    <form id="registerForm" class="formulario" autocomplete="off">
+        <div class="form-group">
+            <input type="email" id="email" name="email" required placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" name="password" required placeholder="Contraseña">
+        </div>
+        <button type="submit">Registrarse</button>
+    </form>
+
+    <div id="message" style="text-align: center; margin-top: 20px; color: red;"></div>
+    <a href="../html/index.html">
+        <p>¿Ya tienes una cuenta? Inicia Sesión.</p>
+    </a>
+
+    <script src="../js/register.js"></script>
+</body>
+</html>
