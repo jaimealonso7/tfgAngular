@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MarcasComponent } from './marcas.component';
+import { ImagenesHoverComponent } from './imagenes-hover.component';
 
-describe('MarcasComponent', () => {
-  let component: MarcasComponent;
-  let fixture: ComponentFixture<MarcasComponent>;
+describe('ImagenesHoverComponent', () => {
+  let component: ImagenesHoverComponent;
+  let fixture: ComponentFixture<ImagenesHoverComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MarcasComponent]
+      imports: [ImagenesHoverComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MarcasComponent);
+    fixture = TestBed.createComponent(ImagenesHoverComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

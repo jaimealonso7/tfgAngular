@@ -1,0 +1,180 @@
+/* Estilos generales para la tarjeta */
+.product {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 12px; /* Bordes redondeados */
+    border: 1px solid #ddd; /* Borde suave de color gris claro */
+    padding: 20px; /* Espaciado interno */
+    width: 100%; /* 100% de ancho para una mejor responsividad */
+    max-width: 350px; /* Limita el ancho máximo */
+    margin: 20px auto; /* Centra las tarjetas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 580px;
+    align-items: center;
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto al hacer hover */
+}
+
+/* Efecto al pasar el ratón sobre la tarjeta */
+.product:hover {
+    transform: translateY(-5px); /* Sube un poco al hacer hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más profunda */
+}
+
+/* Estilos para la imagen */
+.product--image {
+    width: 100%; /* 100% de ancho */
+    padding-bottom: 20px; /* Espaciado debajo de la imagen */
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.product--image img {
+    width: 100%;
+    height: 350px; /* Altura más pequeña y adaptable */
+    object-fit: cover; /* Asegura que la imagen se recorte de forma correcta */
+    border-radius: 12px; /* Bordes redondeados en la imagen */
+    transition: transform 0.3s ease; /* Animación suave para el zoom */
+}
+
+/* Efecto de zoom sobre la imagen */
+.product--image img:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño de la imagen */
+}
+
+/* Estilos para el título */
+.product--info__title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333; /* Color oscuro para el texto */
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Estilos para la descripción */
+.product--info__description {
+    overflow: hidden;
+    min-height: 40px;
+    font-size: 14px;
+    text-align: justify;
+    color: #666; /* Texto gris para mejor legibilidad */
+    margin: 10px 0;
+}
+.product--info_description {
+    font-size: 14px; /* O el tamaño de fuente que prefieras */
+    color: #333; /* Color de texto */
+    margin-top: 10px; /* Para darle espacio con respecto al título */
+    line-height: 1.5; /* Para hacer que el texto sea más legible */
+    max-width: 100%; /* Asegúrate de que no esté limitado por el ancho */
+    overflow: hidden; /* Para evitar que se desborde, si es necesario */
+}
+
+
+/* Estilos para el precio */
+.product--info__price {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.product--info__price h1 {
+    font-size: 18px;
+    color: #28a745; /* Verde para indicar el precio */
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Estilos para los botones de acción */
+.product--actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Estilo común para los botones */
+.product--actions__btn {
+    border: none;
+    height: 45px;
+    width: 120px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efectos suaves */
+}
+
+/* Estilo específico para el botón de comprar */
+.product--actions .buy {
+    background-color: #ffb400; /* Amarillo */
+    color: white;
+}
+
+/* Efecto al hacer hover sobre el botón de comprar */
+.product--actions .buy:hover {
+    background-color: #e69500; /* Color naranja oscuro */
+    transform: scale(1.05); /* Aumento de tamaño */
+}
+
+/* Estilo específico para el botón de añadir al carrito */
+.product--actions .add {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+/* Efecto al hacer hover sobre el botón de añadir al carrito */
+.product--actions .add:hover {
+    background-color: #218838; /* Verde más oscuro */
+    transform: scale(1.05); /* Aumento de tamaño */
+}
+
+/* Estilo para botones de formulario */
+.border-btn {
+    border: 1px solid #ddd; /* Borde gris claro */
+}
+
+/* Estilos para formularios */
+.form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form label {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.form input {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Estilos para el botón del formulario */
+.form .actions button {
+    margin-left: 10px;
+    height: 45px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.form .actions button:hover {
+    background-color: #007bff; /* Azul */
+    color: white;
+}

@@ -1,0 +1,27 @@
+
+<header class="app-header">
+    <!-- Avatar -->
+    <div class="avatar">
+      <img 
+        [ngClass]="userInfo.role === 'ADMIN' ? 'admin' : userInfo.role === 'USER' ? 'user' : ''"
+        [src]="getAvatarUrl(userInfo.role)"
+        [ngStyle]="{'border': userInfo?.role === 'ADMIN' ? '2px solid cyan' : '2px solid yellow'}"
+        class="avatar-img"
+      >
+    </div>
+  
+    <!-- Título -->
+    <div class="title">
+      <h1>STONE ISLAND</h1>
+    </div>
+  
+    <div class="search-container">
+        <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (input)="onSearch()"
+            placeholder="Buscar productos..."
+            class="search-input">
+    </div>
+  </header>
+  
