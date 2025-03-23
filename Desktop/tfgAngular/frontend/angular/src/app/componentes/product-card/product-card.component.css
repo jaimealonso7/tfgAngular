@@ -1,20 +1,20 @@
 /* Estilos generales para la tarjeta */
 .product {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 12px; /* Bordes redondeados */
-    border: 1px solid #ddd; /* Borde suave de color gris claro */
-    padding: 20px; /* Espaciado interno */
-    width: 100%; /* 100% de ancho para una mejor responsividad */
-    max-width: 350px; /* Limita el ancho máximo */
-    margin: 20px auto; /* Centra las tarjetas */
+    border-radius: 12px; 
+    border: 1px solid #ddd; 
+    padding: 20px; 
+    width: 100%; 
+    max-width: 300px; 
+    margin: 10px auto; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 580px;
+    height: 600px;
     align-items: center;
-    background-color: #fff; /* Fondo blanco */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto al hacer hover */
+    background-color: #fff; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 /* Efecto al pasar el ratón sobre la tarjeta */
@@ -71,7 +71,6 @@
     max-width: 100%; /* Asegúrate de que no esté limitado por el ancho */
     overflow: hidden; /* Para evitar que se desborde, si es necesario */
 }
-
 
 /* Estilos para el precio */
 .product--info__price {

@@ -1,16 +1,19 @@
-/* Estilo general del header */
+/* Establecer box-sizing en todo el sitio para evitar cálculos inesperados */
+
+
+/* En el header */
 .app-header {
     width: 100%;
+    box-sizing: border-box;  /* Asegura que el padding y border se cuenten dentro del 100% */
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #002f6c;
     color: white;
-    padding: 15px 15px;
-    margin: 0;
-    box-sizing: border-box;
-    border-radius: 8px; /* Bordes redondeados para un mejor diseño */
-  }
+    padding: 15px 0px;
+    margin: 0px;
+    border-radius: 8px;
+}
   
   /* Avatar */
   .avatar-img {
@@ -18,7 +21,7 @@
     width: 50px;
     border-radius: 100%;
     padding: 5px;
-    margin-left: 40px;
+    margin-left: 20px;
     border: 2px solid #fff; /* Borde blanco por defecto */
     transition: all 0.3s ease; /* Transición suave para cambios en el borde */
   }
@@ -55,7 +58,7 @@
   
   /* Contenedor de la barra de búsqueda */
 .search-container {
-    position: relative;
+    margin-right: 5px;
   }
   
   .search-input {
@@ -64,8 +67,8 @@
     border-radius: 5px;
     border: none;
     outline: none;
-    width: 200px;
-    margin-right: 40px;
+    width: 150px;
+    margin-right: 0px;
   }
   
   .search-input::placeholder {

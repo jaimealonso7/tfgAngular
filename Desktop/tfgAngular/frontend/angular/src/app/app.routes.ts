@@ -6,21 +6,16 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './componentes/login/login.component';
-import { RegistroComponent } from './componentes/registro/registro.component';
-import { MarcasComponent } from './componentes/marcas/marcas.component';
+import { LoginComponent } from './paginas/login/login.component';
+import { RegistroComponent } from './paginas/registro/registro.component';
+import { MarcasComponent } from './paginas/marcas/marcas.component';
+import { StoneComponent } from './paginas/stone/stone.component';
 
 export const routes: Routes = [
-  
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent},
     { path: 'registro', component: RegistroComponent},
-    { path: 'marcas', component: MarcasComponent}
+    { path: 'marcas', component: MarcasComponent},
+    { path: 'stone', component: StoneComponent}
 
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)], // Configura las rutas principales de la aplicación
-  exports: [RouterModule], // Exporta RouterModule para que otros módulos puedan usarlo
-})
-
-  export class AppRoutingModule { }

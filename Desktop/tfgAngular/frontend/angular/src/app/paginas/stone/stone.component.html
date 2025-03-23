@@ -1,0 +1,31 @@
+<section class="product-page">
+    <app-header class="header"
+    [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }" 
+    [title]="'Stone island'">
+    </app-header>
+
+    <ng-container *ngIf="products.length > 0; else noProducts">
+        <div class="title">
+            <h1>Nuestro Catalogo</h1>
+        </div>
+        <div class="products">
+            <ng-container *ngFor="let product of products"  >
+                <ng-container *ngIf="products.length > 0; else noProducts">
+                    <div class="product">
+                        <div class="container">
+                            <!--<app-product-card [product]="product"></app-product-card>-->
+                            <app-product-card [product]="product"></app-product-card>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </ng-container>
+
+
+    <ng-template #noProducts>
+        <div class="title">
+            <h1>No hay productos disponibles.</h1>
+        </div>
+    </ng-template>
+</section>

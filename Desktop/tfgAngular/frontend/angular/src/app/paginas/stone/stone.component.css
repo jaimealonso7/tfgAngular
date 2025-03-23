@@ -1,0 +1,185 @@
+/* Estilo general para el contenedor de productos*/ 
+.product-page {
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
+
+/* Estilo para la sección de productos (grid de productos) */
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr)); 
+    width: 100%;
+    gap: 10px; /* Espacio entre productos */
+    padding: 20px;
+    justify-content: center;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+/* Título */
+.title {
+    margin-left: 10px;
+    margin-top: 30px;
+    
+    margin-bottom: 0px;
+    font-size: 24px;
+}
+
+/* Estilos para el producto */
+.product {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilos generales de la imagen */
+.product .container {
+    padding: 20px;
+}
+
+
+
+
+@media screen and (max-width: 700px) {
+    
+    .products {
+        grid-template-columns: 1fr; /* 1 producto por fila */
+        gap: 10px; /* Menor espacio entre productos */
+        padding: 0; /* Elimina padding alrededor del grid */
+        display: flex; /* Cambia a Flexbox para más control */
+        flex-direction: column; /* Coloca los productos en una columna */
+        align-items: center; /* Centra los productos horizontalmente */
+        margin-top: 0; /* Elimina cualquier margen adicional */
+        padding-top: 0;
+    }
+
+    .products .product {
+        width: 100%; /* Limita el ancho de los productos al 90% */
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .products .product .container {
+        padding: 20px; /* Menos padding en los contenedores de los productos */
+        width: 90%; /* Asegura que el contenedor ocupe el 100% */
+    }
+
+    /*.products .product .container {
+        padding: 0px;
+        margin-right: 20px;
+    }*/
+
+    .products .product img {
+        width: 20%;
+        max-width: 20%; /* Asegura que las imágenes no se desborden */
+        height: auto; /* Mantiene las proporciones */
+        margin-right: 30px;
+    }
+
+    .title {
+        font-size: 22px; /* Reducir tamaño en móviles */
+        margin-top: 5px; /* Menos espacio en móviles */
+        margin-left: 25px;
+        margin-bottom: 0px;
+        
+        padding-bottom: 0;
+    }
+
+    ::ng-deep .app-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centrar contenido */
+        justify-content: center;
+        height: auto; /* Permite que crezca si es necesario */
+    }
+
+    /* Posicionar el avatar (icono) arriba */
+    ::ng-deep .app-header .avatar {
+        margin-bottom: 20px;
+        margin-right: 25px;
+    }
+
+    /* Centrar el título en el medio */
+    ::ng-deep .app-header .title h1 {
+        font-size: 20px;
+        text-align: center;
+        margin-top: 70px;
+        margin-left: 0px;
+    }
+
+    /* Posicionar el buscador abajo con tamaño más reducido */
+    ::ng-deep .app-header .search-container {
+        width: 80%; /* Ajustar el ancho */
+        max-width: 250px; /* Evitar que sea muy grande */
+        margin-top: 15px; /* Separarlo del título */
+        align-items: center;
+        margin-left: 78px;
+    }
+
+    ::ng-deep .app-header .search-input {
+        width: 100%;
+        padding: 6px;
+        font-size: 14px;
+    }
+
+}
+
+
+
+
+/* Media Query para pantallas medianas (min-width: 600px y max-width: 992px) */
+@media screen and (min-width: 700px) and (max-width: 1200px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr); /* 2 productos por fila */
+        gap: 0px;
+        
+    }
+
+    .products .product .container {
+        padding: 0px;
+        margin-right: 20px;
+    }
+
+    
+}
+
+/* Media Query para pantallas grandes (min-width: 993px y max-width: 1200px) */
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+    .products {
+        grid-template-columns: repeat(3, 1fr); /* 3 productos por fila */
+        gap: 5px;
+    }
+
+    .products .product {
+        width: 100%;
+        padding: 10px;
+        
+    }
+
+    .products .product .container {
+        padding: 10px;
+    }
+
+    .products .product img {
+        max-height: 250px; /* Ajusta la altura máxima de las imágenes */
+        object-fit: cover;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .products {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(250px, 1fr)); /* Ajusta el tamaño mínimo para las columnas */
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .products .product .container {
+        padding: 10px;
+    }
+
+    .products .product img {
+        max-height: 250px;
+        object-fit: cover;
+    }
+}
