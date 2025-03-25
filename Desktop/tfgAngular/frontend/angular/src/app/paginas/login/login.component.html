@@ -3,9 +3,9 @@
 <h1 class="nombreMarca">بيت الأناقة </h1>
 
 <div class="contenedor">
-    <h3>JOIN WAITLIST</h3>
+    <h3 class="titulo-form">JOIN WAITLIST</h3>
     <!-- Uso form (ngSubmit)="onSubmit()" para que Angular maneje el envio -->
-    <form (ngSubmit)="onSubmit()"> 
+    <form (ngSubmit)="onJoinWaitlist()" class="formulario-telefono"> 
         <input type="telefono" id="tel" name="telefono" placeholder="Teléfono" [(ngModel)]="telefono" required>
         <button type="submit">Enviar</button>
     </form>
@@ -21,7 +21,7 @@
 <img src="assets/img/login/candado1.png" alt="candado" class="img-candado">
 
 <!-- Uso: form (ngSubmit)="onSubmit()" para que Angular maneje el envio -->  
-<form (ngSubmit)="onSubmit()" class="formulario" autocomplete="on">
+<form (ngSubmit)="onLoginSubmit()" class="formulario" autocomplete="on">
     <div class="form-group">
         <!-- Agrego [(ngModel)]="email" para enlazar con el componente -->
         <input type="email" id="email" name="email" required placeholder="Email" [(ngModel)]="email">
@@ -30,16 +30,23 @@
         <!-- Agrego [(ngModel)]="password" para enlazar con el componente -->
         <input type="password" id="password" name="password" required placeholder="Contraseña" [(ngModel)]="password">
     </div>
-    <button type="submit">Iniciar Sesión</button>
+    <button type="submit">Inicia Sesión</button>
 
-    <!-- Mostrar mensaje de error si existe -->
-    <div *ngIf="message" class="error-message">
-        {{ message }}
+    <div class="remember-me">
+        <mat-checkbox [(ngModel)]="rememberMe" (change)="onRememberPassword()">
+          Remember me
+        </mat-checkbox>
+    </div>
+    <div class="accessQuicly">
+        <p>--or access quicly--</p>
     </div>
 </form>
 
 
-<p>{{ message }}</p> 
+<!-- Mostrar mensaje de error si existe 
+    <div *ngIf="message" class="error-message">
+        {{ message }}
+    </div>-->
 
 <!-- Uso routerLink para que Angular maneje la navegación 
 <a routerLink="/registro"> 

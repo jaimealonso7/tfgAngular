@@ -8,7 +8,7 @@
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
     position: relative; /* o absolute si es necesario */
-    top: -25px;
+    top: -10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombras para destacar el texto */
 }
 
@@ -167,7 +167,7 @@ h2{
 }
 
 .formulario input[type="email"], .formulario input[type="password"] {
-    width: 80%;
+    width: 90%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #FFD700; /* Borde dorado */
@@ -176,7 +176,7 @@ h2{
 }
 
 .formulario button {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     background-color: #FFD700; /* Dorado */
     color: black;
@@ -184,6 +184,8 @@ h2{
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .formulario button:hover {
@@ -201,3 +203,32 @@ p{
     left: 600px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Sombras */
 }
+
+/* Estilo para el Snackbar de Error */
+/* Estilo para el Snackbar de error */
+.snackbar-error {
+    background-color: #f44336 !important; /* Rojo para los errores */
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    position: absolute;
+    top: 500px;
+  }
+  
+  /* Estilo para el Snackbar de éxito */
+  .snackbar-success {
+    background-color: #4CAF50 !important; /* Verde para éxito */
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  
+  
+  
+
+  

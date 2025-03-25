@@ -25,10 +25,16 @@
     <div class="form-group">
         <input type="password" id="password" name="password" required placeholder="Contraseña" [(ngModel)]="password">
     </div>
-    <button type="submit">Registrarse</button>
+    <button type="submit">Registrate</button>
 </form>
 
-<div id="message" style="text-align: center; margin-top: 20px; color: red;"></div>
+<div *ngIf="message" [ngClass]="{ 'error': isError, 'success': !isError }">
+    <p>{{ message }}</p>
+</div>
+
+  
+  
+
 <a href="/login">
     <p>¿Ya tienes una cuenta? Inicia Sesión.</p>
 </a>
