@@ -7,10 +7,10 @@ const jwt = require('jsonwebtoken');
 
 
 // Ruta de login
+// Ruta de login
 router.post('/login', (req, res) => {
-    console.log('Solicitud de login recibida');
+    console.log('Datos recibidos en login:', req.body);
     const { email, password } = req.body;
-    console.log('Datos recibidos en login:', req.body);  // Agrega un console.log aquí para ver los datos
 
     if (!email || !password) {
         console.log('Faltan datos');
@@ -24,63 +24,44 @@ router.post('/login', (req, res) => {
             return res.status(500).json({ message: 'Error en la base de datos' });
         }
 
-        // He intentado poner un try Catch antes pero no recoge nada
-        try {
-            if (results && results.length === 0) {
-                // El array está vacío
-                console.log('No se encontraron resultados');
-            }
-        } catch (error) {
-            console.error('Error al verificar los resultados:', error);
-        }
-        
-
-        // Si no se encuentra ningún usuario con ese email
         if (results.length === 0) {
-            console.log('El email no está registrado en la base de datos:', email);  // Aquí haces el console.log
-            return res.status(400).json({ message: 'No encontramos una cuenta asociada con este correo.' });
+            return res.status(400).json({ message: 'Usuario no encontrado' });
         }
 
-        // Si el usuario existe, mostramos los datos encontrados
+        // Si el usuario existe, obtenemos sus datos
         const user = results[0];
-        console.log('Usuario encontrado en la base de datos:', user);  // Aquí haces el console.log para ver el usuario
+        console.log('Usuario encontrado en la base de datos:', user);
 
-
-        /* Si no se encuentra el usuario
-        if (results.length === 0) {
-            return res.status(400).json({ message: 'Email no registrado' });
-        }
-
-        const user = results[0]; // Asumimos que el primer resultado es el usuario correcto*/
-
-        // Verificar la contraseña
+        // Verificamos si la contraseña proporcionada coincide con el hash
         bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) {
                 console.error('Error al comparar las contraseñas:', err);
                 return res.status(500).json({ message: 'Error en la autenticación' });
             }
 
-            // Depuración: Imprime la contraseña cifrada en la base de datos y la proporcionada
-            console.log('Contraseña cifrada en la base de datos:', user.password); // Contraseña almacenada en la base de datos (cifrada)
-            console.log('Contraseña proporcionada:', password); // Contraseña proporcionada por el usuario (en texto claro)
-
+            // Depuración
+            console.log('Contraseña cifrada en la base de datos:', user.password);
+            console.log('Contraseña proporcionada:', password);
 
             if (!isMatch) {
                 console.log('La contraseña no coincide');
                 return res.status(400).json({ message: 'Contraseña incorrecta' });
             }
 
-            // Contraseña correcta, podemos crear un JWT
+            // Si las contraseñas coinciden, generamos un JWT
             const token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
             console.log('Token generado:', token);
-            // Redirigir al frontend a marcas.html si la autenticación es exitosa
+
             return res.status(200).json({
                 message: 'Inicio de sesión exitoso',
-                token: token // El token también se puede enviar al cliente (por ejemplo, en los headers)
+                token: token
             });
         });
     });
 });
+
+
+
 
 
 router.post('/register', (req, res) => {
@@ -97,6 +78,7 @@ router.post('/register', (req, res) => {
             console.error('Error al encriptar la contraseña:', err);
             return res.status(500).json({ message: 'Error al encriptar la contraseña' });
         }
+        console.log('Contraseña cifrada correctamente:', hashedPassword); // Aquí puedes ver el hash
 
         // Consulta para insertar el nuevo usuario en la base de datos
         db.query(
@@ -116,6 +98,7 @@ router.post('/register', (req, res) => {
             }
         );
     });
+
 });
 
 // Ruta para registrar nuevos usuarios
