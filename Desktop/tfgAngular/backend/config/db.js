@@ -1,4 +1,5 @@
 // config/db.js
+
 const mysql = require('mysql2');
 require('dotenv').config();
 console.log('Variables de entorno cargadas:', process.env);
