@@ -4,7 +4,7 @@
     font-family: 'Cairo', sans-serif;
     font-size: 100px;
     text-align: center;
-    color: #ffffff; /* Blanco para mayor contraste con fondos oscuros */
+    color: #FFD700; /* Blanco para mayor contraste con fondos oscuros */
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
     position: relative; /* o absolute si es necesario */
@@ -35,6 +35,21 @@ h3{
     color: #FFD700; /* Dorado */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Sombras */
 }
+
+.inicio-sesion{
+    margin: 0;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff; /* Dorado */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Sombras */
+}
+
+.label{
+    font-size: 13px;
+}
+
 
 /*
 form{
@@ -123,7 +138,7 @@ video {
 
 h2{
     position: absolute;
-    top: 180px;
+    top: 160px;
     left: 530px;
     font-family: Arial, sans-serif;
     font-size: 60px;
@@ -134,27 +149,67 @@ h2{
 }
 
 .img-candado {
+    position: fixed; /* Fija en la pantalla */
+    top: 50%; /* Centrado verticalmente */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el elemento para que se centre completamente */
+    width: 10px;
+    height: 10px;
+}
+
+/*.img-candado {
     position: absolute;
-    top: 240px;
+    top: 220px;
     left: 1000px;
     width: 40px;
     height: 40px;
     margin-left: 10px;
-}
+}*/
+
+/*.formulario {
+    position: absolute;
+    top: 0px;
+    left: 770px;
+    max-width: 500px; 
+    margin: 410px auto;
+    transform: translate(-50%, -50%);
+    background-color: rgba(30, 30, 30, 0.9);
+    padding: 20px;
+    border: 1px solid #FFD700; 
+    border-radius: 10px;
+    color: #FFF; 
+}*/
 
 .formulario {
     position: absolute;
-    top: 30px;
-    left: 770px;
-    max-width: 400px; /* Maxima anchura del formulario */
-    margin: 410px auto; /* Centrado horizontal */
-    transform: translate(-50%, -50%); /* Ajusta el centro real */
-    background-color: rgba(30, 30, 30, 0.9); /* Fondo oscuro */
-    padding: 20px;
-    border: 1px solid #FFD700; /* Borde dorado */
-    border-radius: 10px;
-    color: #FFF; /* Texto blanco */
+    top: 55%;
+    left: 50%;
+    width: 90%;
+    max-width: 340px;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    margin: 0;
+    
+    /* Nuevo fondo semi-transparente */
+    background-color: rgba(8, 18, 41, 0.85); /* Azul oscuro con transparencia */
+    
+    /* Efecto vidrio (glassmorphism) */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    /* Borde y sombra */
+    border: 1px solid #FFD700; /* Amarillo dorado */
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    /* Texto y espaciado */
+    padding: 30px;
+    color: #FFD700; /* Amarillo para texto principal */
+    
+    /* Tipografía */
+    font-family: 'Montserrat', sans-serif;
 }
+
 
 .formulario .form-group {
     margin-bottom: 15px;
@@ -176,7 +231,7 @@ h2{
 }
 
 .formulario button {
-    width: 100%;
+    width: 97%;
     padding: 10px;
     background-color: #FFD700; /* Dorado */
     text-transform: uppercase;
@@ -193,15 +248,43 @@ h2{
 }
 
 .remember-me{
-    margin-top: 2px;
+    margin-top: 11px;
 }
 
 .accessQuicly {
-    margin-top: 5px;  /* Espacio adicional entre el checkbox y el texto */
+    margin-top: 0px;  /* Espacio adicional entre el checkbox y el texto */
     text-align: center;
     font-size: 14px;
     color: gray;
+}
+
+.accessQuicly p {
+    display: flex;
+    align-items: center;
+    color: #000000; /* Color del texto */
+    margin: 7px 0;
+    text-transform: lowercase; /* Opcional: para mantener "or access quicly" en minúsculas */
   }
+  
+  .accessQuicly p::before,
+  .accessQuicly p::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ddd; /* Color de la línea */
+    margin: 0 10px; /* Espacio entre texto y líneas */
+  }
+
+.noCuenta{
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFD700; 
+    position: absolute;
+    bottom: 25px;
+    left: 780px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); 
+}
 
 @media screen and (max-width: 600px) {
     .contenedor {

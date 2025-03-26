@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // Importación de "FormsModule" para usar ngModel
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+declare var google: any;  // Solo la nueva API de Google Identity
+
 @Component({
   selector: 'app-login',
   standalone: true,  // Importante para Standalone Components
@@ -17,7 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrls: ['./login.component.css'] // 👈 Agrega estilos si los tienes
 
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   email: string = '';
   password: string = '';
   message: string = '';
@@ -26,8 +28,68 @@ export class LoginComponent {
   rememberMe: any;
   //telefono: any;
 
-  // Agregamos Router para poder hacer la redirección después del login
+  
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {}
+
+  ngOnInit(): void {
+    // Asegúrate de que Google API está cargado correctamente
+    this.loadGoogleApi();
+  }
+
+  // Función para cargar la API de Google
+  loadGoogleApi(): void {
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      // Una vez que la API esté cargada, inicializa el login de Google
+      this.initGoogleLogin();
+    };
+    document.head.appendChild(script);
+  }
+
+  // Función para inicializar el login con Google utilizando la nueva API de Google Identity
+  initGoogleLogin(): void {
+    if (typeof google !== 'undefined') {
+      google.accounts.id.initialize({
+        client_id: '978844024580-h06vs2rcd0rdab84t5caat1lag6lgk5i.apps.googleusercontent.com',
+        callback: this.handleCredentialResponse.bind(this),
+      });
+
+      // Renderiza el botón de inicio de sesión de Google
+      google.accounts.id.renderButton(
+        document.getElementById('googleSignInButton'),
+        { theme: 'outline', size: 'large' }
+      );
+    } else {
+      console.error('Google API no está disponible.');
+    }
+  }
+
+  // Función para manejar la respuesta de Google después del login
+  handleCredentialResponse(response: any): void {
+    const idToken = response.credential;  // ID Token de Google
+    console.log('ID Token de Google: ', idToken);
+    localStorage.setItem('google_id_token', idToken);
+    this.router.navigate(['/marcas']);
+  }
+
+  /* Función para manejar el click en el botón de Google Sign-In
+  attachSignin(element: any): void {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.attachClickHandler(element, {},
+      (googleUser: any) => {
+        const idToken = googleUser.getAuthResponse().id_token;
+        localStorage.setItem('google_id_token', idToken);
+        console.log('ID Token de Google: ', idToken);
+        this.router.navigate(['/marcas']);
+      },
+      (error: any) => {
+        console.log('Error en el login con Google: ', error);
+      }
+    );
+  }*/
 
   onLoginSubmit() {
     console.log('Datos del formulario:', { email: this.email, password: this.password });  // Verificar qué datos se envían
@@ -62,6 +124,11 @@ export class LoginComponent {
         } 
       }
     );
+  }
+
+  isValidEmail(email: string): boolean {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailPattern.test(email);
   }
 
   onRememberPassword() {
