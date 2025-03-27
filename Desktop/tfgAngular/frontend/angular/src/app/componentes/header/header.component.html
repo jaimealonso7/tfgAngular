@@ -1,5 +1,46 @@
 
 <header class="app-header">
+    <h1 class="nombreMarca">{{ title }}</h1>
+
+    <div class="menu-icons">
+      <div class="icon-item" (click)="openMenu()">
+        <img class="img-tresbarras" src="assets/img/header/tresbarras.png" alt="Menú">
+        <p>Menú</p>
+      </div>
+      <div class="icon-item">
+        <img class="img-lupa" src="assets/img/header/lupa.png" alt="Buscar">
+        <p>Buscar</p>
+      </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
+      <div class="sidebar" (click)="$event.stopPropagation()">
+        <p>📄 Cerrar</p>
+        <div class="marcas">
+          <h2>Moncler</h2>
+          <h2>Corteiz</h2>
+          <h2>Stone Island</h2>
+          <h2>Gallery Dept</h2>
+          <h2>Stone Island</h2>
+          <h2>Louis Vuitton</h2>
+          <h2>Canada Goose</h2>
+          <h2>Rolex</h2>
+        </div>
+        
+        <div class="ayuda">
+          <h3>¿Podemos ayudarle?</h3>
+          <h3>+34 913 75 30 70</h3>
+        </div>
+        <hr>
+      </div>
+    </div>
+    
+
+    
+    
+  
+
     <!-- Avatar -->
     <div class="avatar">
       <img 
@@ -10,17 +51,12 @@
       >
     </div>
   
-    <!-- Título -->
-    <div class="title">
-      <h1>STONE ISLAND</h1>
-    </div>
-  
     <div class="search-container">
         <input
             type="text"
             [(ngModel)]="searchQuery"
             (input)="onSearch()"
-            placeholder="Buscar productos..."
+            placeholder="Buscar"
             class="search-input">
     </div>
   </header>

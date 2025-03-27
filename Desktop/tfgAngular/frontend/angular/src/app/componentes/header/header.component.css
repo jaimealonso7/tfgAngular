@@ -1,18 +1,63 @@
 /* Establecer box-sizing en todo el sitio para evitar cálculos inesperados */
 
-
+:host {
+  display: block;
+  width: 100vw;
+}
 /* En el header */
 .app-header {
-    width: 100%;
-    box-sizing: border-box;  /* Asegura que el padding y border se cuenten dentro del 100% */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #002f6c;
-    color: white;
-    padding: 15px 0px;
-    margin: 0px;
-    border-radius: 8px;
+  position: relative;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.menu-icons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: 40px;
+}
+
+.icon-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.menu-icons p {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #000;
+}
+
+.img-tresbarras {
+  width: 28px;
+  height: auto;
+}
+
+.img-lupa {
+  width: 23px;
+  height: auto;
+}
+
+.nombreMarca {
+  font-family: 'Cairo', sans-serif;
+  font-size: 40px;
+  color: #000;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  text-align: center;
 }
   
   /* Avatar */
@@ -21,7 +66,7 @@
     width: 50px;
     border-radius: 100%;
     padding: 5px;
-    margin-left: 20px;
+    margin-left: 1000px;
     border: 2px solid #fff; /* Borde blanco por defecto */
     transition: all 0.3s ease; /* Transición suave para cambios en el borde */
   }
@@ -68,11 +113,62 @@
     border: none;
     outline: none;
     width: 150px;
+    font-weight: bold;
     margin-right: 0px;
   }
   
   .search-input::placeholder {
-    color: #ccc;
+    color: #644343;
   }
   
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  /* Sidebar */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
   
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 21.33vw;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Muy importante */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: black; /* Para que el texto se vea */
+  }
+  
+  .sidebar h1, .sidebar p {
+    margin: 10px 0;
+  }
+
+  .marcas{
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .ayuda{
+    margin-top: 10px;
+    font-size: 12px;
+  }

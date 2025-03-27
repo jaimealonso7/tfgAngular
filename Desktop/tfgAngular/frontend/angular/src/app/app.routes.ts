@@ -12,7 +12,8 @@ import { MarcasComponent } from './paginas/marcas/marcas.component';
 import { StoneComponent } from './paginas/stone/stone.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    //{ path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'marcas', pathMatch: 'full' },
     { path: 'login', component: LoginComponent},
     { path: 'registro', component: RegistroComponent},
     { path: 'marcas', component: MarcasComponent},
