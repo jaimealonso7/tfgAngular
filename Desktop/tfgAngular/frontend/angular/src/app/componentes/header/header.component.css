@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: 15px 30px;
   background-color: white;
   border-radius: 8px;
 }
@@ -21,7 +21,6 @@
   display: flex;
   align-items: center;
   gap: 30px;
-  margin-left: 40px;
 }
 
 .icon-item {
@@ -59,14 +58,23 @@
   margin: 0;
   text-align: center;
 }
+
+.contendor-iconos {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaciado entre los íconos */
+  margin-left: auto; 
+  position: absolute;
+  right: 100px;
+}
+
   
   /* Avatar */
   .avatar-img {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: auto;
     border-radius: 100%;
     padding: 5px;
-    margin-left: 1000px;
     border: 2px solid #fff; /* Borde blanco por defecto */
     transition: all 0.3s ease; /* Transición suave para cambios en el borde */
   }
@@ -83,6 +91,16 @@
   /* Avatar con borde para USER */
   .user {
     border: 2px solid yellow;
+  }
+
+  .img-corazon{
+    width: 40px;
+    height: auto;
+  }
+
+  .img-carro{
+    width: 35px;
+    height: auto;
   }
   
   
@@ -103,7 +121,7 @@
   
   /* Contenedor de la barra de búsqueda */
 .search-container {
-    margin-right: 5px;
+    margin-right: 0px;
   }
   
   .search-input {
@@ -131,6 +149,10 @@
   }
 
 
+  
+
+
+
   /* Sidebar */
   .sidebar-overlay {
     position: fixed;
@@ -147,28 +169,120 @@
     top: 0;
     left: 0;
     height: 100vh;
-    width: 21.33vw;
+    width: 18.33vw;
     background-color: white;
     padding: 20px;
+    padding-left: 40px;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
-    z-index: 1001; /* Muy importante */
+    z-index: 1001; 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    color: black; /* Para que el texto se vea */
+    color: black;
   }
   
   .sidebar h1, .sidebar p {
     margin: 10px 0;
   }
 
-  .marcas{
+  /* Contenedor cerrar ventana*/
+
+  .contenedor-cerrar{
+    display: flex;
+    align-items: center;
+    gap: 5px;
     margin-top: 10px;
+  }
+
+  .boton-cerrar{
+    width: 18px;
+    height: 16px;
+  }
+
+  .texto-cerrar{
     font-size: 16px;
   }
 
-  .ayuda{
+  /* Contenedor marcas */
+
+  .contenedor-marcas{
+    font-size: 16px;
+  }
+
+  .contenedor-marcas h2 {
+    margin-bottom: 45px; /* Ajusta el valor según necesites */
+  }
+
+  .contenedor-moncler, .contenedor-corteiz, .contenedor-stone, .contenedor-gallery, .contenedor-chanel, .contenedor-nf, .contenedor-canada, .contenedor-rolex{
+    display: flex;
+    align-items: top;
+    gap: 10px;
+  }
+
+  .img-moncler{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  
+  .img-corteiz {
+    width: 60px;
+    height: 60px; 
+    object-fit: contain;
+  }
+
+  .img-stone{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  
+  .img-gallery {
+    width: 60px;
+    height: 60px; 
+    object-fit: contain;
+  }
+
+  .img-chanel {
+    width: 60px;
+    height: 60px; 
+    object-fit: contain;
+  }
+
+  .img-nf {
+    width: 60px;
+    height: 60px; 
+    object-fit: contain;
+  }
+
+  .img-canada {
+    width: 60px;
+    height: 60px; 
+    object-fit: contain;
+  }
+
+  .img-rolex {
+    width: 60px;
+    height: 60px; 
+    object-fit: contain;
+  }
+
+  .contenedor-stone a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;  
+    align-items: top;
+    gap: 10px; 
+  }
+  
+
+
+  /* Contenedor ayuda */
+
+  .contenedor-ayuda{
     margin-top: 10px;
     font-size: 12px;
   }

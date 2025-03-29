@@ -1,63 +1,107 @@
-
 <header class="app-header">
-    <h1 class="nombreMarca">{{ title }}</h1>
+  <h1 class="nombreMarca">{{ title }}</h1>
 
-    <div class="menu-icons">
+  <div class="menu-icons">
       <div class="icon-item" (click)="openMenu()">
-        <img class="img-tresbarras" src="assets/img/header/tresbarras.png" alt="Menú">
-        <p>Menú</p>
+          <img class="img-tresbarras" src="assets/img/header/tresbarras.png" alt="Menú">
+          <p>Menú</p>
       </div>
       <div class="icon-item">
-        <img class="img-lupa" src="assets/img/header/lupa.png" alt="Buscar">
-        <p>Buscar</p>
-      </div>
-    </div>
-    
-    <!-- Sidebar -->
-    <div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
+          <img class="img-lupa" src="assets/img/header/lupa.png" alt="Buscar">
+          <div class="search-container">
+              <input
+                  type="text"
+                  [(ngModel)]="searchQuery"
+                  (input)="onSearch()"
+                  placeholder="Buscar"
+                  class="search-input">
+          </div> 
+      </div> 
+  </div> 
+
+  <!-- Sidebar -->
+  <div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
       <div class="sidebar" (click)="$event.stopPropagation()">
-        <p>📄 Cerrar</p>
-        <div class="marcas">
-          <h2>Moncler</h2>
-          <h2>Corteiz</h2>
-          <h2>Stone Island</h2>
-          <h2>Gallery Dept</h2>
-          <h2>Stone Island</h2>
-          <h2>Louis Vuitton</h2>
-          <h2>Canada Goose</h2>
-          <h2>Rolex</h2>
-        </div>
-        
-        <div class="ayuda">
-          <h3>¿Podemos ayudarle?</h3>
-          <h3>+34 913 75 30 70</h3>
-        </div>
-        <hr>
+          <div class="contenedor-cerrar">
+            <img class="boton-cerrar" src="assets/img/header/x.png" alt="">
+            <p class="texto-cerrar">Cerrar</p>
+          </div>
+          
+          <div class="contenedor-marcas">
+
+              <div class="contenedor-moncler">
+                <img class="img-moncler" src="assets/img/header/moncler2.jpg" alt="">
+                <h2>Moncler</h2>
+              </div>
+              
+              <div class="contenedor-corteiz">
+                <img class="img-corteiz" src="assets/img/header/crtz.jpg" alt="">
+                <h2 class="titulo-moncler">Corteiz</h2>
+              </div>
+              
+              <div class="contenedor-stone">
+                <a [routerLink]="['/stone']">
+                  <img src="assets/img/header/stone.webp" alt="" class="img-stone">
+                  <h2 class="titulo-stone">Stone Island</h2>
+                </a>
+              </div>
+
+              <div class="contenedor-gallery">
+                <img src="assets/img/header/gallery3.jpg" alt="" class="img-gallery">
+                <h2 class="titulo-gallery">Gallery Dept</h2>
+              </div>
+
+              <div class="contenedor-chanel">
+                <img src="assets/img/header/chanel.jpg" alt="" class="img-chanel">
+                <h2 class="titulo-chanel">Chanel</h2>
+              </div>
+
+              <div class="contenedor-nf">
+                <img src="assets/img/header/nf.jpg" alt="" class="img-nf">
+                <h2 class="titulo-nf">North Face</h2>
+              </div>
+
+              <div class="contenedor-canada">
+                <img src="assets/img/header/canada.jpg" alt="" class="img-canada">
+                <h2 class="titulo-canada">Canada Goose</h2>
+              </div>
+
+              <div class="contenedor-rolex">
+                <img src="assets/img/header/rolex.jpg" alt="" class="img-rolex">
+                <h2 class="titulo-rolex">Rolex</h2>
+              </div>
+          </div>
+
+          <div class="contenedor-ayuda">
+              <h3>¿Podemos ayudarle?</h3>
+              <h3>+34 913 75 30 70</h3>
+          </div>
+          <hr>
       </div>
-    </div>
-    
+  </div>
 
-    
-    
-  
+  <!-- Contenedor de iconos -->
+  <div class="contendor-iconos">
+      <div class="avatar">
+          <img 
+              [ngClass]="userInfo.role === 'ADMIN' ? 'admin' : userInfo.role === 'USER' ? 'user' : ''"
+              [src]="getAvatarUrl(userInfo.role)"
+              [ngStyle]="{'border': userInfo?.role === 'ADMIN' ? '2px solid cyan' : '2px solid yellow'}"
+              class="avatar-img"
+          >
+      </div>
 
-    <!-- Avatar -->
-    <div class="avatar">
-      <img 
-        [ngClass]="userInfo.role === 'ADMIN' ? 'admin' : userInfo.role === 'USER' ? 'user' : ''"
-        [src]="getAvatarUrl(userInfo.role)"
-        [ngStyle]="{'border': userInfo?.role === 'ADMIN' ? '2px solid cyan' : '2px solid yellow'}"
-        class="avatar-img"
-      >
-    </div>
-  
-    <div class="search-container">
-        <input
-            type="text"
-            [(ngModel)]="searchQuery"
-            (input)="onSearch()"
-            placeholder="Buscar"
-            class="search-input">
-    </div>
-  </header>
-  
+      <div>
+        <a [routerLink]="['/login']">
+          <img class="img-corazon" src="assets/img/header/corazon.png" alt="">
+        </a>
+      </div>
+
+      <div>
+        <a [routerLink]="['/carrito']">
+          <img class="img-carro" src="assets/img/header/carro.png" alt="">
+        </a>
+      </div>
+  </div> 
+
+</header>

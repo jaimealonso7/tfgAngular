@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatSidenavModule, MatButtonModule, MatIconModule],
+  imports: [RouterModule, CommonModule, FormsModule, MatSidenavModule, MatButtonModule, MatIconModule],
   templateUrl: './header.component.html',  // Aquí haces referencia al archivo HTML
   styleUrls: ['./header.component.css']  // Y al archivo de estilos, si es necesario
 })

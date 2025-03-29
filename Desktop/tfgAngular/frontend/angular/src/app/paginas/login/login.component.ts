@@ -75,22 +75,6 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['/marcas']);
   }
 
-  /* Función para manejar el click en el botón de Google Sign-In
-  attachSignin(element: any): void {
-    const auth2 = gapi.auth2.getAuthInstance();
-    auth2.attachClickHandler(element, {},
-      (googleUser: any) => {
-        const idToken = googleUser.getAuthResponse().id_token;
-        localStorage.setItem('google_id_token', idToken);
-        console.log('ID Token de Google: ', idToken);
-        this.router.navigate(['/marcas']);
-      },
-      (error: any) => {
-        console.log('Error en el login con Google: ', error);
-      }
-    );
-  }*/
-
   onLoginSubmit() {
     console.log('Datos del formulario:', { email: this.email, password: this.password });  // Verificar qué datos se envían
 
@@ -153,8 +137,6 @@ export class LoginComponent implements OnInit{
   }
 
   onJoinWaitlist() {
-    // Aquí iría la lógica de enviar el teléfono para la lista de espera (si es necesario)
     console.log('Enviado a lista de espera con teléfono:', this.telefono);
-    // Puedes agregar lógica para enviar datos al servidor, etc.
   }
 }

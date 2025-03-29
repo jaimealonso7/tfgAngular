@@ -1,14 +1,15 @@
+
 /*  NOMBRE DE LA MARCA  */
 
 .nombreMarca {
     font-family: 'Cairo', sans-serif;
     font-size: 100px;
     text-align: center;
-    color: #ffffff; /* Blanco para mayor contraste con fondos oscuros */
+    color: #FFD700; /* Blanco para mayor contraste con fondos oscuros */
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
     position: relative; /* o absolute si es necesario */
-    top: -10px;
+    top: -8px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombras para destacar el texto */
 }
 
@@ -36,13 +37,6 @@ h3{
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Sombras */
 }
 
-/*
-form{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-*/
 
 input[type="telefono"] {
     flex: 1;
