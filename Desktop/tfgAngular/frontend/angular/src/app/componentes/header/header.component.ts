@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +20,10 @@ export class HeaderComponent {
 
   searchQuery: string = '';
 
+  isSearchOpen: boolean = false;
+
+  constructor(private router: Router) {}
+
   menuOpen = false;
 
   openMenu() {
@@ -28,10 +32,6 @@ export class HeaderComponent {
 
   closeMenu() {
     this.menuOpen = false;
-  }
-
-  onSearch() {
-    this.searchEvent.emit(this.searchQuery);  // Emite la búsqueda al componente padre
   }
   
   // Método para obtener la URL del avatar según el rol
@@ -42,6 +42,23 @@ export class HeaderComponent {
       return 'assets/img/user-avatar.png';  // Imagen de avatar para usuario
     } else {
       return 'assets/img/default-avatar.png';  // Imagen por defecto en caso de un rol no identificado
+    }
+  }
+
+  /* Buscador */
+  openSearch() {
+    this.isSearchOpen = true;
+  }
+
+  closeSearch() {
+    this.isSearchOpen = false;
+  }
+
+  search() {
+    if (this.searchQuery.trim()) {
+      // Aquí puedes agregar lógica para validar o manejar las búsquedas
+      this.router.navigate([`/buscar/${this.searchQuery}`]);
+      this.closeSearch();
     }
   }
 }

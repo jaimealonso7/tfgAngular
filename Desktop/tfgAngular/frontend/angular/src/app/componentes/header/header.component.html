@@ -7,19 +7,42 @@
           <p>Menú</p>
       </div>
       <div class="icon-item">
+        <div class="search-container" (click)="openSearch()">
           <img class="img-lupa" src="assets/img/header/lupa.png" alt="Buscar">
-          <div class="search-container">
-              <input
-                  type="text"
-                  [(ngModel)]="searchQuery"
-                  (input)="onSearch()"
-                  placeholder="Buscar"
-                  class="search-input">
-          </div> 
+          <input type="text" [(ngModel)]="searchQuery" (focus)="openSearch()" placeholder="Buscar">
+        </div> 
       </div> 
   </div> 
 
-  <!-- Sidebar -->
+  <div class="search-overlay" *ngIf="isSearchOpen" (click)="closeSearch()"></div>
+
+  <!-- BUSCADOR -->
+  <div class="search-popup" *ngIf="isSearchOpen">
+    <button class="close-btn" (click)="closeSearch()">Cancelar</button>
+
+    <div class="buscador" (click)="openSearch()">
+      <img class="img-lupa" src="assets/img/header/lupa.png" alt="Buscar">
+      <input type="text" [(ngModel)]="searchQuery" (focus)="openSearch()" (keydown.enter)="search()" placeholder="Buscar">
+    </div>
+
+    <div class="contenedor-populares">
+      <h3 class="terminos">Términos de búsqueda populares</h3>
+      <div class="contenedor-botones">
+        <button [routerLink]="['/stone']" class="botones" (click)="closeSearch()">Camiseta Stone Islan</button>
+        <button [routerLink]="['/marcas']" class="botones">Volver a marcas</button>
+        <button class="botones">Camiseta Stone Islan</button>
+        <button class="botones">Camiseta Stone Islan</button>
+        <button class="botones">Camiseta Stone Islan</button>
+      </div>
+    </div>
+    
+    <!--<div class="search-tags">
+      <span *ngFor="let term of popularTerms" (click)="search(term)">{{ term }}</span>
+    </div>-->
+
+  </div>
+
+  <!-- MENU -->
   <div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
       <div class="sidebar" (click)="$event.stopPropagation()">
           <div class="contenedor-cerrar">

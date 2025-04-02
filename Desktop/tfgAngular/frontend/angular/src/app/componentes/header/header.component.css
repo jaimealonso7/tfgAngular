@@ -17,6 +17,7 @@
   border-radius: 8px;
 }
 
+/* ICONOS ESQUINA IZQUIERDA */
 .menu-icons {
   display: flex;
   align-items: center;
@@ -46,6 +47,7 @@
   height: auto;
 }
 
+/* TITULO */
 .nombreMarca {
   font-family: 'Cairo', sans-serif;
   font-size: 40px;
@@ -59,6 +61,16 @@
   text-align: center;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ICONOS ESQUINA DERECHA*/
 .contendor-iconos {
   display: flex;
   align-items: center;
@@ -75,12 +87,12 @@
     width: auto;
     border-radius: 100%;
     padding: 5px;
-    border: 2px solid #fff; /* Borde blanco por defecto */
-    transition: all 0.3s ease; /* Transición suave para cambios en el borde */
+    border: 2px solid #fff; 
+    transition: all 0.3s ease;
   }
   
   .avatar-img:hover {
-    transform: scale(1.1); /* Efecto de zoom cuando el mouse pasa por encima */
+    transform: scale(1.1); 
   }
   
   /* Avatar con borde para ADMIN */
@@ -103,53 +115,141 @@
     height: auto;
   }
   
-  
-  .title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    white-space: nowrap; /* Evita que el texto se parta */
-}
-  
-  h1 {
-    font-size: 24px;
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-  }
+ 
   
   /* Contenedor de la barra de búsqueda */
-.search-container {
-    margin-right: 0px;
+  .search-container {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 20px;
+    padding: 5px 10px;
+    width: 200px;
+  
+    input {
+      border: none;
+      background: transparent;
+      outline: none;
+      flex: 1;
+      padding: 5px;
+      font-size: 17px;
+    }
+  }
+
+  .buscador{
+    position: absolute;
+    top: 7px;
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 20px;
+    padding: 5px 10px;
+    width: 600px;
+  
+    input {
+      border: none;
+      background: transparent;
+      outline: none;
+      flex: 1;
+      padding: 5px;
+      font-size: 17px;
+    }
+  }
+
+  .contenedor-populares{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .terminos {
+    font-size: 18px; /* Asegura un tamaño de texto visible */
+    font-weight: bold; /* Resalta el título */
+    text-align: center; /* Centra el texto */
+    margin-top: 36px;
+    margin-bottom: 15px; /* Espacio entre el título y los botones */
+    display: block; /* Asegura que no sea afectado por flexbox */
+    color: grey;
+  }
+
+  .botones-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones se acomoden en varias líneas */
+    justify-content: center; /* Centra los botones */
+    gap: 10px; /* Espacio entre botones */
+    margin-top: 10px; /* Espaciado respecto al título */
   }
   
-  .search-input {
-    padding: 8px 12px;
-    font-size: 14px;
-    border-radius: 5px;
+  .botones {
+    background: #f5f5f5;
     border: none;
-    outline: none;
-    width: 150px;
-    font-weight: bold;
-    margin-right: 0px;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
   }
   
-  .search-input::placeholder {
-    color: #644343;
-  }
-  
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  .botones:hover {
+    background: #ddd;
   }
 
 
-  
+  /* Buscador */  
+  /* Fondo oscuro cuando la ventana está activa */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+/* Contenedor de la barra de búsqueda flotante */
+.search-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px; /* Ajusta la altura según necesites */
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Botón de cancelar */
+.close-btn {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;
+  right: 160px;
+}
+
+.search-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
+
+
+
 
 
 
