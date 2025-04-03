@@ -2,12 +2,11 @@ import { Component, Input } from '@angular/core';
 import { filter } from 'rxjs';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
-import { ImagenesHoverComponent } from "../imagenes-hover/imagenes-hover.component";
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [FormsModule, CommonModule, ImagenesHoverComponent],
+  imports: [FormsModule, CommonModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })

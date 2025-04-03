@@ -1,94 +1,82 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { Product } from '../../modelos/product.model';
-import { products } from '../../paginas/stone/stone.component';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Producto } from '../../modelos/product.model';
+import { ProductService } from '../../servicios/product.service';  // Importa el servicio ProductService
 
 @Component({
   selector: 'app-resultados-buscador',
-  imports: [],
   templateUrl: './resultados-buscador.component.html',
-  styleUrl: './resultados-buscador.component.css'
+  styleUrls: ['./resultados-buscador.component.css']
 })
+export class ResultadosBuscadorComponent implements OnInit {
+  query: string = '';  // La cadena de búsqueda que el usuario ingresa
+  products: Producto[] = [];  // Lista de productos obtenida del servicio
+  resultados: Producto[] = [];  // Resultados filtrados según la búsqueda
 
-export class ResultadosBuscadorComponent {
-  query: string = '';
-  products: Product[] = products;
-  resultados: Product[] = []; 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private productService: ProductService  // Inyectamos el ProductService
+  ) {}
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  ngOnInit(): void {
+    // Obtenemos la búsqueda de los parámetros de la URL
     this.route.params.subscribe(params => {
-      this.query = params['query']; 
-      console.log(this.query); 
-      this.redirigirSegunBusqueda();
+      this.query = params['query'];  // Almacenamos la consulta de búsqueda
+      console.log(this.query);  // Mostrar la consulta en la consola (para debug)
+      this.redirigirSegunBusqueda();  // Verificamos si debemos redirigir según la búsqueda
+    });
+
+    // Llamamos al servicio para obtener los productos desde la API
+    this.productService.getProductos().subscribe((productos) => {
+      this.products = productos;  // Almacenamos los productos en la lista
+      this.buscarResultados();  // Ejecutamos la búsqueda una vez los productos están cargados
     });
   }
-  
-  /*redirigirSegunBusqueda() {
-    const queryLower = this.query.toLowerCase();
 
-    if (queryLower.includes('stone island accesorios')) {
-      this.router.navigate(['/stone'], { queryParams: { category: 'Accesorio' } });
-    } else if (queryLower.includes('jerseys') || queryLower.includes('jersey') || queryLower.includes('sudadera') || queryLower.includes('sudaderas')) {
-      this.router.navigate(['/stone'], { queryParams: { category: 'Jersey'}})
-    } else if (queryLower.includes('pantalones') || queryLower.includes('pantalon')) {
-      this.router.navigate(['/stone'], { queryParams: { category: 'Pantalon'}});
-    } else if(queryLower.includes('chaquetas')) {
-      this.router.navigate(['/stone'], { queryParams: { category: 'Chaqueta'}})
-    } else if (queryLower.includes('camisetas')) {
-      this.router.navigate(['/stone'], { queryParams: { category: 'Camiseta'}});
-    } else if(queryLower.includes('accesorios') || queryLower.includes('accesorio') || queryLower.includes('gorra')){
-      this.router.navigate(['/stone'], { queryParams: { category: 'Accesorio'}})
-    }
-    
-    else {
-      this.buscarResultados(); // Solo busca resultados si no es una redirección específica
-    }
-  }*/
+  // Función que maneja la redirección según la consulta de búsqueda
+  redirigirSegunBusqueda() {
+    const queryLower = this.query.toLowerCase();  // Convertimos la consulta a minúsculas
 
-    redirigirSegunBusqueda() {
-      const queryLower = this.query.toLowerCase();
-  
-      // Diccionario de palabras clave y sus rutas/categorías asociadas
-      const searchMap: { [key: string]: any } = {
-          'stone island accesorios': { route: '/stone', params: { category: 'Accesorio' } },
-          'jersey': { route: '/stone', params: { category: 'Jersey' } },
-          'jerseys': { route: '/stone', params: { category: 'Jersey' } },
-          'sudadera': { route: '/stone', params: { category: 'Jersey' } },
-          'sudaderas': { route: '/stone', params: { category: 'Jersey' } },
-          'pantalon': { route: '/stone', params: { category: 'Pantalon' } },
-          'pantalones': { route: '/stone', params: { category: 'Pantalon' } },
-          'chaqueta': { route: '/stone', params: { category: 'Chaqueta' } },
-          'chaquetas': { route: '/stone', params: { category: 'Chaqueta' } },
-          'camiseta': { route: '/stone', params: { category: 'Camiseta' } },
-          'camisetas': { route: '/stone', params: { category: 'Camiseta' } },
-          'accesorio': { route: '/stone', params: { category: 'Accesorio' } },
-          'accesorios': { route: '/stone', params: { category: 'Accesorio' } },
-          'gorra': { route: '/stone', params: { category: 'Accesorio' } },
-          'marcas': { route: '/marcas', params: { category: 'Volver'}},
-          'carrito': { route: '/carrito', params: {} },  // Redirigir al carrito
-          'checkout': { route: '/checkout', params: {} }  // Redirigir a checkout
-      };
-  
-      // Buscar si alguna palabra clave coincide
-      for (const key in searchMap) {
-          if (queryLower.includes(key)) {
-              this.router.navigate([searchMap[key].route], { queryParams: searchMap[key].params });
-              return;
-          }
+    // Diccionario de palabras clave y sus rutas/categorías asociadas
+    const searchMap: { [key: string]: any } = {
+      'stone island accesorios': { route: '/stone', params: { category: 'Accesorio' } },
+      'jersey': { route: '/stone', params: { category: 'Jersey' } },
+      'jerseys': { route: '/stone', params: { category: 'Jersey' } },
+      'sudadera': { route: '/stone', params: { category: 'Jersey' } },
+      'sudaderas': { route: '/stone', params: { category: 'Jersey' } },
+      'pantalon': { route: '/stone', params: { category: 'Pantalon' } },
+      'pantalones': { route: '/stone', params: { category: 'Pantalon' } },
+      'chaqueta': { route: '/stone', params: { category: 'Chaqueta' } },
+      'chaquetas': { route: '/stone', params: { category: 'Chaqueta' } },
+      'camiseta': { route: '/stone', params: { category: 'Camiseta' } },
+      'camisetas': { route: '/stone', params: { category: 'Camiseta' } },
+      'accesorio': { route: '/stone', params: { category: 'Accesorio' } },
+      'accesorios': { route: '/stone', params: { category: 'Accesorio' } },
+      'gorra': { route: '/stone', params: { category: 'Accesorio' } },
+      'marcas': { route: '/marcas', params: { category: 'Volver' } },
+      'carrito': { route: '/carrito', params: {} },  // Redirigir al carrito
+      'checkout': { route: '/checkout', params: {} }  // Redirigir a checkout
+    };
+
+    // Comprobamos si alguna palabra clave de la búsqueda coincide con el diccionario
+    for (const key in searchMap) {
+      if (queryLower.includes(key)) {
+        // Si se encuentra una coincidencia, redirigimos a la ruta correspondiente
+        this.router.navigate([searchMap[key].route], { queryParams: searchMap[key].params });
+        return;
       }
-  
-      // Si no encuentra una coincidencia, realiza la búsqueda normal
-      this.buscarResultados();
-  }
-  
+    }
 
+    // Si no encontramos coincidencias, realizamos la búsqueda normal
+    this.buscarResultados();
+  }
+
+  // Función que filtra los productos según la consulta de búsqueda
   buscarResultados() {
     this.resultados = this.products.filter(producto =>
-      producto.name.toLowerCase().includes(this.query.toLowerCase()) ||
-      (producto.category && producto.category.toLowerCase().includes(this.query.toLowerCase()))
+      producto.name.toLowerCase().includes(this.query.toLowerCase()) ||  // Compara el nombre del producto
+      (producto.category && producto.category.toLowerCase().includes(this.query.toLowerCase()))  // Compara la categoría del producto (si está definida)
     );
   }
-
-
 }
