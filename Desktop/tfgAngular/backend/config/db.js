@@ -1,9 +1,8 @@
-// config/db.js
-
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');  // Usa mysql2/promise
 require('dotenv').config();
-console.log('Variables de entorno cargadas:', process.env);
-const connection = mysql.createConnection({
+
+// Crear una conexión utilizando mysql2/promise
+const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
@@ -11,12 +10,6 @@ const connection = mysql.createConnection({
   port: process.env.DB_PORT,
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Error de conexión a la base de datos:', err.stack);
-    return;
-  }
-  console.log('Conectado a la base de datos');
-});
+// No necesitas connection.connect() cuando usas mysql2/promise
 
-module.exports = connection;
+module.exports = pool;

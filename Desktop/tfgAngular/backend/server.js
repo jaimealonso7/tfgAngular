@@ -1,68 +1,63 @@
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const pool = require('./config/db'); // ✅ Usa pool en lugar de db
+
 require('dotenv').config();
 
-// Verifica que las variables de entorno se están cargando correctamente
 console.log('Configuración de la base de datos:', {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
-const express = require('express');
-const cors = require('cors');
-const authRoutes = require('./routes/auth');
 const app = express();
 
-// Middleware de CORS
-app.use(cors({
-  origin: 'http://localhost:4200',  // Cambia esta URL si tu frontend está en otra URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
-// Middleware para manejar la política de seguridad COOP y COEP
-app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-  next();
-});
-
-// Middleware para procesar JSON
-app.use(express.json());  
-
-// Rutas de autenticación
-app.use('/api/auth', authRoutes);
-
-// Configura el puerto y ejecuta el servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
-
-
-/*require('dotenv').config();
-
-// Verifica que las variables de entorno se están cargando correctamente
-console.log('Configuración de la base de datos:', {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
-});
-
-const express = require('express');
-const cors = require('cors');
-const authRoutes = require('./routes/auth');
-const app = express();
-
-// Middleware de CORS y JSON
 app.use(cors());
-app.use(express.json());  
-app.use('/api/auth', authRoutes);
+app.use(express.json());
+
+// ✅ CORRECCIÓN en la API de marcas
+app.get('/api/marcas', async (req, res) => {
+  try {
+    const [rows] = await pool.execute('SELECT idMarca, nombre, imagen, ruta FROM marcas'); // ✅ pool en lugar de db
+    if (rows.length > 0) {
+      res.json(rows);
+    } else {
+      console.error('No se encontraron marcas');
+      res.status(404).json({ message: 'No se encontraron marcas' });
+    }
+  } catch (error) {
+    console.error('Error al obtener marcas:', error);
+    res.status(500).json({ message: 'Error al obtener marcas', error: error.message });
+  }
+});
+
+// ✅ API de productos
+app.get('/api/productos', async (req, res) => {
+  try {
+    const [rows] = await pool.execute('SELECT * FROM productos'); // ✅ pool en lugar de db
+    res.json(rows);
+  } catch (error) {
+    console.error('Error al ejecutar la consulta:', error);
+    res.status(500).json({ message: 'Error al obtener productos', error: error.message });
+  }
+});
+
+// ✅ API de usuarios
+app.get('/api/usuarios', async (req, res) => {
+  try {
+    const [rows] = await pool.execute('SELECT * FROM usuarios'); // ✅ pool en lugar de db
+    res.json(rows);
+  } catch (error) {
+    console.error('Error al ejecutar la consulta:', error);
+    res.status(500).json({ message: 'Error al obtener usuarios', error: error.message });
+  }
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});*/
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
