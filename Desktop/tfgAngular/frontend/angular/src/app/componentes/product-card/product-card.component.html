@@ -15,7 +15,7 @@
                   {{ size.talla }}
               </option>
           </select>
-          <button class="add-btn" (click)="addToCart()">Añadir</button>
+          <button class="add-btn" [ngClass]="{'btn-verde': selectedSize,'btn-rojo': tallaNoSeleccionada}" (click)="addToCart()">Añadir</button>
         </div>
         
     </div>

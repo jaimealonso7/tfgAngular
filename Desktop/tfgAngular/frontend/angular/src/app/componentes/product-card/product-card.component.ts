@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { filter } from 'rxjs';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-card',
@@ -11,7 +13,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
+  constructor(private router: Router) {}
+
   @Input() product: any 
+  tallaNoSeleccionada: boolean = false;
 
   productImageStyle = {
     //border: '1px solid black',
@@ -20,21 +25,32 @@ export class ProductCardComponent {
 
   formState = false
 
-  address = ''
-  postalCode = 0
 
   buyProduct() {
     console.log('compraremos un producto');
     this.formState = true
   }
 
-  orderProduct() {
-    console.log(`Direccion de usuario: ${this.address}`);
-    console.log(`Codigo postal: ${this.postalCode}`); 
-  }
 
   addToCart() {
-    console.log('agregaremos un producto al carro de compras');
+    if(this.selectedSize) {
+      console.log('Producto añadido con talla: ${this.selectedSize}');
+      this.tallaNoSeleccionada = false; // resetea el error si se selecciona una talla
+      // Aquí puedes agregar la lógica para añadir el producto al carrito
+      // Por ejemplo, podrías llamar a un servicio de carrito y pasarle el producto y la talla seleccionada
+      // this.cartService.addToCart(this.product, this.selectedSize);
+      // Luego redirigir al usuario al carrito o mostrar un mensaje de éxito
+      // this.router.navigate(['/carrito']);
+      // Simulando la adición al carrito y redirección
+      //console.log('Producto añadido al carrito:', this.product, 'Talla:', this.selectedSize);
+      // Aquí puedes agregar la lógica para añadir el producto al carrito
+
+      this.router.navigate(['/carrito']);
+    } else{
+      console.log('Debes seleccionar una talla');
+      this.tallaNoSeleccionada = true;
+      
+    }
   }
 
   isHovered = false;
@@ -60,9 +76,10 @@ export class ProductCardComponent {
 
   selectedSize: string = '';
 
-onSizeChange(event: any) {
-  this.selectedSize = event.target.value;
-}
+  onSizeChange(event: any) {
+    this.selectedSize = event.target.value;
+    this.tallaNoSeleccionada = false; // resetea el error si se selecciona una talla
+  }
 
 
 }

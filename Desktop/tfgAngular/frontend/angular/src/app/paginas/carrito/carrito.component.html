@@ -1,7 +1,67 @@
 <section class="product-page">
     <app-header class="header"
     [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }" 
-    [title]="'CARRITO DE COMPRA'">
-    
+    [title]="'CESTA DE COMPRA'">
     </app-header>
+
+    <!-- Si hay productos muestra la cesta -->
+    <ng-container *ngIf="cartItems.length > 0; else noProducts">
+        <div class="title">
+            <h1>Tu Cesta</h1>
+        </div>
+
+        <div class="products">
+            <ng-container *ngFor="let product of cartItems">
+                <div class="product">
+                    <div class="container">
+                        <app-product-card [product]="product"></app-product-card>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <!-- Mensaje cuando no hay productos -->
+    <ng-template #noProducts>
+        <div class="title">
+            <h1>Cesta</h1>
+            <p>No hay productos en tu cesta</p>
+        </div>
+    </ng-template>
+
+    <div class="contenedor-pago">
+        <h1 class="resumen-titulo">Resumen</h1>
+        <div class="contenedor-codigo" (click)="mostrarInput = !mostrarInput">
+            <p class="codigo">¿Tienes un código promocional?</p>
+            <img class="flecha-hacia-abajo" src="assets/img/carrito/flecha-hacia-abajo.png" alt="">
+        </div>
+
+        <div class="codigo-promocional" *ngIf="mostrarInput">
+            <input type="text" [(ngModel)]="codigoPromo" />
+            <button (click)="aplicarCodigo()">Aplicar</button>
+        </div>
+         
+        <p class="mensaje-error" *ngIf="mostrarMensajeSinProductos">
+          No tienes productos en tu cesta.
+        </p>  
+        
+        <div class="subtotal">
+            <p class="subtotal-text">Subtotal</p>
+            <p class="subtotal-precio">0.00€</p>
+        </div>
+        <div class="gastos-envio">
+            <p class="gastos-envio-text">Gastos de envío</p>
+            <p class="gastos-envio-precio">Gratuito</p>
+        </div>
+        <div class="total">
+            <p class="total-text">Total</p>
+            <p class="total-precio">-</p>
+        </div>
+        <div class="boton-pago">
+            <button class="pagar">Pasar por caja</button>
+        </div>
+      </div>
+
+      
+
 </section>
