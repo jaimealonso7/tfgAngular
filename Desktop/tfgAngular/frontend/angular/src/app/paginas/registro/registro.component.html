@@ -15,10 +15,8 @@
 </video>
 <div class="cap"></div>
 
-<h2>WEBSITE OPEN</h2>
-<img src="assets/img/registro/candado1.png" alt="candado" class="img-candado">
-
 <form (ngSubmit)="onRegisterSubmit()" class="formulario" autocomplete="off">
+    <h3 class="registro">Registrate</h3>
     <div class="form-group">
         <input type="email" id="email" name="email" required placeholder="Email" [(ngModel)]="email">
     </div>
@@ -26,17 +24,25 @@
         <input type="password" id="password" name="password" required placeholder="Contraseña" [(ngModel)]="password">
     </div>
     <button type="submit">Registrate</button>
+
+    <div class="remember-me">
+        <mat-checkbox [(ngModel)]="rememberMe" (change)="onRememberPassword()">
+          Remember me
+        </mat-checkbox>
+    </div>
+    <div class="accessQuicly">
+        <p>or access quicly</p>
+        <!--<div id="googleSignInButton" style="text-align: center; margin-top: 20px;"></div>-->
+    </div>
+
 </form>
 
 <div *ngIf="message" [ngClass]="{ 'error': isError, 'success': !isError }">
     <p>{{ message }}</p>
 </div>
 
-  
-  
-
 <a href="/login">
-    <p>¿Ya tienes una cuenta? Inicia Sesión.</p>
+    <p class="noCuenta">¿Ya tienes una cuenta? Inicia Sesión.</p>
 </a>
 
 <script src="../js/register.js"></script>

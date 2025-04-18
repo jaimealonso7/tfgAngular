@@ -1,16 +1,25 @@
 <div class="product" [attr.units-available]="product.unitsAvailable">
-    <div class="product--image">
-        <!--<img [src]="product.image" 
-        [alt]="product.name">-->
-
+    <div class="product--image" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" style="position: relative;">
         <img
-            (mouseenter)="onMouseEnter()"
-            (mouseleave)="onMouseLeave()"
-            [attr.src]="product.image"
-            [alt]="product.name"
-            [ngStyle]="productImageStyle"
+          [attr.src]="product.image"
+          [alt]="product.name"
+          [ngStyle]="productImageStyle"
         >
+    
+        <!-- Overlay que aparece al hacer hover -->
+        <div class="image-hover-overlay" [ngClass]="{ 'visible': isHovered }">
+            <select class="size-selector" (change)="onSizeChange($event)">
+              <option disabled selected>Talla</option>
+              <option *ngFor="let size of stockPorTalla" [value]="size.talla" [disabled]="size.stock <= 0">
+                  <!--{{ size.talla }} (Stock: {{ size.stock }})-->
+                  {{ size.talla }}
+              </option>
+          </select>
+          <button class="add-btn" (click)="addToCart()">Añadir</button>
+        </div>
+        
     </div>
+      
     <div class="product--info">
         <h1 class="product--info__title">{{product.name | uppercase}}</h1>
         <h3>{{product.date | date:'short'}}</h3>
@@ -25,25 +34,7 @@
         </div>
     </div>
     <div class="product--actions">
-        <button (click)="buyProduct()" [disabled]="!(product.unitsAvailable > 1)" class="product--actions__btn buy">BUY</button>
-        <button (click)="addToCart()" class="product--actions__btn add">+ CART</button>
+        <button (click)="buyProduct()" [disabled]="!(product.unitsAvailable > 1)" class="product--actions__btn buy">COMPRAR</button>
+        <button (click)="addToCart()" class="product--actions__btn add">+ CARRITO</button>
     </div>
-
 </div>
-
-<form [style.display]="!formState ? 'none': 'flex'" class="form">
-    <h2>Datos de compra</h2>
-    <label for="address">Direccion</label>
-    <input
-        [(ngModel)]="address"
-        type="text" 
-        name="address" 
-        id="address">
-    <label for="postalCode">Codigo Postal</label>
-    <input
-        [(ngModel)]="postalCode"
-    type="number" name="postalCode" id="postalCode">
-    <div class="actions">
-        <button (click)="orderProduct()">ORDER</button>
-    </div>
-</form>

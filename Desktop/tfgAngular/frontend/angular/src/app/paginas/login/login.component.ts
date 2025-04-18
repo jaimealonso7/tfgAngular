@@ -3,18 +3,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router'; 
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HeaderComponent } from "../../componentes/header/header.component";
 
 declare var google: any;  // Solo la nueva API de Google Identity
 
 @Component({
   selector: 'app-login',
   standalone: true,  // Importante para Standalone Components
-  imports: [CommonModule, FormsModule, HttpClientModule, MatSnackBarModule, MatButtonModule, MatCheckboxModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, MatSnackBarModule, MatButtonModule, MatCheckboxModule, HeaderComponent],
   templateUrl: './login.component.html', // 👈 Ahora usa el archivo separado
   styleUrls: ['./login.component.css'] // 👈 Agrega estilos si los tienes
 
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit{
     const idToken = response.credential;  // ID Token de Google
     console.log('ID Token de Google: ', idToken);
     localStorage.setItem('google_id_token', idToken);
-    this.router.navigate(['/marcas']);
+    this.router.navigate(['/favoritos']);
   }
 
   onLoginSubmit() {
@@ -90,7 +91,7 @@ export class LoginComponent implements OnInit{
         this.showMessage('✅ Inicio de sesión exitoso', false);
 
         setTimeout(() => {
-          this.router.navigate(['/marcas']);
+          this.router.navigate(['/favoritos']);
         }, 1000);
       },
       (error) => {

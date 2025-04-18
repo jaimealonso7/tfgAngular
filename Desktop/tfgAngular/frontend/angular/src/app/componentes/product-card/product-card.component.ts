@@ -14,8 +14,8 @@ export class ProductCardComponent {
   @Input() product: any 
 
   productImageStyle = {
-    border: '1px solid black',
-    filter: 'sepia(0.3)'
+    //border: '1px solid black',
+    filter: 'none'
   }
 
   formState = false
@@ -30,23 +30,39 @@ export class ProductCardComponent {
 
   orderProduct() {
     console.log(`Direccion de usuario: ${this.address}`);
-    console.log(`Codigo postal: ${this.postalCode}`);
-    
+    console.log(`Codigo postal: ${this.postalCode}`); 
   }
 
   addToCart() {
     console.log('agregaremos un producto al carro de compras');
   }
 
+  isHovered = false;
+
   onMouseEnter() {
-    console.log('mouse enter');
-    this.productImageStyle = {...this.productImageStyle, filter: 'sepia(0.3)'}
+    this.isHovered = true;
   }
 
   onMouseLeave() {
-    console.log('mouse leave');
-    this.productImageStyle = {...this.productImageStyle, filter: 'sepia(0)'}
-    
+    this.isHovered = false;
   }
+
+  /*ngOnInit() {
+    if (this.product) {
+      this.product.sizes = ['S', 'M', 'L', 'XL'];  // se lo agregas tú manualmente
+    }
+  }*/
+
+   // Puedes acceder a las tallas de esta forma:
+  get stockPorTalla() {
+    return this.product.stockPorTalla || [];
+  } 
+
+  selectedSize: string = '';
+
+onSizeChange(event: any) {
+  this.selectedSize = event.target.value;
+}
+
 
 }

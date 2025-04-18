@@ -1,4 +1,8 @@
-
+.product-page {
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
 body {
     background: linear-gradient(135deg, #2c3e50, #4ca1af);  /*Degradado suave*/ 
     /*background: red;*/
@@ -13,44 +17,6 @@ body {
     justify-content: flex-start;
 }
 
-.nombreMarca {
-    font-family: 'Cairo', sans-serif;
-    font-size: 80px;
-    text-align: center;
-    color: #ffffff;  /*Blanco para mayor contraste con fondos oscuros */
-    /*color: red;*/
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
-    position: relative; /* o absolute si es necesario */
-    top: -25px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombras para destacar el texto */
-    margin-bottom: 0px; /* Reduce el espacio inferior */
-}
-
-.carro{
-    width: 50px;
-    height: auto;
-    position: absolute;
-    right: 150px;
-    top: 50px;
-}
-
-.favoritos{
-    width: 50px;
-    height: auto;
-    position: absolute;
-    right: 80px;
-    top: 50px;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
 
 .galeria {
     display: grid;

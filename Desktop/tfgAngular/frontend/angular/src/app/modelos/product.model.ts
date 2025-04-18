@@ -1,10 +1,12 @@
 
-export interface Product {
+export interface Producto {
+    idProducto: number;
     image: string;
-    imagenHover: string;
     name: string;
     description: string;
-    unitAvailable: number;
+    stock: number;
     color: string;
     price: string;
+    category: string;
+    idMarca: number;
   }

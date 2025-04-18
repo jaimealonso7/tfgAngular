@@ -1,19 +1,19 @@
 /* Estilos generales para la tarjeta */
 .product {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
     border-radius: 12px; 
-    border: 1px solid #ddd; 
+    border: 1px solid #e0e0e0;
     padding: 20px; 
     width: 100%; 
     max-width: 300px; 
-    margin: 10px auto; 
+    margin: 5px auto; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 600px;
+    height: 530px;
     align-items: center;
-    background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    background-color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
@@ -26,7 +26,7 @@
 /* Estilos para la imagen */
 .product--image {
     width: 100%; /* 100% de ancho */
-    padding-bottom: 20px; /* Espaciado debajo de la imagen */
+    padding-bottom: 10px; /* Espaciado debajo de la imagen */
     display: flex;
     justify-content: center;
     position: relative;
@@ -34,7 +34,7 @@
 
 .product--image img {
     width: 100%;
-    height: 350px; /* Altura más pequeña y adaptable */
+    height: 320px; /* Altura más pequeña y adaptable */
     object-fit: cover; /* Asegura que la imagen se recorte de forma correcta */
     border-radius: 12px; /* Bordes redondeados en la imagen */
     transition: transform 0.3s ease; /* Animación suave para el zoom */
@@ -51,20 +51,12 @@
     font-weight: bold;
     color: #333; /* Color oscuro para el texto */
     text-align: center;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
-/* Estilos para la descripción */
-.product--info__description {
-    overflow: hidden;
-    min-height: 40px;
-    font-size: 14px;
-    text-align: justify;
-    color: #666; /* Texto gris para mejor legibilidad */
-    margin: 10px 0;
-}
+
 .product--info_description {
-    font-size: 14px; /* O el tamaño de fuente que prefieras */
+    font-size: 12px; /* O el tamaño de fuente que prefieras */
     color: #333; /* Color de texto */
     margin-top: 10px; /* Para darle espacio con respecto al título */
     line-height: 1.5; /* Para hacer que el texto sea más legible */
@@ -77,13 +69,14 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 10px;
+    
 }
 
 .product--info__price h1 {
     font-size: 18px;
     color: #28a745; /* Verde para indicar el precio */
     font-weight: bold;
+    
     margin: 0;
 }
 
@@ -103,77 +96,83 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Efectos suaves */
+    border-radius: 5px; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 /* Estilo específico para el botón de comprar */
 .product--actions .buy {
-    background-color: #ffb400; /* Amarillo */
+    background-color: #ffb400; 
     color: white;
 }
 
 /* Efecto al hacer hover sobre el botón de comprar */
 .product--actions .buy:hover {
-    background-color: #e69500; /* Color naranja oscuro */
-    transform: scale(1.05); /* Aumento de tamaño */
+    background-color: #e69500; 
+    transform: scale(1.05); 
 }
 
 /* Estilo específico para el botón de añadir al carrito */
 .product--actions .add {
-    background-color: #28a745; /* Verde */
+    background-color: #28a745; 
     color: white;
 }
 
 /* Efecto al hacer hover sobre el botón de añadir al carrito */
 .product--actions .add:hover {
-    background-color: #218838; /* Verde más oscuro */
-    transform: scale(1.05); /* Aumento de tamaño */
+    background-color: #218838; 
+    transform: scale(1.05); 
 }
 
 /* Estilo para botones de formulario */
 .border-btn {
-    border: 1px solid #ddd; /* Borde gris claro */
+    border: 1px solid #ddd; 
 }
 
-/* Estilos para formularios */
-.form {
-    padding: 20px;
+/* HOVER DE LA IMGAGEN */
+.image-hover-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*background: rgba(255, 255, 255, 0.9);*/
+    padding: 4px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;  /* <- Esto centra horizontalmente */
+    align-items: center;    
+    gap: 10px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 10;
     width: 100%;
-    max-width: 350px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.form label {
-    margin-top: 12px;
+  }
+  
+  .image-hover-overlay.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .size-selector {
+    padding: 6px;
+    border-radius: 6px;
     font-size: 14px;
-}
-
-.form input {
-    margin-top: 5px;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-/* Estilos para el botón del formulario */
-.form .actions button {
-    margin-left: 10px;
-    height: 45px;
-    width: 100px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.form .actions button:hover {
-    background-color: #007bff; /* Azul */
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .add-btn {
+    background-color: #111;
     color: white;
-}
+    border: none;
+    padding: 8px 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  
+  
