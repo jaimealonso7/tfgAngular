@@ -4,17 +4,16 @@ import { ProductCardComponent } from "../../componentes/product-card/product-car
 import { CommonModule } from '@angular/common';
 import { CarritoServicio } from '../../servicios/carrito.servicio';
 import { FormsModule } from '@angular/forms';
+import { CestaItemComponent } from "../../componentes/cesta-item/cesta-item.component";
 
 @Component({
   selector: 'app-carrito',
-  imports: [HeaderComponent, ProductCardComponent, CommonModule, FormsModule],
+  imports: [HeaderComponent, CommonModule, FormsModule, CestaItemComponent],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })
 export class CarritoComponent {
   cartItems: any[] = []; // Aquí almacenamos los productos que obtendremos
-  totalPrice: number = 0; // Aquí almacenamos el precio total de los productos en el carrito
-  itemCount: number = 0; // Aquí almacenamos la cantidad de productos en el carrito
 
   mostrarMensajeSinProductos = false;
   mostrarInput = false;
@@ -38,5 +37,8 @@ export class CarritoComponent {
 
   constructor(private carritoServicio: CarritoServicio) {}
   
+  ngOnInit(): void {
+    this.cartItems = this.carritoServicio.getCartItems();
+  }
 
 }

@@ -1,19 +1,28 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoServicio {
-    private apiUrl = 'https://localhost:3000/api/carrito'; // Cambia esto a la URL de tu API
-    private cartItems: any[] = []; // Aquí almacenamos los productos que obtendremos
+  
+  private cartItems: any[] = [];
 
-    constructor(private http: HttpClient) {}
+  addToCart(product: any, talla: string) {
+    const item = { ...product, tallaSeleccionada: talla };
+    this.cartItems.push(item);
+  }
 
-    // Método para obtener los productos del carrito
-    getCartItems(): Observable<any[]> {
-        return this.http.get<any[]>(this.apiUrl);
-    }   
+  getCartItems() {
+    return this.cartItems;
+  }
+
+  clearCart() {
+    this.cartItems = [];
+  }
+
+  
+  
 }

@@ -3,6 +3,7 @@ import { filter } from 'rxjs';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { CarritoServicio } from '../../servicios/carrito.servicio';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private carritoServicio: CarritoServicio) {}
 
   @Input() product: any 
   tallaNoSeleccionada: boolean = false;
@@ -32,26 +33,36 @@ export class ProductCardComponent {
   }
 
 
-  addToCart() {
-    if(this.selectedSize) {
-      console.log('Producto añadido con talla: ${this.selectedSize}');
-      this.tallaNoSeleccionada = false; // resetea el error si se selecciona una talla
-      // Aquí puedes agregar la lógica para añadir el producto al carrito
-      // Por ejemplo, podrías llamar a un servicio de carrito y pasarle el producto y la talla seleccionada
-      // this.cartService.addToCart(this.product, this.selectedSize);
-      // Luego redirigir al usuario al carrito o mostrar un mensaje de éxito
-      // this.router.navigate(['/carrito']);
-      // Simulando la adición al carrito y redirección
-      //console.log('Producto añadido al carrito:', this.product, 'Talla:', this.selectedSize);
-      // Aquí puedes agregar la lógica para añadir el producto al carrito
-
+  /*addToCart() {
+    if (this.selectedSize) {
+      console.log(`Producto añadido con talla: ${this.selectedSize}`);
+      this.tallaNoSeleccionada = false;
+  
+      this.carritoServicio.addToCart(this.product, this.selectedSize);
+  
       this.router.navigate(['/carrito']);
-    } else{
+    } else {
       console.log('Debes seleccionar una talla');
       this.tallaNoSeleccionada = true;
-      
     }
-  }
+  }*/
+
+    addToCart() {
+      if(this.selectedSize) {
+        // Pasar el producto completo con la talla seleccionada al carrito
+        const productWithSize = { ...this.product, tallaSeleccionada: this.selectedSize };
+    
+        // Añadir al carrito usando el servicio
+        this.carritoServicio.addToCart(productWithSize, this.selectedSize);
+        
+        this.router.navigate(['/carrito']);
+      } else {
+        console.log('Debes seleccionar una talla');
+        this.tallaNoSeleccionada = true;
+      }
+    }
+    
+  
 
   isHovered = false;
 

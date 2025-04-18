@@ -7,14 +7,14 @@
     <!-- Si hay productos muestra la cesta -->
     <ng-container *ngIf="cartItems.length > 0; else noProducts">
         <div class="title">
-            <h1>Tu Cesta</h1>
+            <h1>Cesta</h1>
         </div>
 
         <div class="products">
             <ng-container *ngFor="let product of cartItems">
                 <div class="product">
                     <div class="container">
-                        <app-product-card [product]="product"></app-product-card>
+                        <app-cesta-item [producto]="product"></app-cesta-item>
                     </div>
                 </div>
             </ng-container>

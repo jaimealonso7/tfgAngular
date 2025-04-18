@@ -1,0 +1,62 @@
+.cesta-item-card {
+    width: 700px;
+    max-height: 160px;
+    margin-left: 450px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .imagen img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .contenido {
+    flex: 1;
+  }
+  
+  .quitar {
+    background-color: #ff4d4d;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+
+  h3{
+    color: black;
+  }
+
+  .color{
+    color: gray;
+  }
+
+  .talla{
+    color: gray;
+  }
+  
+  .contenido {
+    position: relative; /* Esto es importante para que el precio se posicione de manera absoluta */
+  }
+  
+  .contenedor-precio {
+    position: absolute; /* Posicionamos el precio en la parte superior derecha */
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .precio {
+    margin: 0;
+    color: black;
+  }
