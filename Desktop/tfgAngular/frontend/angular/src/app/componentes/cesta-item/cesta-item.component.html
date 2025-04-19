@@ -1,16 +1,36 @@
-<div class="cesta-item-card">
+
+<div class="cesta-item-wrapper">
+  <div class="cesta-item-card">
     <div class="imagen">
       <img [src]="producto.image" alt="{{ producto.nombre }}">
     </div>
   
     <div class="contenido">
       <h3>{{ producto.name }}</h3>
+      <p class="description"> {{ producto.description }}</p>
       <p class="color"><Strong>Color:</Strong> {{ producto.color}}</p>
-      <p class="talla"><strong>Talla:</strong> {{ producto.tallaSeleccionada }}</p>
+      <p class="talla"><strong>Talla</strong> {{ producto.tallaSeleccionada }}</p>
+      
       <div class="contenedor-precio">
         <p class="precio"> {{ producto.price }}€</p>
       </div>
-      <button class="quitar">Eliminar</button>
+      <!--<button class="añadir">Añadir</button>
+      <button class="quitar">Eliminar</button>-->
     </div>
   </div>
+  <div class="cantidad">
+    <p class="cantidad-text">Cantidad</p>
+    <div class="cantidad-botones">
+      <button (click)="restarCantidad(producto)">-</button>
+      <p class="unidades">{{ producto.cantidad }}</p>
+      <button (click)="sumarCantidad(producto)">+</button>
+    </div>
+  </div>
+</div>
+  
+
+
+
+
+  
   

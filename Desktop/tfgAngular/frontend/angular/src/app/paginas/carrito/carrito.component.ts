@@ -39,6 +39,17 @@ export class CarritoComponent {
   
   ngOnInit(): void {
     this.cartItems = this.carritoServicio.getCartItems();
+    this.carritoServicio.getCartObservable().subscribe(items => {
+      this.cartItems = items;
+    });
+  }
+
+  onRemoveItem(product: any): void {
+    this.carritoServicio.removeFromCart(product);
+  }
+
+  onClearCart(): void {
+    this.carritoServicio.clearCart();
   }
 
 }
