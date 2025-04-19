@@ -47,7 +47,7 @@
         
         <div class="subtotal">
             <p class="subtotal-text">Subtotal</p>
-            <p class="subtotal-precio">0.00€</p>
+            <p class="subtotal-precio">{{ subtotal.toFixed(2) }}$</p>
         </div>
         <div class="gastos-envio">
             <p class="gastos-envio-text">Gastos de envío</p>
@@ -55,10 +55,10 @@
         </div>
         <div class="total">
             <p class="total-text">Total</p>
-            <p class="total-precio">-</p>
+            <p class="total-precio">{{ subtotal.toFixed(2) }}€</p>
         </div>
         <div class="boton-pago">
-            <button class="pagar">Pasar por caja</button>
+            <button class="pagar" [ngClass]="{ 'activo': hayProductos }">Pasar por caja</button>
         </div>
       </div>
 

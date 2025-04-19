@@ -14,7 +14,7 @@ import { CestaItemComponent } from "../../componentes/cesta-item/cesta-item.comp
 })
 export class CarritoComponent {
   cartItems: any[] = []; // Aquí almacenamos los productos que obtendremos
-
+  subtotal: number = 0;
   mostrarMensajeSinProductos = false;
   mostrarInput = false;
   codigoPromo: string = '';
@@ -38,11 +38,21 @@ export class CarritoComponent {
   constructor(private carritoServicio: CarritoServicio) {}
   
   ngOnInit(): void {
-    this.cartItems = this.carritoServicio.getCartItems();
     this.carritoServicio.getCartObservable().subscribe(items => {
       this.cartItems = items;
+      this.cargarSubtotal();  
     });
   }
+  
+  get hayProductos(): boolean {
+    return this.cartItems.length > 0;
+  }
+  
+
+  cargarSubtotal() {
+    this.subtotal = this.carritoServicio.getSubtotal();
+  }
+  
 
   onRemoveItem(product: any): void {
     this.carritoServicio.removeFromCart(product);

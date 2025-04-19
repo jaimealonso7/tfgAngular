@@ -14,6 +14,11 @@
       <div class="contenedor-precio">
         <p class="precio"> {{ producto.price }}€</p>
       </div>
+
+      <div class="subtotal-producto">
+        <p><strong>Subtotal:</strong> {{ producto.price * producto.cantidad }}€</p>
+      </div>
+      
       <!--<button class="añadir">Añadir</button>
       <button class="quitar">Eliminar</button>-->
     </div>
@@ -21,9 +26,12 @@
   <div class="cantidad">
     <p class="cantidad-text">Cantidad</p>
     <div class="cantidad-botones">
-      <button (click)="restarCantidad(producto)">-</button>
+      <img (click)="restarCantidad(producto)" class="icono-menos" src="assets/img/carrito/menos.png" alt="">
       <p class="unidades">{{ producto.cantidad }}</p>
-      <button (click)="sumarCantidad(producto)">+</button>
+      <img (click)="sumarCantidad(producto)" class="icono-mas" src="assets/img/carrito/mas.png" alt="">
+      <!--<button (click)="restarCantidad(producto)">-</button>
+      <p class="unidades">{{ producto.cantidad }}</p>
+      <button (click)="sumarCantidad(producto)">+</button>-->
     </div>
   </div>
 </div>

@@ -74,7 +74,7 @@
   }
   
   .precio {
-    margin: 0;
+    margin-top: 20px;
     color: black;
   }
 
@@ -100,15 +100,41 @@
     
   }
 
+  button{
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    background-color: #dbd9d9; /* Verde */
+    color: black;
+
+  }
+
   .cantidad-botones{
     display: flex;
+    padding: 0px 12px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 80px;
+    height: 30px;
+    border: 1px solid rgb(198, 198, 198);
     gap: 10px;
+    border-radius: 16px;
   }
 
   .unidades{
-    color: red;
+    color: black;
     font-size: 18px;
     font-weight: bold;
+  }
+
+  .icono-mas{
+    color: black;
+    width: 15px;
+    height: 15px;
+  }
+
+  .icono-menos{
+    color: black;
+    width: 12px;
+    height: 17px;
   }

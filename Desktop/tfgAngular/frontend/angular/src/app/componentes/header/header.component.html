@@ -3,12 +3,12 @@
 
   <div class="menu-icons">
       <div class="icon-item" (click)="openMenu()">
-          <img class="img-tresbarras" src="assets/img/header/tresbarras.png" alt="Menú">
+          <img class="img-tresbarras icon-img" src="assets/img/header/tresbarras.png" alt="Menú">
           <p>Menú</p>
       </div>
       <div class="icon-item">
         <div class="search-container" (click)="openSearch()">
-          <img class="img-lupa" src="assets/img/header/lupa.png" alt="Buscar">
+          <img class="img-lupa icon-img" src="assets/img/header/lupa.png" alt="Buscar">
           <input type="text" [(ngModel)]="searchQuery" (focus)="openSearch()" placeholder="Buscar">
         </div> 
       </div> 
@@ -21,7 +21,7 @@
     <button class="close-btn" (click)="closeSearch()">Cancelar</button>
 
     <div class="buscador" (click)="openSearch()">
-      <img class="img-lupa" src="assets/img/header/lupa.png" alt="Buscar">
+      <img class="img-lupa icon-img" src="assets/img/header/lupa.png" alt="Buscar">
       <input type="text" [(ngModel)]="searchQuery" (focus)="openSearch()" (keydown.enter)="search()" placeholder="Buscar">
     </div>
 
@@ -116,13 +116,13 @@
 
       <div>
         <a [routerLink]="['/login']">
-          <img class="img-corazon" src="assets/img/header/corazon.png" alt="">
+          <img class="img-corazon icon-img" src="assets/img/header/corazon.png" alt="">
         </a>
       </div>
 
       <div>
         <a [routerLink]="['/carrito']">
-          <img class="img-carro" src="assets/img/header/carro.png" alt="">
+          <img class="img-carro icon-img" src="assets/img/header/carro.png" alt="">
         </a>
       </div>
   </div> 

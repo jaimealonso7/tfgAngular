@@ -115,7 +115,13 @@
     height: auto;
   }
   
- 
+  .icon-img {
+    width: 24px;
+    height: 28px;
+    object-fit: contain;
+    display: block;
+  }
+  
   
   /* Contenedor de la barra de búsqueda */
   .search-container {

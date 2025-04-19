@@ -10,6 +10,7 @@ export class CarritoServicio {
   
   private cartItems: any[] = [];
   private cartSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  
 
   constructor() {
     const storedCart = localStorage.getItem('cart');
@@ -29,18 +30,19 @@ export class CarritoServicio {
     );
   
     if (existente) {
-      existente.cantidad = (existente.cantidad || 1) + 1;
+      existente.cantidad += 1; // ✅ si ya existe, solo suma la cantidad
     } else {
-      const item = { 
-        ...product, 
-        tallaSeleccionada: talla, 
-        cantidad: 1 // 👈 aquí te aseguras de que se inicialice correctamente
+      const item = {
+        ...product,
+        tallaSeleccionada: talla,
+        cantidad: 1 // ✅ nuevo producto, empieza en 1
       };
       this.cartItems.push(item);
     }
   
     this.saveCart();
   }
+  
   
 
   removeFromCart(productToRemove: any) {
@@ -54,7 +56,9 @@ export class CarritoServicio {
   }
 
   sumarCantidad(producto: any) {
-    producto.cantidad++;
+    if (producto.cantidad < producto.stock) {
+      producto.cantidad++;
+    }
     this.saveCart();
   }
 
@@ -62,7 +66,7 @@ export class CarritoServicio {
     if (producto.cantidad > 1) {
       producto.cantidad--;
       this.saveCart();
-    } else if(producto.cantidad === 1) {
+    } else {
       this.removeFromCart(producto);
     }
   }
@@ -79,6 +83,15 @@ export class CarritoServicio {
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
     this.cartSubject.next(this.cartItems); // notifica a los subscriptores
   }
+
+  getSubtotal(): number {
+    return this.cartItems.reduce((total, item) => {
+      const precio = Number(item.price); // 👈 conviértelo a número
+      const cantidad = item.cantidad || 1;
+      return total + precio * cantidad;
+    }, 0);
+  }
+  
 
   
   

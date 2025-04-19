@@ -1,0 +1,36 @@
+/* Estilo general para el contenedor de productos*/ 
+.product-page {
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
+
+/* Estilo para la sección de productos (grid de productos) */
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr)); 
+    width: 100%;
+    justify-content: center;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+/* Título */
+.title {
+    margin-left: 60px;
+    margin-top: 20px;
+    color: black;
+    margin-bottom: 0px;
+    font-size: 24px;
+}
+
+/* Estilos para el producto */
+.product {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilos generales de la imagen */
+.product .container {
+    padding: 20px;
+}
