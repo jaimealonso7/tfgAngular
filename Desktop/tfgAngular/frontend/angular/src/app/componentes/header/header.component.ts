@@ -33,6 +33,7 @@ export class HeaderComponent {
   closeMenu() {
     this.menuOpen = false;
   }
+
   
   // Método para obtener la URL del avatar según el rol
   getAvatarUrl(role: string): string {

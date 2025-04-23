@@ -7,11 +7,13 @@ import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router'; 
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { HeaderComponent } from "../../componentes/header/header.component";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-registro',
   standalone: true,  
-  imports: [CommonModule, FormsModule, HttpClientModule, MatSnackBarModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, MatSnackBarModule, MatCheckboxModule, MatButtonModule, HeaderComponent],
   templateUrl: './registro.component.html', 
   styleUrls: ['./registro.component.css'] 
 })
@@ -25,13 +27,6 @@ export class RegistroComponent{
 
 
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {}
-  
-
-  // Método para el formulario de "Join Waitlist"
-  onJoinWaitlistSubmit() {
-    console.log("Telefono:", this.telefono);
-    // Aquí puedes enviar el teléfono al backend o hacer algo más
-  }
 
   onRegisterSubmit() {
     console.log('🔍 Método onRegisterSubmit() ejecutado'); 
@@ -51,7 +46,7 @@ export class RegistroComponent{
         this.showMessage('✅ Registro exitoso, redirigiendo...', false);
   
         setTimeout(() => {
-          this.router.navigate(['/marcas']);
+          this.router.navigate(['/favoritos']);
         }, 2000);
       },
       (error) => {
@@ -66,15 +61,7 @@ export class RegistroComponent{
       }
     );
   }
-
-  showMessage(message: string, isError: boolean) {
-    this.snackBar.open(message, 'Cerrar', {
-      duration: 6000, // 3 segundos
-      verticalPosition: 'top', // Posición vertical (arriba o abajo)
-      horizontalPosition: 'center', // Posición horizontal (izquierda, centro o derecha)
-      panelClass: isError ? 'snackbar-error' : 'snackbar-success' // Estilos personalizados
-    });
-  }
+  // Removed duplicate implementation of showMessage
   
   onRememberPassword() {
     if (this.rememberMe) {
@@ -87,10 +74,13 @@ export class RegistroComponent{
       localStorage.removeItem('password');
     }
   }
-  
-  
-  
-  
-  
-}
 
+  showMessage(message: string, isError: boolean) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 6000, // 3 segundos
+      verticalPosition: 'top', // Posición vertical (arriba o abajo)
+      horizontalPosition: 'center', // Posición horizontal (izquierda, centro o derecha)
+      panelClass: isError ? 'snackbar-error' : 'snackbar-success' // Estilos personalizados
+    });
+  }
+}

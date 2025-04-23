@@ -1,0 +1,12 @@
+<section class="product-page">
+    <app-header [title]="'Productos'" [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }"></app-header>
+  
+    <div class="productos-grid">
+      <div *ngFor="let producto of productos" class="product-card">
+        <img [src]="producto.image" alt="{{ producto.name }}">
+        <h3>{{ producto.name }}</h3>
+        <p>{{ producto.price }}€</p>
+      </div>
+    </div>
+  </section>
+  

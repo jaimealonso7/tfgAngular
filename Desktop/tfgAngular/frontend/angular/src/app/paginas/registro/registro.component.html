@@ -1,4 +1,4 @@
-
+<!--
 <h1 class="nombreMarca">CLASSIQUE</h1>
 
 <div class="contenedor">
@@ -32,7 +32,6 @@
     </div>
     <div class="accessQuicly">
         <p>or access quicly</p>
-        <!--<div id="googleSignInButton" style="text-align: center; margin-top: 20px;"></div>-->
     </div>
 
 </form>
@@ -47,3 +46,60 @@
 
 <script src="../js/register.js"></script>
     
+-->
+
+<section class="product-page">
+    <app-header class="header"
+        [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }"
+        [title]="'REGISTRO'">
+    </app-header>
+
+    <video muted autoplay loop>
+        <source src="assets/video/stoneisland.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="cap"></div>
+
+    <div class="registro-container">
+        <form (ngSubmit)="onRegisterSubmit()" class="formulario" autocomplete="off">
+            <h3 class="registro">Registrate</h3>
+            <div class="form-group">
+                <input type="email" id="email" name="email" required placeholder="Email" [(ngModel)]="email">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" required placeholder="Contraseña" [(ngModel)]="password">
+            </div>
+            <button type="submit">Registrate</button>
+        
+            <div class="remember-me">
+                <mat-checkbox [(ngModel)]="rememberMe" name="rememberMe" (change)="onRememberPassword()">
+                  Remember me
+                </mat-checkbox>
+            </div>
+            <div class="accessQuicly">
+                <p>or access quicly</p>
+                <!--<div id="googleSignInButton" style="text-align: center; margin-top: 20px;"></div>-->
+            </div>
+
+            <a href="/login" class="noCuenta">
+                <p>¿Ya tienes una cuenta? Inicia sesión.</p>
+            </a>
+        
+        </form>
+    </div>
+
+    <div class="contenedor-whatsapp">
+        <img class="img-watsapp" src="assets/img/login/whatsapp5.jpg" alt="">
+        <p class="hablamos">¿Hablamos por Whatsapp?</p>
+        <p class="escribenos">Escribenos al +34 678123000</p>
+        <p class="disponibilidad">Disponible de lunes a domingo de 09:00 a 18:00 y los sábados de 10:00 a 18:00.
+            <br>
+            Responderemos en menos de 24 horas.
+        </p>
+    </div>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
+    <script src="../js/login.js"></script> 
+
+</section>

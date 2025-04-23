@@ -1,80 +1,8 @@
-
-/*  NOMBRE DE LA MARCA  */
-
-.nombreMarca {
-    font-family: 'Cairo', sans-serif;
-    font-size: 100px;
-    text-align: center;
-    color: #FFD700; /* Blanco para mayor contraste con fondos oscuros */
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
-    position: relative; /* o absolute si es necesario */
-    top: -8px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombras para destacar el texto */
-}
-
-/* CORREO PARA RECIBIR NOTIFICACIONES */
-
-.contenedor{
-    position:absolute;
-    top: 40px;
-    right: 80px;
-    width: 300px;
-    padding: 20px;
-    /*background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;*/
-    text-align: center;
-
-}
-
-h3{
+.product-page {
+    padding: 0;
+    width: 100%;
     margin: 0;
-    margin-bottom: 16px;
-    font-size: 20px;
-    font-weight: 600;
-    color: #FFD700; /* Dorado */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Sombras */
 }
-
-.registro{
-    margin: 0;
-    margin-bottom: 16px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    color: #ffffff; /* Dorado */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Sombras */
-}
-
-.label{
-    font-size: 13px;
-}
-
-input[type="telefono"] {
-    flex: 1;
-    padding: 8px;
-    margin-right: 8px;
-    border: 1px solid #FFD700; /* Borde dorado */
-    border-radius: 4px;
-    font-size: 14px;
-    color: #333;
-}
-
-button {
-    padding: 8px 16px;
-    border: none;
-    background-color: #FFD700; /* Dorado */
-    color: #000; /* Texto negro para contraste */
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-button:hover {
-    background-color: #FFC107; /* Amarillo más brillante */
-}
-
 
 
 /* VIDEO DE FONDO */
@@ -91,32 +19,30 @@ button:hover {
 }
 
 img{
-    width: 400px; /* Ancho fijo */
-    height: auto; /* Escalado proporcional */
-    display: block; /* Centrado si es necesario */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-    border: 5px solid #ccc; /* Borde de color gris claro */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-
+    width: 400px; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto;
+    border: 5px solid #ccc; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-
 #hero {
-    height: 50vh; /* Contenedor de 50% del alto del viewport */
-    width: 100vw; /* Contenedor ocupa todo el ancho del viewport */
+    height: 50vh;
+    width: 100vw;
     position: relative;
-    overflow: hidden; /* Oculta el contenido extra del video */
+    overflow: hidden;
 }
 
 video {
     position: absolute;
-    top: 25%;
+    top: 12%;
     left: 0;
-    width: 100%; /* Ocupa todo el ancho */
-    height: 60%; /* Ajusta la altura al contenedor */
-    object-fit: cover; /* Escala el video sin deformarlo */
-    filter: brightness(0.6); /* Oscurece el video para destacar el texto */
+    width: 100%; 
+    height: 66%; 
+    object-fit: cover; 
+    filter: brightness(0.6);
 }
 
 .capa {
@@ -125,19 +51,18 @@ video {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Oscurece más el fondo */
+    background: rgba(0, 0, 0, 0.5); 
 }
 
 h2{
     position: absolute;
-    top: 200px;
+    top: 160px;
     left: 530px;
     font-family: Arial, sans-serif;
     font-size: 60px;
     font-weight: 600;
-    color: #FFD700; /* Dorado */
-    text-shadow: -1px -1px 2px #000, 1px 1px 2px #000; /* Contorno negro */
-    /*background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+    color: #FFD700;
+    text-shadow: -1px -1px 2px #000, 1px 1px 2px #000; 
 }
 
 .img-candado {
@@ -151,7 +76,7 @@ h2{
 
 .formulario {
     position: absolute;
-    top: 55%;
+    top: 45%;
     left: 50%;
     width: 90%;
     max-width: 340px;
@@ -160,23 +85,29 @@ h2{
     margin: 0;
     
     /* Nuevo fondo semi-transparente */
-    background-color: rgba(8, 18, 41, 0.85); /* Azul oscuro con transparencia */
+    background-color: rgba(8, 18, 41, 0.85); 
     
     /* Efecto vidrio (glassmorphism) */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     
     /* Borde y sombra */
-    border: 1px solid #FFD700; /* Amarillo dorado */
+    border: 1px solid #FFD700; 
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     
     /* Texto y espaciado */
     padding: 30px;
-    color: #FFD700; /* Amarillo para texto principal */
+    color: #FFD700; 
     
     /* Tipografía */
     font-family: 'Montserrat', sans-serif;
+}
+
+.registro{
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .formulario .form-group {
@@ -193,7 +124,7 @@ h2{
     width: 90%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #FFD700; /* Borde dorado */
+    border: 1px solid #FFD700; 
     border-radius: 5px;
     font-size: 16px;
 }
@@ -201,7 +132,7 @@ h2{
 .formulario button {
     width: 97%;
     padding: 10px;
-    background-color: #FFD700; /* Dorado */
+    background-color: #FFD700; 
     text-transform: uppercase;
     font-weight: bold;
     color: black;
@@ -219,7 +150,7 @@ h2{
 }
 
 .accessQuicly {
-    margin-top: 0px;  /* Espacio adicional entre el checkbox y el texto */
+    margin-top: 0px;  
     text-align: center;
     font-size: 14px;
     color: gray;
@@ -228,9 +159,9 @@ h2{
 .accessQuicly p {
     display: flex;
     align-items: center;
-    color: #000000; /* Color del texto */
+    color: #000000; 
     margin: 7px 0;
-    text-transform: lowercase; /* Opcional: para mantener "or access quicly" en minúsculas */
+    text-transform: lowercase; 
   }
   
   .accessQuicly p::before,
@@ -238,19 +169,19 @@ h2{
     content: "";
     flex: 1;
     height: 1px;
-    background: #ddd; /* Color de la línea */
-    margin: 0 10px; /* Espacio entre texto y líneas */
+    background: #ddd; 
+    margin: 0 10px; 
   }
 
-  .noCuenta{
+  .noCuenta {
     font-family: 'Cairo', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 18px;
     color: #FFD700; 
-    position: absolute;
-    bottom: 25px;
-    left: 780px;
+    text-align: center;
+    margin-top: 20px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); 
+    text-decoration: none;
 }
 
 
@@ -276,6 +207,45 @@ h2{
     font-size: 16px;
   }
   
+  .contenedor-whatsapp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 630px; /* Puedes ajustar este margen como necesites */
+    text-align: center;
+}
+
+.img-watsapp {
+    width: 55px;
+    height: 50px;
+    margin-bottom: 0px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+
+.hablamos {
+    color: rgb(44, 193, 44);
+    font-weight: 700;
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+.escribenos {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.disponibilidad {
+    color: grey;
+    font-size: 13px;
+    margin-top: 5px;
+}
   
   
   

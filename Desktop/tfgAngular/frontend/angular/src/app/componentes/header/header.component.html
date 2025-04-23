@@ -28,7 +28,7 @@
     <div class="contenedor-populares">
       <h3 class="terminos">Términos de búsqueda populares</h3>
       <div class="contenedor-botones">
-        <button [routerLink]="['/stone']" class="botones" (click)="closeSearch()">Camiseta Stone Islan</button>
+        <button [routerLink]="['/stone-island']" class="botones" (click)="closeSearch()">Camiseta Stone Islan</button>
         <button [routerLink]="['/marcas']" class="botones">Volver a marcas</button>
         <button class="botones">Camiseta Stone Islan</button>
         <button class="botones">Camiseta Stone Islan</button>
@@ -106,12 +106,14 @@
   <!-- Contenedor de iconos -->
   <div class="contendor-iconos">
       <div class="avatar">
+        <a [routerLink]="['/login']">
           <img 
               [ngClass]="userInfo.role === 'ADMIN' ? 'admin' : userInfo.role === 'USER' ? 'user' : ''"
               [src]="getAvatarUrl(userInfo.role)"
               [ngStyle]="{'border': userInfo?.role === 'ADMIN' ? '2px solid cyan' : '2px solid yellow'}"
               class="avatar-img"
           >
+        </a>  
       </div>
 
       <div>

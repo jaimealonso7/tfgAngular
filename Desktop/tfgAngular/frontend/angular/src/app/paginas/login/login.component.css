@@ -19,32 +19,30 @@
 }
 
 img{
-    width: 400px; /* Ancho fijo */
-    height: auto; /* Escalado proporcional */
-    display: block; /* Centrado si es necesario */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-    border: 5px solid #ccc; /* Borde de color gris claro */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-
+    width: 400px;
+    height: auto; 
+    display: block;
+    margin: 0 auto; 
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-
 #hero {
-    height: 50vh; /* Contenedor de 50% del alto del viewport */
-    width: 100vw; /* Contenedor ocupa todo el ancho del viewport */
+    height: 50vh; 
+    width: 100vw; 
     position: relative;
-    overflow: hidden; /* Oculta el contenido extra del video */
+    overflow: hidden; 
 }
 
 video {
     position: absolute;
     top: 12%;
     left: 0;
-    width: 100%; /* Ocupa todo el ancho */
-    height: 66%; /* Ajusta la altura al contenedor */
-    object-fit: cover; /* Escala el video sin deformarlo */
-    filter: brightness(0.6); /* Oscurece el video para destacar el texto */
+    width: 100%;
+    height: 66%; 
+    object-fit: cover; 
+    filter: brightness(0.6); 
 }
 
 .capa {
@@ -53,7 +51,7 @@ video {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Oscurece más el fondo */
+    background: rgba(0, 0, 0, 0.5); 
 }
 
 h2{
@@ -63,16 +61,15 @@ h2{
     font-family: Arial, sans-serif;
     font-size: 60px;
     font-weight: 600;
-    color: #FFD700; /* Dorado */
-    text-shadow: -1px -1px 2px #000, 1px 1px 2px #000; /* Contorno negro */
-    /*background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+    color: #FFD700; 
+    text-shadow: -1px -1px 2px #000, 1px 1px 2px #000; 
 }
 
 .img-candado {
-    position: fixed; /* Fija en la pantalla */
-    top: 50%; /* Centrado verticalmente */
-    left: 50%; /* Centrado horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta el elemento para que se centre completamente */
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
 }
@@ -100,7 +97,7 @@ h2{
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     
     /* Texto y espaciado */
-    padding: 22px;
+    padding: 30px;
     color: #FFD700; /* Amarillo para texto principal */
     
     /* Tipografía */

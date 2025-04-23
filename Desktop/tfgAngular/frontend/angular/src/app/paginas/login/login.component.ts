@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 // Importación de "FormsModule" para usar ngModel
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router'; 
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from "../../componentes/header/header.component";
+import { CarritoServicio } from '../../servicios/carrito.servicio';
 
 declare var google: any;  // Solo la nueva API de Google Identity
 
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit{
   //telefono: any;
 
   
-  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {}
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar, private carritoService: CarritoServicio, private http: HttpClient) {}
 
   ngOnInit(): void {
     // Asegúrate de que Google API está cargado correctamente
@@ -73,7 +74,7 @@ export class LoginComponent implements OnInit{
     const idToken = response.credential;  // ID Token de Google
     console.log('ID Token de Google: ', idToken);
     localStorage.setItem('google_id_token', idToken);
-    this.router.navigate(['/favoritos']);
+    this.router.navigate(['/editar-perfil']);
   }
 
   onLoginSubmit() {
@@ -88,11 +89,28 @@ export class LoginComponent implements OnInit{
       (response) => {
         console.log('Respuesta del backend:', response); 
         localStorage.setItem('token', response.token);
+        localStorage.setItem('usuario', JSON.stringify(response.usuario));
+
         this.showMessage('✅ Inicio de sesión exitoso', false);
 
-        setTimeout(() => {
-          this.router.navigate(['/favoritos']);
-        }, 1000);
+        // Sincronizar el carrito con el backend después del login
+        this.carritoService.sincronizarCarritoConBackend(response.token).subscribe({
+          next: () => {
+            console.log('Carrito sincronizado con el backend');
+            localStorage.removeItem('cart'); // Limpiar el carrito local después de sincronizar
+          },
+          error: (error) => {
+            console.error('Error al sincronizar el carrito:', error);
+            this.showMessage('❌ Error al sincronizar el carrito', true);
+          }
+        });
+
+        // Redirige inmediatamente después de la autenticación exitosa
+        this.router.navigate(['/editar-perfil']);
+
+        /*setTimeout(() => {
+          this.router.navigate(['/editar-perfil']);
+        }, 1000);*/
       },
       (error) => {
         console.error('Error en el login:', error); 
@@ -136,8 +154,5 @@ export class LoginComponent implements OnInit{
       panelClass: isError ? 'snackbar-error' : 'snackbar-success' // Estilos personalizados
     });
   }
-
-  onJoinWaitlist() {
-    console.log('Enviado a lista de espera con teléfono:', this.telefono);
-  }
 }
+

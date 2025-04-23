@@ -31,5 +31,4 @@ export class CorteizComponent implements OnInit {
       }
     );
   }
-
 }

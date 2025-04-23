@@ -10,6 +10,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  // Método para obtener todos los usuarios
+  getUsuarios(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/usuarios`);
+  }
+
   register(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, { email, password });
   }
@@ -31,4 +36,18 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
   }
+
+  getUserId(): number | null {
+    const userData = localStorage.getItem('usuario');
+    if (!userData) return null;
+  
+    try {
+      const user = JSON.parse(userData);
+      return user?.id || null;
+    } catch (e) {
+      console.error('Error al parsear el usuario del localStorage:', e);
+      return null;
+    }
+  }
+  
 }

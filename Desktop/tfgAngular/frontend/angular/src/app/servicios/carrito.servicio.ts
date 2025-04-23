@@ -1,18 +1,22 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
+import { catchError, tap } from 'rxjs/operators';
+import { AuthService } from "./auth.service";
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoServicio {
+  private apiUrl = 'http://localhost:3000/api/carrito'; // URL de tu API
   
   private cartItems: any[] = [];
   private cartSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   
 
-  constructor() {
+  constructor(private http: HttpClient, private authService: AuthService) {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
       this.cartItems = JSON.parse(storedCart).map((item: any) => ({
@@ -22,26 +26,89 @@ export class CarritoServicio {
       this.cartSubject.next(this.cartItems);
     }
   }
-  
+
+  // ✅ Llamado después del login para sincronizar el carrito al backend
+  sincronizarCarritoConBackend(token: string): Observable<any> {
+    const cartItems = this.getCartItems();
+
+    // Si no hay productos en el carrito local, no hace falta sincronizar
+    if (cartItems.length === 0) {
+      return new Observable(observer => {
+        observer.complete();
+      });
+    }
+
+    // Enviar el carrito al backend
+    return this.http.post(this.apiUrl, { carrito: cartItems }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).pipe(
+      tap(() => {
+        // Sincronización exitosa, puedes eliminar el carrito local si lo prefieres
+        console.log('Carrito sincronizado con el backend');
+      }),
+      catchError(error => {
+        console.error('Error al sincronizar el carrito:', error);
+        return new Observable(observer => observer.complete());
+      })
+      
+
+    );
+  }
+
+  getIdTallaPorNombre(nombre: 'S' | 'M' | 'L' | 'XL'): number {
+    const tallas = {
+      'S': 1,
+      'M': 2,
+      'L': 3,
+      'XL': 4
+    };
+    return tallas[nombre];
+  }
 
   addToCart(product: any, talla: string) {
+    const idUsuario = this.authService.getUserId(); // Verifica que se obtenga correctamente el id
+    if (!idUsuario) {
+      console.error("No se pudo obtener el id del usuario.");
+      return; // No continuar si no hay idUsuario
+    }
+
     const existente = this.cartItems.find(
       item => item.id === product.id && item.tallaSeleccionada === talla
     );
   
     if (existente) {
-      existente.cantidad += 1; // ✅ si ya existe, solo suma la cantidad
+      existente.cantidad += 1;
     } else {
       const item = {
         ...product,
         tallaSeleccionada: talla,
-        cantidad: 1 // ✅ nuevo producto, empieza en 1
+        cantidad: 1
       };
       this.cartItems.push(item);
     }
   
+    // Guardar localmente
     this.saveCart();
+  
+    // Guardar en la base de datos si el usuario está logueado
+    if (idUsuario) {
+      this.http.post('/api/carrito', {
+        idUsuario,
+        idProducto: product.id,
+        idTalla: this.getIdTallaPorNombre(talla as 'S' | 'M' | 'L' | 'XL'), // mapea el nombre de la talla al ID
+        cantidad: 1
+      }).subscribe(() => {
+        console.log('Producto guardado en la base de datos');
+      }, error => {
+        console.error('Error al guardar en la BD', error);
+      });
+    }
   }
+  
+  
+
   
   
 
