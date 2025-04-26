@@ -41,7 +41,7 @@ export class ResultadosBuscadorComponent implements OnInit {
     // Diccionario de palabras clave y sus rutas/categorías asociadas
     const searchMap: { [key: string]: any } = {
       'stone island accesorios': { route: '/stone', params: { category: 'Accesorio' } },
-      'jersey': { route: '/stone', params: { category: 'Jersey' } },
+      'jersey': { route: '/stone-island', params: { category: 'Jersey' } },
       'jerseys': { route: '/stone', params: { category: 'Jersey' } },
       'sudadera': { route: '/stone', params: { category: 'Jersey' } },
       'sudaderas': { route: '/stone', params: { category: 'Jersey' } },
@@ -56,7 +56,9 @@ export class ResultadosBuscadorComponent implements OnInit {
       'gorra': { route: '/stone', params: { category: 'Accesorio' } },
       'marcas': { route: '/marcas', params: { category: 'Volver' } },
       'carrito': { route: '/carrito', params: {} },  // Redirigir al carrito
-      'checkout': { route: '/checkout', params: {} }  // Redirigir a checkout
+      'checkout': { route: '/checkout', params: {} },  // Redirigir a checkout
+      'corteiz' : { route: '/corteiz', params: { category: 'Volver' } },
+      'corteiz sudadera' : { route: '/corteiz', params: { category: 'Sudadera' } },
     };
 
     // Comprobamos si alguna palabra clave de la búsqueda coincide con el diccionario

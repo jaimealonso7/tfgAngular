@@ -37,17 +37,30 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
+  saveUser(user: any): void {
+    if (user && typeof user === 'object' && user.id) {
+      localStorage.setItem('usuario', JSON.stringify(user));
+    } else {
+      console.warn('❗ Intentando guardar un usuario inválido en localStorage:', user);
+    }
+  }
+
   getUserId(): number | null {
     const userData = localStorage.getItem('usuario');
-    if (!userData) return null;
+    if (!userData || userData === 'undefined') {
+      localStorage.removeItem('usuario'); // limpieza preventiva
+      return null;
+    }
   
     try {
       const user = JSON.parse(userData);
-      return user?.id || null;
+      return user?.id ?? null;
     } catch (e) {
       console.error('Error al parsear el usuario del localStorage:', e);
+      localStorage.removeItem('usuario');
       return null;
     }
   }
+  
   
 }

@@ -68,12 +68,8 @@ export class CarritoServicio {
   }
 
   addToCart(product: any, talla: string) {
-    const idUsuario = this.authService.getUserId(); // Verifica que se obtenga correctamente el id
-    if (!idUsuario) {
-      console.error("No se pudo obtener el id del usuario.");
-      return; // No continuar si no hay idUsuario
-    }
-
+    const idUsuario = this.authService.getUserId();
+  
     const existente = this.cartItems.find(
       item => item.id === product.id && item.tallaSeleccionada === talla
     );
@@ -89,23 +85,25 @@ export class CarritoServicio {
       this.cartItems.push(item);
     }
   
-    // Guardar localmente
+    // Guardar en localStorage siempre
     this.saveCart();
   
-    // Guardar en la base de datos si el usuario está logueado
     if (idUsuario) {
+      // Solo guardar en backend si el usuario está autenticado
       this.http.post('/api/carrito', {
         idUsuario,
         idProducto: product.id,
-        idTalla: this.getIdTallaPorNombre(talla as 'S' | 'M' | 'L' | 'XL'), // mapea el nombre de la talla al ID
+        idTalla: this.getIdTallaPorNombre(talla as 'S' | 'M' | 'L' | 'XL'),
         cantidad: 1
-      }).subscribe(() => {
-        console.log('Producto guardado en la base de datos');
-      }, error => {
-        console.error('Error al guardar en la BD', error);
+      }).subscribe({
+        next: () => console.log('✅ Producto guardado en la base de datos'),
+        error: (error) => console.error('❌ Error al guardar en la BD', error)
       });
+    } else {
+      console.log('🛒 Producto guardado en el carrito local (usuario invitado)');
     }
   }
+  
   
   
 

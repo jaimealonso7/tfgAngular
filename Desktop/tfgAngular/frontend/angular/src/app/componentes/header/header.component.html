@@ -14,6 +14,31 @@
       </div> 
   </div> 
 
+  <!-- Contenedor de iconos -->
+  <div class="contendor-iconos">
+    <!--<div class="avatar">
+      <a [routerLink]="['/login']">
+        <img 
+          [src]="userInfo?.avatarUrl || 'assets/img/header/avatar.png'"
+          class="avatar-img"
+        >
+      </a>  
+    </div>-->
+  
+
+    <div>
+      <a [routerLink]="['/login']">
+        <img class="img-corazon icon-img" src="assets/img/header/corazon.png" alt="">
+      </a>
+    </div>
+
+    <div>
+      <a [routerLink]="['/carrito']">
+        <img class="img-carro icon-img" src="assets/img/header/carro.png" alt="">
+      </a>
+    </div>
+</div> 
+
   <div class="search-overlay" *ngIf="isSearchOpen" (click)="closeSearch()"></div>
 
   <!-- BUSCADOR -->
@@ -28,17 +53,27 @@
     <div class="contenedor-populares">
       <h3 class="terminos">Términos de búsqueda populares</h3>
       <div class="contenedor-botones">
-        <button [routerLink]="['/stone-island']" class="botones" (click)="closeSearch()">Camiseta Stone Islan</button>
+        <button [routerLink]="['/stone-island']" class="botones" (click)="closeSearch()">Camiseta Stone Island</button>
         <button [routerLink]="['/marcas']" class="botones">Volver a marcas</button>
-        <button class="botones">Camiseta Stone Islan</button>
-        <button class="botones">Camiseta Stone Islan</button>
-        <button class="botones">Camiseta Stone Islan</button>
+        <button [routerLink]="['/corteiz']" class="botones" (click)="closeSearch()">Chaqueta Corteiz</button>
+        <button [routerLink]="['/dior']" class="botones" (click)="closeSearch()">Dior bolsos</button>
+        <button [routerLink]="['/carrito']" class="botones" (click)="closeSearch()">Carrito</button>
+      </div>
+    </div>
+
+    <div class="contenedor-recientes">
+      <h3 class="terminos">Búsquedas recientes</h3>
+      <div class="contenedor-botones-recientes">
+        <div *ngFor="let search of recentSearches" class="busqueda-item">
+          <p (click)="searchQuery = search" class="texto-reciente">{{ search }}</p>
+          <button (click)="eliminarBusqueda(search)" class="boton-eliminar">×</button>
+        </div>
       </div>
     </div>
     
-    <!--<div class="search-tags">
-      <span *ngFor="let term of popularTerms" (click)="search(term)">{{ term }}</span>
-    </div>-->
+    
+    
+    
 
   </div>
 
@@ -102,31 +137,5 @@
           <hr>
       </div>
   </div>
-
-  <!-- Contenedor de iconos -->
-  <div class="contendor-iconos">
-      <div class="avatar">
-        <a [routerLink]="['/login']">
-          <img 
-              [ngClass]="userInfo.role === 'ADMIN' ? 'admin' : userInfo.role === 'USER' ? 'user' : ''"
-              [src]="getAvatarUrl(userInfo.role)"
-              [ngStyle]="{'border': userInfo?.role === 'ADMIN' ? '2px solid cyan' : '2px solid yellow'}"
-              class="avatar-img"
-          >
-        </a>  
-      </div>
-
-      <div>
-        <a [routerLink]="['/login']">
-          <img class="img-corazon icon-img" src="assets/img/header/corazon.png" alt="">
-        </a>
-      </div>
-
-      <div>
-        <a [routerLink]="['/carrito']">
-          <img class="img-carro icon-img" src="assets/img/header/carro.png" alt="">
-        </a>
-      </div>
-  </div> 
 
 </header>

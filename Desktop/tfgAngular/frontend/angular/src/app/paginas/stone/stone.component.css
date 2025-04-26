@@ -62,6 +62,11 @@
         width: 90%; /* Asegura que el contenedor ocupe el 100% */
     }
 
+    h1{
+        font-size: 25px; /* Cambia el tamaño de la fuente del título */
+        margin-top: 30px; 
+    }
+
     /*.products .product .container {
         padding: 0px;
         margin-right: 20px;
@@ -83,42 +88,6 @@
         padding-bottom: 0;
     }
 
-    ::ng-deep .app-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Centrar contenido */
-        justify-content: center;
-        height: auto; /* Permite que crezca si es necesario */
-    }
-
-    /* Posicionar el avatar (icono) arriba */
-    ::ng-deep .app-header .avatar {
-        margin-bottom: 20px;
-        margin-right: 25px;
-    }
-
-    /* Centrar el título en el medio */
-    ::ng-deep .app-header .title h1 {
-        font-size: 20px;
-        text-align: center;
-        margin-top: 70px;
-        margin-left: 0px;
-    }
-
-    /* Posicionar el buscador abajo con tamaño más reducido */
-    ::ng-deep .app-header .search-container {
-        width: 80%; /* Ajustar el ancho */
-        max-width: 250px; /* Evitar que sea muy grande */
-        margin-top: 15px; /* Separarlo del título */
-        align-items: center;
-        margin-left: 78px;
-    }
-
-    ::ng-deep .app-header .search-input {
-        width: 100%;
-        padding: 6px;
-        font-size: 14px;
-    }
 
 }
 

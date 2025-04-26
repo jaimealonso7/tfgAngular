@@ -8,5 +8,12 @@ import { HeaderComponent } from "../../componentes/header/header.component";
   styleUrl: './editar-perfil.component.css'
 })
 export class EditarPerfilComponent {
+  user = {
+    name: '',
+    photo: null,
+    bio: ''
+  };
+
+  
 
 }

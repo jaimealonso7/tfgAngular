@@ -16,10 +16,18 @@ export class CorteizComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    this.productService.getProductos().subscribe(
+      (data) => {
+        this.filteredProducts = data.filter(p => p.idMarca === 2);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
+  
 
-  // Método para obtener los productos
+  /* Método para obtener los productos
   getProducts(): void {
     this.productService.getProductos().subscribe(
       (data) => {
@@ -30,5 +38,5 @@ export class CorteizComponent implements OnInit {
         console.error('Error al obtener productos:', error);
       }
     );
-  }
+  }*/
 }

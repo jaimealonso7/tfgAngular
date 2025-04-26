@@ -21,10 +21,11 @@ export class MarcasComponent implements OnInit {
     this.http.get<any[]>('http://localhost:3000/api/marcas')
       .subscribe({
         next: (data) => {
+          console.log('Datos recibidos de la API:', data);
           this.marcas = data.map(marca => ({
             ...marca,
             // Change this line to generate the correct routes:
-            ruta: this.generateRoute(marca.nombre)
+            ruta: this.generateRoute(marca.idMarca)
           }));
           console.log('Rutas generadas:', this.marcas.map(m => m.ruta));
         },
@@ -34,17 +35,10 @@ export class MarcasComponent implements OnInit {
       });
   }
 
-  // Replace normalizeUrl with this new method:
-  generateRoute(marcaNombre: string): string {
-    // Convert to lowercase and replace spaces with hyphens
-    const slug = marcaNombre.toLowerCase().replace(/\s+/g, '-');
-    
-    // Return the route with leading slash
-    return `/${slug}`;
-    
-    // OR if you want specific routes:
-    // if (marcaNombre === 'Stone Island') return '/stone';
-    // if (marcaNombre === 'Corteiz') return '/corteiz';
-    // return '/';
+  generateRoute(marcaId: number): string {
+    if (marcaId === 1) return '/stone-island';
+    if (marcaId === 2) return '/corteiz';
+    return '/';
   }
+  
 }

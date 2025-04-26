@@ -17,10 +17,18 @@ export class StoneComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    this.productService.getProductos().subscribe(
+      (data) => {
+        this.filteredProducts = data.filter(p => p.idMarca === 1);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
+  
 
-  // Método para obtener los productos
+  /* Método para obtener los productos
   getProducts(): void {
     this.productService.getProductos().subscribe(
       (data) => {
@@ -31,5 +39,5 @@ export class StoneComponent implements OnInit {
         console.error('Error al obtener productos:', error);
       }
     );
-  }
+  }*/
 }

@@ -10,6 +10,7 @@ import { ResultadosBuscadorComponent } from './componentes/resultados-buscador/r
 import { MarcaDetalleComponent } from './componentes/marca-detalle/marca-detalle.component';
 import { FavoritosComponent } from './paginas/favoritos/favoritos.component';
 import { EditarPerfilComponent } from './paginas/editar-perfil/editar-perfil.component';
+import { ProductosComponent } from './componentes/productos/productos.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'marcas', pathMatch: 'full' },
@@ -23,6 +24,8 @@ export const routes: Routes = [
     { path: 'favoritos', component: FavoritosComponent },
     { path: 'editar-perfil', component: EditarPerfilComponent },  // Protegemos la ruta de perfil
     { path: 'marca/:id', component: MarcaDetalleComponent },
+    { path: 'productos/:id', component: ProductosComponent },
+
     {
       path: 'productos',
       loadComponent: () => import('./paginas/marcas/marcas.component').then(m => m.MarcasComponent)

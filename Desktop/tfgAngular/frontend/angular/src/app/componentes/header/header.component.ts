@@ -19,6 +19,7 @@ export class HeaderComponent {
   @Output() searchEvent = new EventEmitter<string>();
 
   searchQuery: string = '';
+  recentSearches: string[] = [];
 
   isSearchOpen: boolean = false;
 
@@ -35,31 +36,59 @@ export class HeaderComponent {
   }
 
   
-  // Método para obtener la URL del avatar según el rol
-  getAvatarUrl(role: string): string {
-    if (role === 'ADMIN') {
-      return 'assets/img/header/avatar.png';  // Imagen de avatar para admin
-    } else if (role === 'USER') {
-      return 'assets/img/user-avatar.png';  // Imagen de avatar para usuario
-    } else {
-      return 'assets/img/default-avatar.png';  // Imagen por defecto en caso de un rol no identificado
-    }
-  }
 
   /* Buscador */
+  ngOnInit() {
+    this.loadRecentSearches();
+  }
   openSearch() {
     this.isSearchOpen = true;
+    if(this.searchQuery.trim() !== '') {
+      this.saveSearch(this.searchQuery.trim());
+      this.searchQuery = ''; // Limpiar el campo de búsqueda al abrir el buscador
+    }
   }
 
   closeSearch() {
     this.isSearchOpen = false;
   }
 
+  saveSearch(query: string) {
+    let searches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+  
+    // Evitar duplicados
+    if (!searches.includes(query)) {
+      searches.unshift(query); // Agregar al principio
+    }
+  
+    // Guardar máximo 5 búsquedas recientes
+    if (searches.length > 5) {
+      searches = searches.slice(0, 5);
+    }
+  
+    localStorage.setItem('recentSearches', JSON.stringify(searches));
+    this.recentSearches = searches;
+  }
+  
+  loadRecentSearches() {
+    const searches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+    this.recentSearches = searches;
+  }
+
   search() {
     if (this.searchQuery.trim()) {
-      // Aquí puedes agregar lógica para validar o manejar las búsquedas
+      this.saveSearch(this.searchQuery.trim());
       this.router.navigate([`/buscar/${this.searchQuery}`]);
+      this.searchQuery = ''; // Limpiar el campo después de buscar
       this.closeSearch();
     }
   }
+
+  eliminarBusqueda(searchToRemove: string) {
+    this.recentSearches = this.recentSearches.filter(search => search !== searchToRemove);
+    localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches));
+  }
+
+  
+  
 }

@@ -83,27 +83,20 @@
   
   /* Avatar */
   .avatar-img {
-    height: 40px;
+    height: 30px;
     width: auto;
-    border-radius: 100%;
-    padding: 5px;
-    border: 2px solid #fff; 
-    transition: all 0.3s ease;
   }
   
-  .avatar-img:hover {
-    transform: scale(1.1); 
-  }
   
-  /* Avatar con borde para ADMIN */
+  /* Avatar con borde para ADMIN 
   .admin {
-    border: 2px solid cyan;
-  }
+    border: 1px solid cyan;
+  }*/
   
-  /* Avatar con borde para USER */
+  /* Avatar con borde para USER 
   .user {
     border: 2px solid yellow;
-  }
+  }*/
 
   .img-corazon{
     width: 40px;
@@ -221,7 +214,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 150px; /* Ajusta la altura según necesites */
+  height: 350px; /* Ajusta la altura según necesites */
   background: white;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
@@ -250,6 +243,59 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.contenedor-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.contenedor-botones-recientes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.busqueda-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.texto-reciente {
+  font-size: 18px;
+  color: #555;
+  cursor: pointer;
+  margin: 0;
+}
+
+.texto-reciente:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+.boton-eliminar {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.boton-eliminar:hover {
+  color: red;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -392,3 +438,120 @@
     margin-top: 10px;
     font-size: 12px;
   }
+
+
+  @media (max-width: 768px) {
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      padding: 0 15px;
+      position: relative;
+      flex-wrap: nowrap; /* Muy importante: que NO se baje a otra línea */
+    }
+  
+    /* Menu + Lupa a la izquierda */
+    .menu-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto; /* Que ocupe solo lo necesario */
+    }
+  
+    /* TITULO CENTRADO PERFECTO */
+    .nombreMarca {
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap; /* Opcional para que no se corte en dos líneas */
+    }
+  
+    /* Iconos (avatar, corazón, carrito) a la derecha */
+    .contendor-iconos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+      position: absolute;
+      right: 50px; /* Ajusta según necesites */}
+  
+    /* Oculta textos del menú */
+    .menu-icons p {
+      display: none;
+    }
+  
+    /* Ajuste de búsqueda */
+    .search-container {
+      width: auto;
+      background: none;
+      padding: 0;
+    }
+  
+    .search-container input {
+      display: none; /* Ocultar input en móvil */
+    }
+
+    .search-popup{
+      width: 100%;
+      height: 320px; /* Ajusta la altura según necesites */
+      padding: 10px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+
+    .buscador{
+      width: 280px;
+      height: 40px;
+      padding: 5px 10px;
+      border: 1px solid rgb(198, 180, 180);
+    }
+    .buscador input {
+      width: 80%;
+      height: 100%;
+      padding: 5px;
+      font-size: 17px;
+    }
+
+    .contenedor-populares{
+      width: 100%;
+      text-align: center;
+    }
+    .terminos {
+      font-size: 18px; /* Asegura un tamaño de texto visible */
+      font-weight: bold; /* Resalta el título */
+      text-align: center; /* Centra el texto */
+      margin-top: 30px;
+      margin-bottom: 15px; /* Espacio entre el título y los botones */
+      display: block; /* Asegura que no sea afectado por flexbox */
+      color: grey;
+    }
+
+    .contenedor-botones {
+      display: flex;
+      flex-wrap: wrap; /* Permite que los botones se acomoden en varias líneas */
+      justify-content: center; /* Centra los botones */
+      gap: 10px; /* Espacio entre botones */
+      margin-top: 10px; /* Espaciado respecto al título */
+    }
+
+    button{
+      display: flex;
+      width: 170px;
+      height: 40px;
+      padding: 5px 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 4px;
+      transition: background 0.3s;
+    }
+
+  }
+  

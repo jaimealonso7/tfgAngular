@@ -29,9 +29,12 @@
       <div *ngFor="let marca of marcas" class="gallery-item">
         <a *ngIf="marca.ruta" [routerLink]="marca.ruta">
           <img [src]="marca.imagen" alt="{{ marca.nombre }}">
-        </a>
+          <p>Ruta que llega: {{ marca.imagen }}</p>
+        </a>        
+        
         <h2>{{ marca.nombre }}</h2>
         <p>Descripción breve.</p>
+
       </div>
     </div>
 

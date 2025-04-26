@@ -22,19 +22,13 @@
       
     <div class="product--info">
         <h1 class="product--info__title">{{product.name | uppercase}}</h1>
-        <h3>{{product.date | date:'short'}}</h3>
-        <ng-container [ngSwitch]="product.category">
-            <p *ngSwitchCase="'technology'" [ngStyle]="{color: 'red'}">{{product.category}}</p>
-            <p *ngSwitchCase="'cosmetics'" [ngStyle]="{color: 'blue'}">{{product.category}}</p>
-            <p *ngSwitchCase="'home'" [ngStyle]="{color: 'grey'}">{{product.category}}</p>
-        </ng-container>
         <p class="product--info_description">{{product.description}}</p>
         <div class="product--info__price">
             <h1>{{product.price | currency}}</h1>
         </div>
     </div>
-    <div class="product--actions">
+    <!--<div class="product--actions">
         <button (click)="buyProduct()" [disabled]="!(product.unitsAvailable > 1)" class="product--actions__btn buy">COMPRAR</button>
-        <button (click)="addToCart()" class="product--actions__btn add">+ CARRITO</button>
-    </div>
+        <button (click)="addToCart()" class="product--actions__btn add">+ CARRITO</button>-
+    </div>-->
 </div>
