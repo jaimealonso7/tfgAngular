@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';  // Importar RouterModule
+import { RouterModule } from '@angular/router';
+import { SessionTimerComponent } from "./componentes/session-timer/session-timer.component";  // Importar RouterModule
 
 @Component({
   selector: 'app-root',
   standalone: true,  // Usamos standalone: true porque estamos usando bootstrapApplication
-  imports: [RouterModule],  // Aseguramos que RouterModule esté disponible
+  imports: [RouterModule, SessionTimerComponent],  // Aseguramos que RouterModule esté disponible
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

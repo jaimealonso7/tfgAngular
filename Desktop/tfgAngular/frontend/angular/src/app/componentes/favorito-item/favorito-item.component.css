@@ -25,7 +25,8 @@
 
 .imagen-container img {
   width: 100%;
-  height: auto;
+  height: 240px; /* Altura de la imagen */
+  object-fit: cover; /* Asegura que la imagen se recorte de forma correcta */
   
 }
 
