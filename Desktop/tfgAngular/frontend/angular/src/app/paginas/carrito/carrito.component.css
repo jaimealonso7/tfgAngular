@@ -134,7 +134,7 @@ h2{
 }
 
 .pagar.activo {
-  background-color: black; /* si hay productos */
+  background-color: black; 
   cursor: pointer;
   color: white;
   font-weight: 600;

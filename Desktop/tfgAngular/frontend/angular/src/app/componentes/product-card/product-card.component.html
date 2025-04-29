@@ -21,12 +21,21 @@
     </div>
       
     <div class="product--info">
-        <h1 class="product--info__title">{{product.name | uppercase}}</h1>
-        <p class="product--info_description">{{product.description}}</p>
-        <div class="product--info__price">
-            <h1>{{product.price | currency}}</h1>
+        <div class="title-container">
+          <h1 class="product--info__title">{{ product.name | uppercase }}</h1>
+          <img 
+            class="img-corazon" 
+            [src]="isFavorite ? 'assets/img/header/corazon-rojo.png' : 'assets/img/header/corazon.png'" 
+            alt="Corazón" 
+            (click)="addToFavorites()"
+          >
         </div>
-    </div>
+        <p class="product--info_description">{{ product.description }}</p>
+        <div class="product--info__price">
+          <h1>{{ product.price | currency }}</h1>
+        </div>
+      </div>
+      
     <!--<div class="product--actions">
         <button (click)="buyProduct()" [disabled]="!(product.unitsAvailable > 1)" class="product--actions__btn buy">COMPRAR</button>
         <button (click)="addToCart()" class="product--actions__btn add">+ CARRITO</button>-

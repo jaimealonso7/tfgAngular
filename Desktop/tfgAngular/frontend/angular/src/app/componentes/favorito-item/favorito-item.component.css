@@ -1,0 +1,55 @@
+.favorito-item-wrapper {
+  /* NO uses display: flex aquí */
+  display: block;
+  width: auto; /* Asegúrate que no sea 100% */
+  margin: 0;
+}
+
+
+.favorito-item-card {
+  width: 280px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+.imagen-container {
+  position: relative;
+  background: #f7f7f7; /* Fondo gris claro */
+}
+
+.imagen-container img {
+  width: 100%;
+  height: auto;
+}
+
+.corazon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.corazon img {
+  width: 24px;
+  height: 24px;
+}
+
+.contenido {
+  padding: 20px;
+}
+
+.producto-nombre {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.producto-precio {
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+}

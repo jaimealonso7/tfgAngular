@@ -2,4 +2,54 @@
     padding: 0;
     width: 100%;
     margin: 0;
-  }
+}
+
+.wishlist-vacia {
+  text-align: center;
+  margin-top: 70px; /* Espacio arriba */
+}
+
+.wishlist-vacia h3 {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.wishlist-vacia p {
+  font-size: 14px;
+  margin: 5px 0;
+  color: black;
+}
+
+.wishlist-vacia button {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 13px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.wishlist-vacia button:hover {
+  background-color: #333; /* Un poco más claro en hover */
+}
+
+.mas-vendido {
+  position: absolute;
+  left: 100px;
+  font-size: 16px;
+  color: black;
+  font-weight: 700;
+}
+
+.favoritos-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* espacio entre tarjetas */
+  justify-content: flex-start; /* alineación a la izquierda */
+  padding: 20px;
+}

@@ -1,7 +1,34 @@
 <section class="product-page">
     <app-header class="header"
-    [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }" 
-    [title]="'LISTA DE FAVORITOS'"> 
-    
+        [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }" 
+        [title]="'LISTA DE FAVORITOS'"> 
     </app-header>
+
+    <ng-container *ngIf="favoritosItems.length > 0; else noProducts">
+        <div class="wishlist-vacia">
+            <h3>No pierda de vista sus favoritos</h3>
+            <p>Inicie sesión o cree una cuenta para guardar su selección</p>
+            <button (click)="goToLogin()">Iniciar Sesión</button>
+        </div>
+
+        <div class="favoritos-contenedor">
+            <ng-container *ngFor="let product of favoritosItems">
+              <app-favorito-item [producto]="product"></app-favorito-item>
+            </ng-container>
+          </div>
+          
+    </ng-container>
+
+    <ng-template #noProducts>
+        <div class="wishlist-vacia">
+            <h3>Tu wishlist está vacía</h3>
+            <p>Añada sus artículos favoritos y compártalos. 
+            <p>¿Busca inspiración?</p>
+            <button (click)="goToLogin()">Iniciar Sesión</button>
+        </div>
+        <div class="mas-vendido">
+            <p>Lo más vendido</p>
+        </div>
+    </ng-template>
+
 </section>

@@ -54,6 +54,21 @@
     margin: 5px 0;
 }
 
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* para separar título e imagen */
+  }
+  
+  .img-corazon {
+    width: 24px; /* o el tamaño que quieras */
+    height: auto;
+    object-fit: cover;
+    margin-left: 10px; /* opcional, espacio entre título e imagen */
+    cursor: pointer;
+  }
+  
+
 
 .product--info_description {
     font-size: 12px; /* O el tamaño de fuente que prefieras */

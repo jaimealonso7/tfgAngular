@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit{
     const idToken = response.credential;  // ID Token de Google
     console.log('ID Token de Google: ', idToken);
     localStorage.setItem('google_id_token', idToken);
-    this.router.navigate(['/editar-perfil']);
+    this.router.navigate(['/favoritos']);
   }
 
   onLoginSubmit() {
@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit{
         });
 
         // Redirige inmediatamente después de la autenticación exitosa
-        this.router.navigate(['/editar-perfil']);
+        this.router.navigate(['/favoritos']);
 
         /*setTimeout(() => {
           this.router.navigate(['/editar-perfil']);

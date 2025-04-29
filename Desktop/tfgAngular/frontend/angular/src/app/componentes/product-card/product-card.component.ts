@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { filter } from 'rxjs';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CarritoServicio } from '../../servicios/carrito.servicio';
+import { FavoritoServicio } from '../../servicios/favorito.servicio';
 
 
 @Component({
@@ -13,15 +14,35 @@ import { CarritoServicio } from '../../servicios/carrito.servicio';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
-export class ProductCardComponent {
-  constructor(private router: Router, private carritoServicio: CarritoServicio) {}
-
+export class ProductCardComponent implements OnInit {
   @Input() product: any 
+  isFavorite: boolean = false;
+
+  constructor(private router: Router, private carritoServicio: CarritoServicio, private favoritoServicio: FavoritoServicio) {}
+
   tallaNoSeleccionada: boolean = false;
 
   productImageStyle = {
     //border: '1px solid black',
     filter: 'none'
+  }
+
+  ngOnInit() {
+    // Verificamos si el producto ya está en favoritos al cargar el componente
+    const favoritos = this.favoritoServicio.getFavoritosItems();
+    this.isFavorite = favoritos.some(item => item.idProducto === this.product.idProducto);
+  }
+
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;  // Cambiar el estado del corazón
+
+    if (this.isFavorite) {
+      this.favoritoServicio.agregarAFavoritos(this.product);
+      console.log('Producto añadido a favoritos');
+    } else {
+      this.favoritoServicio.removeFromFavoritos(this.product);
+      console.log('Producto eliminado de favoritos');
+    }
   }
 
   formState = false
@@ -61,6 +82,20 @@ export class ProductCardComponent {
         this.tallaNoSeleccionada = true;
       }
     }
+
+    addToFavorites() {
+      this.isFavorite = !this.isFavorite;
+      if (this.isFavorite) {
+        this.favoritoServicio.agregarAFavoritos(this.product);
+        console.log('Producto añadido a favoritos');
+      }
+      else {
+        this.favoritoServicio.removeFromFavoritos(this.product);
+        console.log('Producto eliminado de favoritos');
+      }
+    }
+
+  
     
   
 
