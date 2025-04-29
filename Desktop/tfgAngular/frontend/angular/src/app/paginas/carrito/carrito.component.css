@@ -5,7 +5,7 @@
 }
 
 .title {
-  margin-left: 450px;
+  margin-left: 220px;
   margin-top: 60px;
   color: black;
   margin-bottom: 0px;
@@ -21,7 +21,7 @@ h2{
 .contenedor-pago{
   position: absolute;
   top: 130px;
-  left: 1200px;
+  left: 1040px;
 }
 .resumen-titulo{
   color: black;

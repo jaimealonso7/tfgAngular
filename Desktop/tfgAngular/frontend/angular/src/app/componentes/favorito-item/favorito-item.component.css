@@ -7,22 +7,26 @@
 
 
 .favorito-item-card {
-  width: 280px;
-  margin: 10px;
+  width: 290px;
+  margin: 0px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  
 }
 
 
 .imagen-container {
   position: relative;
   background: #f7f7f7; /* Fondo gris claro */
+  border-radius: 10px;
 }
 
 .imagen-container img {
   width: 100%;
   height: auto;
+  
 }
 
 .corazon {
@@ -38,18 +42,19 @@
 }
 
 .contenido {
-  padding: 20px;
+  padding: 10px;
 }
 
 .producto-nombre {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
-  margin-bottom: 10px;
-  color: black;
+  margin-bottom: 5px;
+  color: rgb(115, 57, 57);
+  text-transform: camelcase;
 }
 
 .producto-precio {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 400;
   color: black;
 }

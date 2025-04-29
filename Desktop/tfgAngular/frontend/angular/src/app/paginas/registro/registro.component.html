@@ -1,52 +1,3 @@
-<!--
-<h1 class="nombreMarca">CLASSIQUE</h1>
-
-<div class="contenedor">
-    <h3>JOIN WAITLIST</h3>
-    <form (ngSubmit)="onJoinWaitlistSubmit()">
-        <input type="telefono" id="tel" name="telefono" placeholder="Telefono" [(ngModel)]="telefono" required>
-        <button type="submit">Enviar</button>
-    </form>
-</div>
-
-<video muted autoplay loop>
-    <source src="assets/video/stoneisland.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-<div class="cap"></div>
-
-<form (ngSubmit)="onRegisterSubmit()" class="formulario" autocomplete="off">
-    <h3 class="registro">Registrate</h3>
-    <div class="form-group">
-        <input type="email" id="email" name="email" required placeholder="Email" [(ngModel)]="email">
-    </div>
-    <div class="form-group">
-        <input type="password" id="password" name="password" required placeholder="Contraseña" [(ngModel)]="password">
-    </div>
-    <button type="submit">Registrate</button>
-
-    <div class="remember-me">
-        <mat-checkbox [(ngModel)]="rememberMe" (change)="onRememberPassword()">
-          Remember me
-        </mat-checkbox>
-    </div>
-    <div class="accessQuicly">
-        <p>or access quicly</p>
-    </div>
-
-</form>
-
-<div *ngIf="message" [ngClass]="{ 'error': isError, 'success': !isError }">
-    <p>{{ message }}</p>
-</div>
-
-<a href="/login">
-    <p class="noCuenta">¿Ya tienes una cuenta? Inicia Sesión.</p>
-</a>
-
-<script src="../js/register.js"></script>
-    
--->
 
 <section class="product-page">
     <app-header class="header"
@@ -54,11 +5,10 @@
         [title]="'REGISTRO'">
     </app-header>
 
-    <video muted autoplay loop>
+    <!--<video muted autoplay loop>
         <source src="assets/video/stoneisland.mp4" type="video/mp4">
         Your browser does not support the video tag.
-    </video>
-    <div class="cap"></div>
+    </video>-->
 
     <div class="registro-container">
         <form (ngSubmit)="onRegisterSubmit()" class="formulario" autocomplete="off">
@@ -71,15 +21,15 @@
             </div>
             <button type="submit">Registrate</button>
         
-            <div class="remember-me">
+            <!--<div class="remember-me">
                 <mat-checkbox [(ngModel)]="rememberMe" name="rememberMe" (change)="onRememberPassword()">
                   Remember me
                 </mat-checkbox>
             </div>
             <div class="accessQuicly">
                 <p>or access quicly</p>
-                <!--<div id="googleSignInButton" style="text-align: center; margin-top: 20px;"></div>-->
-            </div>
+                <div id="googleSignInButton" style="text-align: center; margin-top: 20px;"></div>
+            </div>-->
 
             <a href="/login" class="noCuenta">
                 <p>¿Ya tienes una cuenta? Inicia sesión.</p>
