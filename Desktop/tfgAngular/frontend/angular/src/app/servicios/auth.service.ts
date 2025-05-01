@@ -96,4 +96,11 @@ export class AuthService {
     const remaining = this.getRemainingSessionTime();
     return !remaining || remaining <= 0;
   }
+
+  // Verificar si el usuario está logueado
+  isLoggedIn(): boolean {
+    const token = this.getToken();
+    return !!token && !this.isSessionExpired();
+  }
+
 }

@@ -1,4 +1,4 @@
-<section class="product-page">
+<!--<section class="product-page">
     <app-header class="header"
         [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }" 
         [title]="'LISTA DE FAVORITOS'"> 
@@ -31,4 +31,54 @@
         </div>
     </ng-template>
 
-</section>
+</section>-->
+
+<section class="product-page">
+    <app-header class="header"
+        [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }"
+        [title]="'LISTA DE FAVORITOS'">
+    </app-header>
+  
+    <!-- Usuario logueado -->
+    <ng-container *ngIf="usuarioLogueado; else noLogin">
+      <ng-container *ngIf="hayProductos; else noProducts">
+        <h3 class="titulo-whistlist">Productos favoritos</h3>
+        <div class="favoritos-contenedor">
+          <ng-container *ngFor="let product of favoritosItems">
+            <app-favorito-item [producto]="product"></app-favorito-item>
+          </ng-container>
+        </div>
+      </ng-container>
+  
+      <!-- No hay productos -->
+      <ng-template #noProducts>
+        <div class="wishlist-vacia">
+          <h3>Tu wishlist está vacía</h3>
+          <p>Añada sus artículos favoritos y compártalos.</p>
+          <p>¿Busca inspiración?</p>
+          <button (click)="goToLogin()">Iniciar Sesión</button>
+        </div>
+        <div class="mas-vendido">
+          <p>Lo más vendido</p>
+        </div>
+      </ng-template>
+    </ng-container>
+  
+    <!-- Usuario no logueado -->
+    <ng-template #noLogin>
+        <div class="wishlist-vacia">
+          <h3>No pierda de vista sus favoritos</h3>
+          <p>Inicie sesión o cree una cuenta para guardar su selección</p>
+          <button (click)="goToLogin()">Iniciar Sesión</button>
+        </div>
+      
+        <!-- ✅ Mostrar productos si los hay aunque no haya sesión -->
+        <div *ngIf="hayProductos" class="favoritos-contenedor">
+          <ng-container *ngFor="let product of favoritosItems">
+            <app-favorito-item [producto]="product"></app-favorito-item>
+          </ng-container>
+        </div>
+      </ng-template>
+  </section>
+  
+  

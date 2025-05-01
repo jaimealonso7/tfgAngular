@@ -1,7 +1,7 @@
 <div class="product" [attr.units-available]="product.unitsAvailable">
     <div class="product--image" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" style="position: relative;">
         <img
-          [attr.src]="product.image"
+          [attr.src]="'http://localhost:3000/images/' + product.image"
           [alt]="product.name"
           [ngStyle]="productImageStyle"
         >

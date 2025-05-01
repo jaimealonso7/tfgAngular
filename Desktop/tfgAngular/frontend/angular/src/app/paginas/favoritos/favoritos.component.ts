@@ -5,6 +5,7 @@ import { FavoritoItemComponent } from "../../componentes/favorito-item/favorito-
 import { FavoritoServicio } from '../../servicios/favorito.servicio';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../servicios/auth.service';
 
 @Component({
   selector: 'app-favoritos',
@@ -16,13 +17,22 @@ export class FavoritosComponent {
   favoritosItems: any[] = []; // Aquí almacenamos los productos que obtendremos
   mostrarMensajeSinProductos = false; // Variable para mostrar el mensaje de "No hay productos en favoritos"
   mostrarInput = false; // Variable para mostrar el input del código promocional
+  usuarioLogueado = false; // Cámbialo a true para probar el estado logueado
 
-  constructor(private favoritoServicio: FavoritoServicio, private router: Router) {} // Inyectamos el servicio de favoritos
+
+  constructor(private favoritoServicio: FavoritoServicio, private router: Router, private authService: AuthService) {} // Inyectamos el servicio de favoritos
 
   ngOnInit(): void {
+    this.usuarioLogueado = this.authService.isLoggedIn();
+
     this.favoritoServicio.getFavoritosObservable().subscribe(items => {
       console.log('Favoritos cargados:', items); // Aquí puedes ver si los favoritos se cargan al recargar la página
-      this.favoritosItems = items;
+      this.favoritosItems = items.map(item => ({
+        ...item,
+        image: item.image || item.imagen,
+        name: item.name || item.nombre
+      }));
+      
       this.mostrarMensajeSinProductos = this.favoritosItems.length === 0;
     });
   }

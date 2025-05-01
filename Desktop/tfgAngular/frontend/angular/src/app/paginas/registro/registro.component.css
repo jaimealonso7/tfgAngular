@@ -76,7 +76,7 @@ h2{
 
 .formulario {
     position: absolute;
-    top: 300px;
+    top: 330px;
     left: 50%;
     width: 90%;
     max-width: 340px;
@@ -210,7 +210,7 @@ h2{
     align-items: center;
     justify-content: center;
 
-    margin-top: 410px; /* Puedes ajustar este margen como necesites */
+    margin-top: 390px; /* Puedes ajustar este margen como necesites */
     text-align: center;
 }
 
