@@ -4,8 +4,6 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from "./auth.service";
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +12,6 @@ export class CarritoServicio {
   
   private cartItems: any[] = [];
   private cartSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  
 
   constructor(private http: HttpClient, private authService: AuthService) {
     const storedCart = localStorage.getItem('cart');
@@ -52,8 +49,6 @@ export class CarritoServicio {
         console.error('Error al sincronizar el carrito:', error);
         return new Observable(observer => observer.complete());
       })
-      
-
     );
   }
 
@@ -90,9 +85,10 @@ export class CarritoServicio {
   
     if (idUsuario) {
       // Solo guardar en backend si el usuario está autenticado
-      this.http.post('/api/carrito', {
+      console.log('Producto a guardar:', product);
+      this.http.post(this.apiUrl, {
         idUsuario,
-        idProducto: product.id,
+        idProducto: product.idProducto,
         idTalla: this.getIdTallaPorNombre(talla as 'S' | 'M' | 'L' | 'XL'),
         cantidad: 1
       }).subscribe({
@@ -103,16 +99,60 @@ export class CarritoServicio {
       console.log('🛒 Producto guardado en el carrito local (usuario invitado)');
     }
   }
-  
-  
-  
 
+  actualizarCarritoEnBackend(producto: any) {
+    if (!producto.idCarrito) {
+      console.warn('⚠️ No se encontró idCarrito en el producto:', producto);
+      return;
+    }
   
-  
+    this.http.put(`${this.apiUrl}/${producto.idCarrito}`, {
+      cantidad: producto.cantidad
+    }).subscribe({
+      next: (res) => console.log('✅ Cantidad actualizada en el backend:', res),
+      error: (err) => console.error('❌ Error al actualizar la cantidad', err)
+    });
+  }
 
-  removeFromCart(productToRemove: any) {
-    this.cartItems = this.cartItems.filter(product => product !== productToRemove);
-    this.saveCart();
+  removeFromCart(producto: any) {
+    const idUsuario = this.authService.getUserId();
+    const idCarrito = producto.idCarrito;
+  
+    if (idUsuario) {
+      const url = `${this.apiUrl}/${idCarrito}`;
+      this.http.delete(url, {
+        body: {
+          idUsuario,
+          idProducto: producto.idProducto,
+          idTalla: this.getIdTallaPorNombre(producto.tallaSeleccionada as 'S' | 'M' | 'L' | 'XL'),
+        }
+      }).subscribe({
+        next: () => {
+          console.log('✅ Producto eliminado de la base de datos');
+  
+          // 🔥 Eliminar también del array local
+          this.cartItems = this.cartItems.filter(item =>
+            item.idProducto !== producto.idProducto ||
+            item.tallaSeleccionada !== producto.tallaSeleccionada
+          );
+          this.saveCart();
+
+          // Emitir los cambios a los subscriptores de `cartSubject` para actualizar la UI
+          this.cartSubject.next(this.cartItems);  // Notifica a los subscriptores
+        },
+        error: (error) => console.error('❌ Error al eliminar de la BD', error)
+      });
+    } else {
+      // Usuario no autenticado, elimina solo de la vista local
+      this.cartItems = this.cartItems.filter(item =>
+        item.idProducto !== producto.idProducto ||
+        item.tallaSeleccionada !== producto.tallaSeleccionada
+      );
+      this.saveCart();
+
+      // Emitir los cambios a los subscriptores de `cartSubject`
+      this.cartSubject.next(this.cartItems);  // Notifica a los subscriptores
+    }
   }
 
   clearCart() {
@@ -144,6 +184,10 @@ export class CarritoServicio {
     return this.cartSubject.asObservable();
   }
 
+  getCartFromBackend(idUsuario: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:3000/api/carrito/${idUsuario}`);
+  }
+
   private saveCart() {
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
     this.cartSubject.next(this.cartItems); // notifica a los subscriptores
@@ -156,8 +200,4 @@ export class CarritoServicio {
       return total + precio * cantidad;
     }, 0);
   }
-  
-
-  
-  
 }

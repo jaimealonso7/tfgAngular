@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { CarritoServicio } from '../../servicios/carrito.servicio';
 import { FormsModule } from '@angular/forms';
 import { CestaItemComponent } from "../../componentes/cesta-item/cesta-item.component";
+import { AuthService } from '../../servicios/auth.service';
+
 
 @Component({
   selector: 'app-carrito',
@@ -35,14 +37,41 @@ export class CarritoComponent {
   }
 
 
-  constructor(private carritoServicio: CarritoServicio) {}
+  constructor(private carritoServicio: CarritoServicio, private authService: AuthService) {}
   
   ngOnInit(): void {
-    this.carritoServicio.getCartObservable().subscribe(items => {
-      this.cartItems = items;
-      this.cargarSubtotal();  
-    });
+    const idUsuario = this.authService.getUserId();
+  
+    if (idUsuario) {
+      this.carritoServicio.getCartFromBackend(idUsuario).subscribe({
+        next: (items) => {
+          console.log('🛒 Productos del carrito recibidos desde el backend:', items);
+          console.log('🛒 Backend carrito completo:', items);
+
+          this.cartItems = items.map(item => ({
+            ...item,
+            image: item.image || item.imagen,
+            name: item.name || item.nombre,
+            color: item.color,          // Suponiendo que 'color' viene desde el backend
+            talla: item.talla,          // Suponiendo que 'talla' viene desde el backend
+            description: item.description || item.descripcion  // Si 'description' no está presente, usar 'descripcion'
+          }));
+  
+          this.mostrarMensajeSinProductos = this.cartItems.length === 0;
+          this.cargarSubtotal();
+        },
+        error: (err) => {
+          console.error('❌ Error al cargar el carrito desde el backend:', err);
+        }
+      });
+    } else {
+      console.log('Usuario no autenticado');
+      // Aquí puedes manejar la situación si el usuario no está autenticado, como redirigir a la página de login.
+    }
   }
+  
+  
+  
   
   get hayProductos(): boolean {
     return this.cartItems.length > 0;

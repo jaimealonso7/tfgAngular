@@ -9,7 +9,7 @@
       <h3>{{ producto.name }}</h3>
       <p class="description"> {{ producto.description }}</p>
       <p class="color"><Strong>Color:</Strong> {{ producto.color}}</p>
-      <p class="talla"><strong>Talla</strong> {{ producto.tallaSeleccionada }}</p>
+      <p class="talla"><strong>Talla</strong> {{ producto.talla }}</p>
       
       <div class="contenedor-precio">
         <p class="precio"> {{ producto.price }}€</p>
@@ -22,11 +22,29 @@
       <div class="cantidad">
         <p class="cantidad-text">Cantidad</p>
         <div class="cantidad-botones">
-          <img (click)="restarCantidad(producto)" class="icono-menos" src="assets/img/carrito/menos.png" alt="">
+          <!-- Mostrar el icono de menos solo si la cantidad es mayor a 1 -->
+          <img *ngIf="producto.cantidad > 1" 
+               (click)="restarCantidad(producto)" 
+               class="icono-menos" 
+               src="assets/img/carrito/menos.png" 
+               alt="">
+      
+          <!-- Mostrar el icono de la papelera solo si la cantidad es igual a 1 -->
+          <img *ngIf="producto.cantidad === 1" 
+               (click)="removeFromCart(producto)" 
+               class="icono-papelera" 
+               src="assets/img/carrito/papelera.png" 
+               alt="">
+      
           <p class="unidades">{{ producto.cantidad }}</p>
-          <img (click)="sumarCantidad(producto)" class="icono-mas" src="assets/img/carrito/mas.png" alt="">
+      
+          <img (click)="sumarCantidad(producto)" 
+               class="icono-mas" 
+               src="assets/img/carrito/mas.png" 
+               alt="">
         </div>
       </div>
+      
     </div>
   </div>
   
