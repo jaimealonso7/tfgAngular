@@ -1,12 +1,14 @@
+
 <div class="favorito-item-wrapper">
     <div class="favorito-item-card">
         <div class="imagen-container">
             <img [src]="'http://localhost:3000/images/' + producto.image" alt="{{ producto.nombre }}">
             <div class="corazon" (click)="toggleFavorite(producto)">
-                <img [src]="producto.isFavorite ? 'assets/img/header/corazon.png' : 'assets/img/header/corazon-rojo.png'" alt="Favorito">
+                <img [src]="producto.isFavorite ? 'assets/img/header/corazon.png' : 
+                'assets/img/header/corazon-rojo.png'" alt="Favorito">
             </div>
         </div>
-
+        
         <div class="contenido">
             <h3 class="producto-nombre">{{ producto.name }}</h3>
             <p class="producto-precio">{{ producto.price | currency:'EUR' }}</p>

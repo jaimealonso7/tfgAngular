@@ -1,0 +1,23 @@
+
+<section class="product-page">
+    <!-- Header -->
+    <app-header class="header"
+        [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }"
+        [title]="'CLASSIQUEE'">
+    </app-header>
+
+    <h2 class="productos-categoria">{{ categoriaPlural }}</h2>
+
+    <div class="productos-nohay" *ngIf="productos.length === 0">No hay productos en esta categoría.</div>
+
+    <div class="productos-grid">
+        <div class="producto" *ngFor="let p of productos">
+            <img [attr.src]="'http://localhost:3000/images/' + p.image" alt="{{p.name}}" class="producto-imagen">
+
+            <h4 class="nombre-objeto">{{ p.name }}</h4>
+            <div class="product--info__price">
+                <h1>{{ p.price | currency:'USD':'symbol':'1.0-0' }}</h1>
+            </div>
+        </div>
+    </div>
+</section>

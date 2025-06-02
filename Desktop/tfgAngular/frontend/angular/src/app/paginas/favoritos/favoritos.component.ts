@@ -26,7 +26,7 @@ export class FavoritosComponent {
     this.usuarioLogueado = this.authService.isLoggedIn();
 
     this.favoritoServicio.getFavoritosObservable().subscribe(items => {
-      console.log('Favoritos cargados:', items); // Aquí puedes ver si los favoritos se cargan al recargar la página
+      console.log('Favoritos cargados:', items);
       this.favoritosItems = items.map(item => ({
         ...item,
         image: item.image || item.imagen,

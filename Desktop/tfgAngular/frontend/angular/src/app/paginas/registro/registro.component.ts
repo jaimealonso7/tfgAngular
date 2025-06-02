@@ -29,10 +29,6 @@ export class RegistroComponent{
   constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {}
 
   onRegisterSubmit() {
-    console.log('🔍 Método onRegisterSubmit() ejecutado'); 
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-  
     if (!this.email || !this.password) {
       this.showMessage('⚠️ Email y contraseña son requeridos', true);
       return;
@@ -61,7 +57,7 @@ export class RegistroComponent{
       }
     );
   }
-  // Removed duplicate implementation of showMessage
+  
   
   onRememberPassword() {
     if (this.rememberMe) {

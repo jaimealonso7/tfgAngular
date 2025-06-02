@@ -40,7 +40,8 @@ export class CestaItemComponent {
   
   // Función para actualizar el carrito en el backend
   actualizarCarritoEnBackend(producto: any) {
-    // Aquí va la lógica para actualizar el carrito en la base de datos o hacer una petición HTTP
+    // Aquí va la lógica para actualizar el carrito en la 
+    // base de datos o hacer una petición HTTP
     this.http.put(`/api/carrito/${producto.idCarrito}`, producto)
       .subscribe(response => {
         console.log('Carrito actualizado:', response);

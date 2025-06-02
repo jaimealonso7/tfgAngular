@@ -16,15 +16,6 @@
 
   <!-- Contenedor de iconos -->
   <div class="contendor-iconos">
-    <!--<div class="avatar">
-      <a [routerLink]="['/login']">
-        <img 
-          [src]="userInfo?.avatarUrl || 'assets/img/header/avatar.png'"
-          class="avatar-img"
-        >
-      </a>  
-    </div>-->
-  
 
     <div>
       <a [routerLink]="['/favoritos']">
@@ -77,7 +68,48 @@
 
   </div>
 
-  <!-- MENU -->
+  <!-- ✅ MENÚ LATERAL - FILTROS -->
+<div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
+  <div class="sidebar" (click)="$event.stopPropagation()">
+
+    <!-- Botón cerrar -->
+    <div class="contenedor-cerrar" (click)="closeMenu()">
+      <p class="texto-cerrar">FILTRAR</p>
+      <img class="boton-cerrar" src="assets/img/header/marca-x.png" alt="Cerrar">
+    </div>
+
+    <!-- ✅ GRUPO DE FILTROS -->
+    <app-filtro-categorias
+      [titulo]="'Ropa'"
+      [categorias]="['Jersey', 'Pantalon', 'Chaqueta', 'Polo', 'Camiseta', 'Sudaderaa']"
+      [(seleccionadas)]="filtros.ropa"
+      (seleccionadasChange)="onFiltroChange('accesorios', $event)">
+    </app-filtro-categorias>
+
+    <app-filtro-categorias
+      [titulo]="'Accesorios'"
+      [categorias]="['Bolso', 'Pulsera', 'Collar', 'Pendientes', 'Anillo', 'Gafas', 'Reloj']"
+      [(seleccionadas)]="filtros.accesorios"
+      (seleccionadasChange)="onFiltroChange('accesorios', $event)">
+    </app-filtro-categorias>
+
+    <app-filtro-categorias
+      [titulo]="'Perfumes'"
+      [categorias]="['Perfume']"
+      [(seleccionadas)]="filtros.perfumes"
+      (seleccionadasChange)="onFiltroChange('accesorios', $event)">
+    </app-filtro-categorias>
+
+    <!-- Debug temporal -->
+    <pre>{{ filtros | json }}</pre>
+
+  </div>
+</div>
+
+
+  
+
+  <!-- MENU 
   <div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
       <div class="sidebar" (click)="$event.stopPropagation()">
           <div class="contenedor-cerrar">
@@ -93,12 +125,14 @@
               </div>
               
               <div class="contenedor-corteiz">
-                <img class="img-corteiz" src="assets/img/header/crtz.jpg" alt="">
-                <h2 class="titulo-moncler">Corteiz</h2>
+                <a [routerLink]="['/corteiz']">
+                  <img class="img-corteiz" src="assets/img/header/crtz.jpg" alt="">
+                  <h2 class="titulo-moncler">Corteiz</h2>
+                </a>
               </div>
               
               <div class="contenedor-stone">
-                <a [routerLink]="['/stone']">
+                <a [routerLink]="['/stone-island']">
                   <img src="assets/img/header/stone.webp" alt="" class="img-stone">
                   <h2 class="titulo-stone">Stone Island</h2>
                 </a>
@@ -136,6 +170,6 @@
           </div>
           <hr>
       </div>
-  </div>
+  </div>-->
 
 </header>

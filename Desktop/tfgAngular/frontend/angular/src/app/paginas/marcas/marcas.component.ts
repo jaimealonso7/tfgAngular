@@ -24,7 +24,6 @@ export class MarcasComponent implements OnInit {
           console.log('Datos recibidos de la API:', data);
           this.marcas = data.map(marca => ({
             ...marca,
-            // Change this line to generate the correct routes:
             ruta: this.generateRoute(marca.idMarca)
           }));
           console.log('Rutas generadas:', this.marcas.map(m => m.ruta));
@@ -38,6 +37,12 @@ export class MarcasComponent implements OnInit {
   generateRoute(marcaId: number): string {
     if (marcaId === 1) return '/stone-island';
     if (marcaId === 2) return '/corteiz';
+    if (marcaId === 3) return '/dior';
+    if (marcaId === 4) return '/versace';
+    if (marcaId === 5) return '/moncler';
+    if (marcaId === 6) return '/lv';
+    if (marcaId === 7) return '/canada';
+    if (marcaId === 8) return '/gucci';
     return '/';
   }
   

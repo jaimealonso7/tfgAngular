@@ -26,18 +26,4 @@ export class StoneComponent implements OnInit {
       }
     );
   }
-  
-
-  /* Método para obtener los productos
-  getProducts(): void {
-    this.productService.getProductos().subscribe(
-      (data) => {
-        console.log('Productos obtenidos:', data);  // Muestra los productos en consola
-        this.filteredProducts = data;  // Asigna los productos a la variable
-      },
-      (error) => {
-        console.error('Error al obtener productos:', error);
-      }
-    );
-  }*/
 }

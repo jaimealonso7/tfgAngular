@@ -1,6 +1,8 @@
 
 <div class="cesta-item-wrapper">
   <div class="cesta-item-card">
+
+    
     <div class="imagen">
       <img [src]="'http://localhost:3000/images/' + producto.image" alt="{{ producto.nombre }}">
     </div>
@@ -14,10 +16,6 @@
       <div class="contenedor-precio">
         <p class="precio"> {{ producto.price }}€</p>
       </div>
-
-      <!--<div class="subtotal-producto">
-        <p><strong>Subtotal:</strong> {{ producto.price * producto.cantidad }}€</p>
-      </div>-->
       
       <div class="cantidad">
         <p class="cantidad-text">Cantidad</p>

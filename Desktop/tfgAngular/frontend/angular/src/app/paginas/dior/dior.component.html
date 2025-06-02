@@ -1,0 +1,31 @@
+<section class="product-page">
+    <!-- Header -->
+    <app-header class="header"
+        [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }"
+        [title]="'DIOR'">
+    </app-header>
+
+    <!-- Si hay productos, muestra el catálogo -->
+    <ng-container *ngIf="filteredProducts.length > 0; else noProducts">
+        <div class="title">
+            <h1>Nuestro Catálogo</h1>
+        </div>
+        
+        <div class="products">
+            <ng-container *ngFor="let product of filteredProducts">
+                <div class="product">
+                    <div class="container">
+                        <app-product-card [product]="product"></app-product-card>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <!-- Mensaje cuando no hay productos -->
+    <ng-template #noProducts>
+        <div class="title">
+            <h1>No hay productos disponibles.</h1>
+        </div>
+    </ng-template>
+</section>

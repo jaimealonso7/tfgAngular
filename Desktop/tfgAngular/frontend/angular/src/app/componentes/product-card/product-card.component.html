@@ -5,7 +5,6 @@
           [alt]="product.name"
           [ngStyle]="productImageStyle"
         >
-    
         <!-- Overlay que aparece al hacer hover -->
         <div class="image-hover-overlay" [ngClass]="{ 'visible': isHovered }">
             <select class="size-selector" (change)="onSizeChange($event)">
@@ -17,7 +16,6 @@
           </select>
           <button class="add-btn" [ngClass]="{'btn-verde': selectedSize,'btn-rojo': tallaNoSeleccionada}" (click)="addToCart()">Añadir</button>
         </div>
-        
     </div>
       
     <div class="product--info">
@@ -32,12 +30,7 @@
         </div>
         <p class="product--info_description">{{ product.description }}</p>
         <div class="product--info__price">
-          <h1>{{ product.price | currency }}</h1>
+          <h1>{{ product.price | currency:'USD':'symbol':'1.0-0' }}</h1>
         </div>
       </div>
-      
-    <!--<div class="product--actions">
-        <button (click)="buyProduct()" [disabled]="!(product.unitsAvailable > 1)" class="product--actions__btn buy">COMPRAR</button>
-        <button (click)="addToCart()" class="product--actions__btn add">+ CARRITO</button>-
-    </div>-->
 </div>

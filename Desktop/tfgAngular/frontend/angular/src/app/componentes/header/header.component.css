@@ -321,7 +321,7 @@
     top: 0;
     left: 0;
     height: 100vh;
-    width: 18.33vw;
+    width: 20.33vw;
     background-color: white;
     padding: 20px;
     padding-left: 40px;
@@ -342,103 +342,71 @@
 
   .contenedor-cerrar{
     display: flex;
-    align-items: center;
-    gap: 5px;
+    gap: 10px;
     margin-top: 10px;
   }
 
   .boton-cerrar{
-    width: 18px;
-    height: 16px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 300px;
+    top: 35px;
   }
 
   .texto-cerrar{
-    font-size: 16px;
-  }
-
-  /* Contenedor marcas */
-
-  .contenedor-marcas{
-    font-size: 16px;
-  }
-
-  .contenedor-marcas h2 {
-    margin-bottom: 45px; /* Ajusta el valor según necesites */
-  }
-
-  .contenedor-moncler, .contenedor-corteiz, .contenedor-stone, .contenedor-gallery, .contenedor-chanel, .contenedor-nf, .contenedor-canada, .contenedor-rolex{
-    display: flex;
-    align-items: top;
-    gap: 10px;
-  }
-
-  .img-moncler{
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
+    font-size: 20px;
+    font-weight: bold;
   }
 
   
-  .img-corteiz {
-    width: 60px;
-    height: 60px; 
-    object-fit: contain;
-  }
-
-  .img-stone{
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-  }
-
-  
-  .img-gallery {
-    width: 60px;
-    height: 60px; 
-    object-fit: contain;
-  }
-
-  .img-chanel {
-    width: 60px;
-    height: 60px; 
-    object-fit: contain;
-  }
-
-  .img-nf {
-    width: 60px;
-    height: 60px; 
-    object-fit: contain;
-  }
-
-  .img-canada {
-    width: 60px;
-    height: 60px; 
-    object-fit: contain;
-  }
-
-  .img-rolex {
-    width: 60px;
-    height: 60px; 
-    object-fit: contain;
-  }
-
-  .contenedor-stone a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;  
-    align-items: top;
-    gap: 10px; 
-  }
-  
-
-
-  /* Contenedor ayuda */
-
-  .contenedor-ayuda{
+  /* Contenedor general del bloque */
+  .sidebar-categorias {
+    margin-left: 3px;
     margin-top: 10px;
-    font-size: 12px;
   }
 
+  /* Título del desplegable */
+  .titulo-categorias {
+    margin-top: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 65px;
+    align-items: center;
+  }
+
+  /* Cada categoría */
+  .categoria-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  /* Checkbox normal con tamaño ajustado */
+  .categoria-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  /* Label al lado del checkbox */
+  .categoria-item label {
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .flecha-icon{
+    width: 20px;
+    height: 20px;
+  }
+
+  
+
+
+ 
 
   @media (max-width: 768px) {
     .app-header {
@@ -552,6 +520,8 @@
       font-size: 4px;
       transition: background 0.3s;
     }
+
+    
 
   }
   

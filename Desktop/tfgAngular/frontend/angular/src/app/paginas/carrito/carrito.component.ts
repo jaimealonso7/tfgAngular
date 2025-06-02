@@ -45,18 +45,14 @@ export class CarritoComponent {
     if (idUsuario) {
       this.carritoServicio.getCartFromBackend(idUsuario).subscribe({
         next: (items) => {
-          console.log('🛒 Productos del carrito recibidos desde el backend:', items);
-          console.log('🛒 Backend carrito completo:', items);
-
           this.cartItems = items.map(item => ({
             ...item,
             image: item.image || item.imagen,
             name: item.name || item.nombre,
-            color: item.color,          // Suponiendo que 'color' viene desde el backend
-            talla: item.talla,          // Suponiendo que 'talla' viene desde el backend
-            description: item.description || item.descripcion  // Si 'description' no está presente, usar 'descripcion'
+            color: item.color,          
+            talla: item.talla,        
+            description: item.description || item.descripcion  
           }));
-  
           this.mostrarMensajeSinProductos = this.cartItems.length === 0;
           this.cargarSubtotal();
         },
@@ -66,7 +62,6 @@ export class CarritoComponent {
       });
     } else {
       console.log('Usuario no autenticado');
-      // Aquí puedes manejar la situación si el usuario no está autenticado, como redirigir a la página de login.
     }
   }
   

@@ -1,0 +1,13 @@
+<div class="sidebar-categorias">
+    <h3 class="titulo-categorias">{{ titulo }}</h3>
+    <div *ngFor="let categoria of categorias" class="categoria-item">
+      <input
+        type="checkbox"
+        [id]="categoria"
+        [checked]="seleccionadas.includes(categoria)"
+        (change)="toggleSeleccion(categoria)"
+      />
+      <label [for]="categoria">{{ categoria }}</label>
+    </div>
+  </div>
+  

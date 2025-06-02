@@ -15,10 +15,10 @@ declare var google: any;  // Solo la nueva API de Google Identity
 
 @Component({
   selector: 'app-login',
-  standalone: true,  // Importante para Standalone Components
+  standalone: true,  
   imports: [CommonModule, FormsModule, HttpClientModule, MatSnackBarModule, MatButtonModule, MatCheckboxModule, HeaderComponent],
-  templateUrl: './login.component.html', // 👈 Ahora usa el archivo separado
-  styleUrls: ['./login.component.css'] // 👈 Agrega estilos si los tienes
+  templateUrl: './login.component.html', 
+  styleUrls: ['./login.component.css'] 
 
 })
 export class LoginComponent implements OnInit{
@@ -107,10 +107,6 @@ export class LoginComponent implements OnInit{
 
         // Redirige inmediatamente después de la autenticación exitosa
         this.router.navigate(['/favoritos']);
-
-        /*setTimeout(() => {
-          this.router.navigate(['/editar-perfil']);
-        }, 1000);*/
       },
       (error) => {
         console.error('Error en el login:', error); 
@@ -150,8 +146,8 @@ export class LoginComponent implements OnInit{
     this.snackBar.open(message, 'Cerrar', {
       duration: 6000, // 3 segundos
       verticalPosition: 'top', // Posición vertical (arriba o abajo)
-      horizontalPosition: 'center', // Posición horizontal (izquierda, centro o derecha)
-      panelClass: isError ? 'snackbar-error' : 'snackbar-success' // Estilos personalizados
+      horizontalPosition: 'center', 
+      panelClass: isError ? 'snackbar-error' : 'snackbar-success' 
     });
   }
 }

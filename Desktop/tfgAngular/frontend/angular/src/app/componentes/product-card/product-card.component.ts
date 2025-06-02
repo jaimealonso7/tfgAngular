@@ -53,21 +53,6 @@ export class ProductCardComponent implements OnInit {
     this.formState = true
   }
 
-
-  /*addToCart() {
-    if (this.selectedSize) {
-      console.log(`Producto añadido con talla: ${this.selectedSize}`);
-      this.tallaNoSeleccionada = false;
-  
-      this.carritoServicio.addToCart(this.product, this.selectedSize);
-  
-      this.router.navigate(['/carrito']);
-    } else {
-      console.log('Debes seleccionar una talla');
-      this.tallaNoSeleccionada = true;
-    }
-  }*/
-
     addToCart() {
       if(this.selectedSize) {
         // Pasar el producto completo con la talla seleccionada al carrito
@@ -108,14 +93,7 @@ export class ProductCardComponent implements OnInit {
   onMouseLeave() {
     this.isHovered = false;
   }
-
-  /*ngOnInit() {
-    if (this.product) {
-      this.product.sizes = ['S', 'M', 'L', 'XL'];  // se lo agregas tú manualmente
-    }
-  }*/
-
-   // Puedes acceder a las tallas de esta forma:
+  
   get stockPorTalla() {
     return this.product.stockPorTalla || [];
   } 

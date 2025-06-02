@@ -22,9 +22,9 @@ export class ResultadosBuscadorComponent implements OnInit {
   ngOnInit(): void {
     // Obtenemos la búsqueda de los parámetros de la URL
     this.route.params.subscribe(params => {
-      this.query = params['query'];  // Almacenamos la consulta de búsqueda
-      console.log(this.query);  // Mostrar la consulta en la consola (para debug)
-      this.redirigirSegunBusqueda();  // Verificamos si debemos redirigir según la búsqueda
+      this.query = params['query'];  
+      console.log(this.query);  
+      this.redirigirSegunBusqueda();  
     });
 
     // Llamamos al servicio para obtener los productos desde la API
@@ -35,6 +35,8 @@ export class ResultadosBuscadorComponent implements OnInit {
   }
 
   // Función que maneja la redirección según la consulta de búsqueda
+
+  
   redirigirSegunBusqueda() {
     const queryLower = this.query.toLowerCase();  // Convertimos la consulta a minúsculas
 
@@ -60,7 +62,6 @@ export class ResultadosBuscadorComponent implements OnInit {
       'corteiz' : { route: '/corteiz', params: { category: 'Volver' } },
       'corteiz sudadera' : { route: '/corteiz', params: { category: 'Sudadera' } },
     };
-
     // Comprobamos si alguna palabra clave de la búsqueda coincide con el diccionario
     for (const key in searchMap) {
       if (queryLower.includes(key)) {
