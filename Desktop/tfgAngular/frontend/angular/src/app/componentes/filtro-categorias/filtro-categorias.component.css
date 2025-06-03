@@ -2,6 +2,7 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 18px;
+  margin-top: 50px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -13,8 +14,62 @@
   margin-bottom: 6px;
 }
 
-.flecha-icon {
-  width: 14px;
-  height: 14px;
-  margin-left: 8px;
+.flecha-icon{
+  width: 20px;
+  height: 20px;
+  margin-top: 40px;
+  position: absolute;
+  right: 40px;;
+}
+
+.categoria-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.linea-separadora {
+  height: 1.5px;             /* grosor de la línea */
+  background-color: #ccc;  /* color gris */
+  width: 300px;              /* ancho que vos elijas, puede ser 90%, 100%, o px */
+  margin: 0 auto 10px;     /* centrado horizontal y espacio abajo */
+  margin-top: 20px;
+}
+
+.categoria-lista {
+  padding-left: 0;       /* quitar padding por defecto si es lista */
+  margin: 0;
+  max-height: 300px;     /* límite de altura si querés scroll */
+  overflow-y: auto;      /* scroll vertical si hay muchas categorías */
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.categoria-item {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.categoria-item:hover {
+  background-color: #f0f0f0;
+}
+
+.categoria-item input[type="checkbox"] {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #007bff;  /* color azul para checkbox modernos */
+}
+
+.categoria-item label {
+  font-size: 16px;
+  color: #333;
+  user-select: none;  /* evita que el texto se seleccione si solo haces click en label */
 }

@@ -92,14 +92,24 @@ export class HeaderComponent {
     this.categoriasAbiertas = !this.categoriasAbiertas;
   }
 
-  onFiltroChange(tipo: string, categoriasSeleccionadas: string[]) {
-    this.filtros[tipo as 'ropa' | 'accesorios' | 'perfumes'] = categoriasSeleccionadas;
-
-    // Para simplificar, navega a la página con la primera categoría seleccionada
+  onFiltroChange(tipo: 'ropa' | 'accesorios' | 'perfumes', categoriasSeleccionadas: string[]) {
+    // Reiniciar todos los filtros
+    this.filtros = {
+      ropa: [],
+      accesorios: [],
+      perfumes: []
+    };
+  
+    // Activar solo el filtro actual
+    this.filtros[tipo] = categoriasSeleccionadas;
+  
+    // Navegar si hay selección
     if (categoriasSeleccionadas.length > 0) {
       const categoria = categoriasSeleccionadas[0];
-      this.menuOpen = false; // opcional: cierra el menú al seleccionar
+      this.menuOpen = false;
       this.router.navigate(['/categoria', categoria.toLowerCase()]);
     }
   }
+  
+  
 }

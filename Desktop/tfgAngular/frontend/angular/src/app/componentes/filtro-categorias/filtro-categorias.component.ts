@@ -15,19 +15,15 @@ export class FiltroCategoriasComponent {
   @Input() seleccionadas: string[] = [];
   @Output() seleccionadasChange = new EventEmitter<string[]>();
 
-  abierto: boolean = true;
+  abierto: boolean = false;
 
   toggle(): void {
     this.abierto = !this.abierto;
   }
 
   toggleSeleccion(categoria: string) {
-    const index = this.seleccionadas.indexOf(categoria);
-    if (index > -1) {
-      this.seleccionadas = this.seleccionadas.filter(c => c !== categoria);
-    } else {
-      this.seleccionadas = [...this.seleccionadas, categoria];
-    }
+    // Siempre seleccionar solo una categoría (como radio button)
+    this.seleccionadas = [categoria];
     this.seleccionadasChange.emit(this.seleccionadas);
   }
 }

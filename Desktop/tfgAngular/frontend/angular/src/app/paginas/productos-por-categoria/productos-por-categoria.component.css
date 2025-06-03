@@ -58,9 +58,11 @@
   
 
 .producto-imagen{
-    width: 350px;
-    height: 300px;
+    width: 320px;
+    height: 400px;
     object-fit: cover; /* Mantiene la proporción de la imagen */
+    
+    
 }
 
 .producto{
@@ -77,10 +79,11 @@
 
 .nombre-objeto{
     font-size: 14px;
-    font-weight: bold;
-    margin-top: 10px;
+    font-weight: 400;
+    margin-top: 15px;
     color: black;
     text-align: center;
+    text-transform: uppercase;
 }
 
 /* Estilos para el precio */
@@ -92,9 +95,9 @@
 }
 
 .product--info__price h1 {
-    font-size: 14px;
+    font-size: 16px;
     color: black; /* Verde para indicar el precio */
-    font-weight: bold;
+    font-weight: 400;
     
     margin: 0;
 }

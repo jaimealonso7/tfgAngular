@@ -68,8 +68,9 @@
 
   </div>
 
-  <!-- ✅ MENÚ LATERAL - FILTROS -->
-<div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
+  
+ <!-- ✅ MENÚ LATERAL - FILTROS -->
+ <div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
   <div class="sidebar" (click)="$event.stopPropagation()">
 
     <!-- Botón cerrar -->
@@ -81,9 +82,9 @@
     <!-- ✅ GRUPO DE FILTROS -->
     <app-filtro-categorias
       [titulo]="'Ropa'"
-      [categorias]="['Jersey', 'Pantalon', 'Chaqueta', 'Polo', 'Camiseta', 'Sudaderaa']"
+      [categorias]="['Jersey', 'Pantalon', 'Chaqueta', 'Polo', 'Camiseta', 'Sudadera']"
       [(seleccionadas)]="filtros.ropa"
-      (seleccionadasChange)="onFiltroChange('accesorios', $event)">
+      (seleccionadasChange)="onFiltroChange('ropa', $event)">
     </app-filtro-categorias>
 
     <app-filtro-categorias
@@ -97,11 +98,11 @@
       [titulo]="'Perfumes'"
       [categorias]="['Perfume']"
       [(seleccionadas)]="filtros.perfumes"
-      (seleccionadasChange)="onFiltroChange('accesorios', $event)">
+      (seleccionadasChange)="onFiltroChange('perfumes', $event)">
     </app-filtro-categorias>
 
-    <!-- Debug temporal -->
-    <pre>{{ filtros | json }}</pre>
+    <!-- Debug temporal 
+    <pre>{{ filtros | json }}</pre>-->
 
   </div>
 </div>

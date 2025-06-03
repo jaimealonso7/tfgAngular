@@ -1,5 +1,18 @@
 <div class="sidebar-categorias">
+  <!-- Header con flecha -->
+  <div class="categoria-header" (click)="toggle()">
     <h3 class="titulo-categorias">{{ titulo }}</h3>
+    <img
+      [src]="abierto ? 'assets/img/header/arriba.png' : 'assets/img/header/abajo.png'"
+      alt="Toggle"
+      class="flecha-icon"
+    />
+  </div>
+
+  
+
+  <!-- Lista de categorías desplegable -->
+  <div *ngIf="abierto" class="categoria-lista">
     <div *ngFor="let categoria of categorias" class="categoria-item">
       <input
         type="checkbox"
@@ -10,4 +23,7 @@
       <label [for]="categoria">{{ categoria }}</label>
     </div>
   </div>
-  
+
+  <!-- Línea horizontal debajo -->
+  <div class="linea-separadora"></div>
+</div>

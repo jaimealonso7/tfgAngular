@@ -13,7 +13,7 @@
     <div class="productos-grid">
         <div class="producto" *ngFor="let p of productos">
             <img [attr.src]="'http://localhost:3000/images/' + p.image" alt="{{p.name}}" class="producto-imagen">
-
+            
             <h4 class="nombre-objeto">{{ p.name }}</h4>
             <div class="product--info__price">
                 <h1>{{ p.price | currency:'USD':'symbol':'1.0-0' }}</h1>
