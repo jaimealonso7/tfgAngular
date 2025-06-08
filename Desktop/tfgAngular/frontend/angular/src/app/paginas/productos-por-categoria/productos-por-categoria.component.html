@@ -3,12 +3,25 @@
     <!-- Header -->
     <app-header class="header"
         [userInfo]="{ image: 'assets/img/avatar.png', role: 'ADMIN' }"
-        [title]="'CLASSIQUEE'">
+        [title]="'CLASSIQUE'">
     </app-header>
 
     <h2 class="productos-categoria">{{ categoriaPlural }}</h2>
 
     <div class="productos-nohay" *ngIf="productos.length === 0">No hay productos en esta categoría.</div>
+
+    <div class="ordenar-container" (click)="toggleDropdown()" tabindex="0" (blur)="cerrarDropdown()">
+        <span class="ordenar-label">
+            <img src="assets/img/header/filtrar.png" class="icono-filtro" alt="">
+            <p class="ordenar">ORDENAR POR</p>
+        </span>
+
+        <div class="ordenar-dropdown" *ngIf="dropdownAbierto">
+            <!--<p class="relevancia" (click)="seleccionarOrden('relevancia')">Relevancia</p>-->
+            <p (click)="seleccionarOrden('precioDesc')">Precio descendente</p>
+            <p (click)="seleccionarOrden('precioAsc')">Precio ascendente</p>
+        </div>
+    </div>
 
     <div class="productos-grid">
         <div class="producto" *ngFor="let p of productos">

@@ -79,10 +79,9 @@
       <img class="boton-cerrar" src="assets/img/header/marca-x.png" alt="Cerrar">
     </div>
 
-    <!-- ✅ GRUPO DE FILTROS -->
     <app-filtro-categorias
       [titulo]="'Ropa'"
-      [categorias]="['Jersey', 'Pantalon', 'Chaqueta', 'Polo', 'Camiseta', 'Sudadera']"
+      [categorias]="['Jersey', 'Pantalon', 'Chaqueta', 'Polo', 'Camiseta']"
       [(seleccionadas)]="filtros.ropa"
       (seleccionadasChange)="onFiltroChange('ropa', $event)">
     </app-filtro-categorias>
@@ -101,76 +100,9 @@
       (seleccionadasChange)="onFiltroChange('perfumes', $event)">
     </app-filtro-categorias>
 
-    <!-- Debug temporal 
-    <pre>{{ filtros | json }}</pre>-->
-
   </div>
 </div>
 
 
-  
-
-  <!-- MENU 
-  <div class="sidebar-overlay" *ngIf="menuOpen" (click)="closeMenu()">
-      <div class="sidebar" (click)="$event.stopPropagation()">
-          <div class="contenedor-cerrar">
-            <img class="boton-cerrar" src="assets/img/header/x.png" alt="">
-            <p class="texto-cerrar">Cerrar</p>
-          </div>
-          
-          <div class="contenedor-marcas">
-
-              <div class="contenedor-moncler">
-                <img class="img-moncler" src="assets/img/header/moncler2.jpg" alt="">
-                <h2>Moncler</h2>
-              </div>
-              
-              <div class="contenedor-corteiz">
-                <a [routerLink]="['/corteiz']">
-                  <img class="img-corteiz" src="assets/img/header/crtz.jpg" alt="">
-                  <h2 class="titulo-moncler">Corteiz</h2>
-                </a>
-              </div>
-              
-              <div class="contenedor-stone">
-                <a [routerLink]="['/stone-island']">
-                  <img src="assets/img/header/stone.webp" alt="" class="img-stone">
-                  <h2 class="titulo-stone">Stone Island</h2>
-                </a>
-              </div>
-
-              <div class="contenedor-gallery">
-                <img src="assets/img/header/gallery3.jpg" alt="" class="img-gallery">
-                <h2 class="titulo-gallery">Gallery Dept</h2>
-              </div>
-
-              <div class="contenedor-chanel">
-                <img src="assets/img/header/chanel.jpg" alt="" class="img-chanel">
-                <h2 class="titulo-chanel">Chanel</h2>
-              </div>
-
-              <div class="contenedor-nf">
-                <img src="assets/img/header/nf.jpg" alt="" class="img-nf">
-                <h2 class="titulo-nf">North Face</h2>
-              </div>
-
-              <div class="contenedor-canada">
-                <img src="assets/img/header/canada.jpg" alt="" class="img-canada">
-                <h2 class="titulo-canada">Canada Goose</h2>
-              </div>
-
-              <div class="contenedor-rolex">
-                <img src="assets/img/header/rolex.jpg" alt="" class="img-rolex">
-                <h2 class="titulo-rolex">Rolex</h2>
-              </div>
-          </div>
-
-          <div class="contenedor-ayuda">
-              <h3>¿Podemos ayudarle?</h3>
-              <h3>+34 913 75 30 70</h3>
-          </div>
-          <hr>
-      </div>
-  </div>-->
 
 </header>

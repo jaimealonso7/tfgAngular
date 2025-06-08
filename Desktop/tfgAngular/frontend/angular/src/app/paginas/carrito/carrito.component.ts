@@ -36,34 +36,59 @@ export class CarritoComponent {
     console.log('Aplicando código:', this.codigoPromo);
   }
 
+  eliminarProducto(productoEliminado: any): void {
+  // Eliminar del array local para que la vista se actualice
+  this.cartItems = this.cartItems.filter(item => item.idCarrito !== productoEliminado.idCarrito);
+
+  // Eliminar del carrito del servicio (y posiblemente del backend)
+  this.carritoServicio.removeFromCart(productoEliminado);
+
+  // Recalcular subtotal si es necesario
+  this.cargarSubtotal();
+}
+
+
 
   constructor(private carritoServicio: CarritoServicio, private authService: AuthService) {}
   
   ngOnInit(): void {
-    const idUsuario = this.authService.getUserId();
-  
-    if (idUsuario) {
-      this.carritoServicio.getCartFromBackend(idUsuario).subscribe({
-        next: (items) => {
-          this.cartItems = items.map(item => ({
-            ...item,
-            image: item.image || item.imagen,
-            name: item.name || item.nombre,
-            color: item.color,          
-            talla: item.talla,        
-            description: item.description || item.descripcion  
-          }));
-          this.mostrarMensajeSinProductos = this.cartItems.length === 0;
-          this.cargarSubtotal();
-        },
-        error: (err) => {
-          console.error('❌ Error al cargar el carrito desde el backend:', err);
-        }
-      });
-    } else {
-      console.log('Usuario no autenticado');
-    }
+  const idUsuario = this.authService.getUserId();
+  console.log('ID del usuario:', idUsuario);
+
+  if (idUsuario) {
+    // Usuario autenticado → cargar del backend
+    this.carritoServicio.getCartFromBackend(idUsuario).subscribe({
+      next: (items) => {
+        this.cartItems = this.formatearItems(items);
+        this.mostrarMensajeSinProductos = this.cartItems.length === 0;
+        this.cargarSubtotal();
+      },
+      error: (err) => {
+        console.error('❌ Error al cargar el carrito desde el backend:', err);
+      }
+    });
+  } else {
+    // Usuario invitado → cargar desde localStorage
+    const itemsLocales = this.carritoServicio.getCart();
+    console.log('🛒 Cargando productos del carrito local:', itemsLocales);
+    this.cartItems = this.formatearItems(itemsLocales);
+    this.mostrarMensajeSinProductos = this.cartItems.length === 0;
+    this.cargarSubtotal();
   }
+}
+
+  private formatearItems(items: any[]): any[] {
+  return items.map(item => ({
+    ...item,
+    image: item.image || item.imagen,
+    name: item.name || item.nombre,
+    color: item.color,
+    talla: item.talla,
+    description: item.description || item.descripcion
+  }));
+}
+
+
   
   
   
@@ -73,10 +98,16 @@ export class CarritoComponent {
   }
   
 
-  cargarSubtotal() {
+  /*cargarSubtotal() {
     this.subtotal = this.carritoServicio.getSubtotal();
-  }
+  }*/
   
+  cargarSubtotal() {
+  this.subtotal = this.cartItems.reduce((total, item) => {
+    return total + (item.price * item.cantidad);
+  }, 0);
+}
+
 
   onRemoveItem(product: any): void {
     this.carritoServicio.removeFromCart(product);

@@ -73,3 +73,20 @@
   color: #333;
   user-select: none;  /* evita que el texto se seleccione si solo haces click en label */
 }
+
+@media (max-width: 768px) {
+  .flecha-icon {
+    width: 20px;
+    height: 20px;
+    margin-top: 40px;
+    position: absolute;
+    right: 130px;
+  }
+
+  .titulo-categorias {
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: 5px;
+  }
+  
+}

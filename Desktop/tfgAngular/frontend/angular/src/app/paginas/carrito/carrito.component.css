@@ -140,3 +140,154 @@ h2{
   font-weight: 600;
 }
 
+
+@media (max-width: 768px) {
+  .title {
+    margin-left: 20px;
+    font-size: 18px;
+  }
+  
+  h1{
+    font-size: 24px;
+    text-align: center;
+  }
+
+  p{
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .contenedor-pago {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .resumen-titulo {
+    font-size: 20px;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 40px;
+  }
+
+  .contenedor-codigo{
+    display: flex;
+    align-items: center;
+  }
+
+  .codigo{
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+  
+  .flecha-hacia-abajo{
+    height: 14px;
+    width: 14px;
+    margin-left: 20px;
+  }
+
+  .codigo-promocional {
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+    gap: 10px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  .codigo-promocional input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 80px;
+  }
+
+  .codigo-promocional button {
+    padding: 8px 16px;
+    background-color: #ffffff; /* Verde */
+    border: 1px solid black;
+    color: grey;
+    margin-right: 10px;
+    border-radius: 18px;
+    cursor: pointer;
+    width: 130px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .codigo-promocional button:hover {
+    background-color: #005f2f;
+  }
+
+  .mensaje-error {
+    text-align: left;
+    color: red;
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+
+  .subtotal{
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+
+  .subtotal-precio {
+    margin-right: 30px;
+  }
+
+  .gastos-envio{
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-left: 20px;
+  }
+
+  .gastos-envio-precio {
+    margin-right: 30px;
+  }
+
+  .total{
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    margin-left: 20px;
+  }
+
+  .total-precio{
+    margin-right: 30px;
+  }
+
+  .pagar{
+    background-color: #ececec; /* Verde */
+    color: grey;
+    width: 80%;
+    height: 50px;
+    border-radius: 28px;
+    padding: 10px 20px;
+    text-align: center;
+    
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 40px;
+    cursor: pointer;
+  }
+
+}

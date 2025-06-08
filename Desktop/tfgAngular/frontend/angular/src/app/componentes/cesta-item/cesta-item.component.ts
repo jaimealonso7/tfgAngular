@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 export class CestaItemComponent {
   cartItems: any[] = [];
 
+  @Output() cantidadCambiada = new EventEmitter<void>();
+
   @Input() producto: any;
   @Output() eliminar = new EventEmitter<any>();
   constructor(private carritoServicio: CarritoServicio, private http: HttpClient) {}
@@ -25,7 +27,7 @@ export class CestaItemComponent {
     this.eliminar.emit(this.producto);
   }
 
-  sumarCantidad(producto: any) {
+  /*sumarCantidad(producto: any) {
     producto.cantidad += 1;
     // Aquí también podrías hacer una llamada al backend para actualizar la cantidad en la base de datos si es necesario.
     this.carritoServicio.actualizarCarritoEnBackend(producto);
@@ -36,7 +38,22 @@ export class CestaItemComponent {
       producto.cantidad -= 1;
       this.carritoServicio.actualizarCarritoEnBackend(producto);
     }
+  }*/
+
+  sumarCantidad(producto: any) {
+  producto.cantidad += 1;
+  this.carritoServicio.actualizarCarritoEnBackend(producto);
+  this.cantidadCambiada.emit();  // notificar al padre
+}
+
+restarCantidad(producto: any) {
+  if (producto.cantidad > 1) {
+    producto.cantidad -= 1;
+    this.carritoServicio.actualizarCarritoEnBackend(producto);
+    this.cantidadCambiada.emit();  // notificar al padre
   }
+}
+
   
   // Función para actualizar el carrito en el backend
   actualizarCarritoEnBackend(producto: any) {
@@ -50,9 +67,11 @@ export class CestaItemComponent {
   
 
   removeFromCart(producto: any): void {
-    this.carritoServicio.removeFromCart(producto);
-    console.log('Elimando el producto del carrito:', producto);
-  }
+  this.carritoServicio.removeFromCart(producto);
+  console.log('Eliminando producto del carrito:', producto);
+  this.eliminar.emit(producto); // Notifica al padre que se eliminó
+}
+
   
 
 }

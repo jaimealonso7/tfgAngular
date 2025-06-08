@@ -188,6 +188,17 @@ export class CarritoServicio {
     return this.http.get<any[]>(`http://localhost:3000/api/carrito/${idUsuario}`);
   }
 
+  getCart(): any[] {
+  const cartData = localStorage.getItem('cart');
+  try {
+    return cartData ? JSON.parse(cartData) : [];
+  } catch (e) {
+    console.error('❌ Error al parsear carrito local:', e);
+    return [];
+  }
+}
+
+
   private saveCart() {
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
     this.cartSubject.next(this.cartItems); // notifica a los subscriptores

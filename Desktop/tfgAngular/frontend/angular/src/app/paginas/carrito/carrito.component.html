@@ -14,7 +14,10 @@
             <ng-container *ngFor="let product of cartItems">
                 <div class="product">
                     <div class="container">
-                        <app-cesta-item [producto]="product"></app-cesta-item>
+                        <app-cesta-item 
+                            [producto]="product"
+                            (eliminar)="eliminarProducto($event)"
+                        ></app-cesta-item>
                     </div>
                 </div>
             </ng-container>
